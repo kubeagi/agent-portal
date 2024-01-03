@@ -1,0 +1,72 @@
+{
+  "name": "agent-portal",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "lint": "npm run lint:es && npm run lint:style",
+    "lint-fix": "npm run lint-fix:es && npm run lint-fix:style",
+    "lint-fix:es": "eslint --ext .jsx,.js,.tsx,.ts src --fix",
+    "lint-fix:style": "stylelint \"{src,tests}/**/*.{css,less,js,jsx,ts,tsx}\" --fix",
+    "lint:es": "eslint --ext .jsx,.js,.tsx,.ts src",
+    "lint:style": "stylelint \"{src,tests}/**/*.{css,less,js,jsx,ts,tsx}\"",
+    "prepare": "husky install",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "start": "next start"
+  },
+  "lint-staged": {
+    "*.md": [
+      "remark --quiet --output --",
+      "prettier --write --no-error-on-unmatched-pattern"
+    ],
+    "*.json": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ],
+    "*.{css,less}": [
+      "stylelint --fix --allow-empty-input",
+      "prettier --write"
+    ],
+    "*.{js,jsx}": [
+      "stylelint --fix --allow-empty-input",
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "stylelint --fix",
+      "eslint --fix",
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "@ant-design/nextjs-registry": "^1.0.0",
+    "@next/mdx": "^14.0.4",
+    "@svgr/webpack": "^8.1.0",
+    "antd": "^5.12.6",
+    "antd-style": "^3.6.1",
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "ua-parser-js": "2.0.0-alpha.2"
+  },
+  "devDependencies": {
+    "@types/mdx": "^2.0.10",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/ua-parser-js": "^0.7.39",
+    "@yuntijs/lint": "^1.4.0",
+    "commitlint": "^18.4.3",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "14.0.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "stylelint": "^15",
+    "typescript": "^5"
+  },
+  "packageManager": "pnpm@8.12.1",
+  "engines": {
+    "node": ">=18.17.0",
+    "pnpm": ">=8.12.0"
+  }
+}
