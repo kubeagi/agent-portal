@@ -1,0 +1,32 @@
+name: Dependabot Auto Merge
+on:
+  pull_request_target:
+    types: [labeled, edited]
+
+jobs:
+  merge:
+    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
+    name: Dependabot Auto Merge
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js v18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install pnpm v8.x
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install deps
+        run: pnpm i
+
+      - name: Merge
+        uses: ahmadnassri/action-dependabot-auto-merge@v2
+        with:
+          command: merge
+          target: minor
+          github-token: ${{ secrets.GITHUB_TOKEN }}
