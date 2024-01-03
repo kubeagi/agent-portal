@@ -6,7 +6,37 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "npm run lint:es && npm run lint:style",
+    "lint-fix": "npm run lint-fix:es && npm run lint-fix:style",
+    "lint-fix:es": "eslint --ext .jsx,.js,.tsx,.ts src --fix",
+    "lint-fix:style": "stylelint \"{src,tests}/**/*.{css,less,js,jsx,ts,tsx}\" --fix",
+    "lint:es": "eslint --ext .jsx,.js,.tsx,.ts src",
+    "lint:style": "stylelint \"{src,tests}/**/*.{css,less,js,jsx,ts,tsx}\"",
+    "prepare": "husky install",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'"
+  },
+  "lint-staged": {
+    "*.md": [
+      "remark --quiet --output --",
+      "prettier --write --no-error-on-unmatched-pattern"
+    ],
+    "*.json": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ],
+    "*.{css,less}": [
+      "stylelint --fix --allow-empty-input",
+      "prettier --write"
+    ],
+    "*.{js,jsx}": [
+      "stylelint --fix --allow-empty-input",
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "stylelint --fix",
+      "eslint --fix",
+      "prettier --parser=typescript --write"
+    ]
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.0",
@@ -25,8 +55,18 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/ua-parser-js": "^0.7.39",
-    "eslint": "^8",
+    "@yuntijs/lint": "^1.4.0",
+    "commitlint": "^18.4.3",
+    "eslint": "^8.56.0",
     "eslint-config-next": "14.0.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "stylelint": "^16.1.0",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.17.0",
+    "pnpm": ">=8.12.0"
   }
 }
