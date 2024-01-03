@@ -2,7 +2,7 @@ import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ css, token }) => ({
   pathname: {
-    paddingTop: '20px',
+    marginTop: '20px',
     lineHeight: token.testHeight,
     color: token.colorPrimaryTest,
   },

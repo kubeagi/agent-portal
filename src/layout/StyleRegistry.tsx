@@ -8,14 +8,15 @@ const StyleRegistry = ({ children }: PropsWithChildren) => {
   const isInsert = useRef(false);
 
   useServerInsertedHTML(() => {
-    // avoid duplicate css insert
+    // 避免多次渲染时重复插入样式
     // refs: https://github.com/vercel/next.js/discussions/49354#discussioncomment-6279917
     if (isInsert.current) return;
 
     isInsert.current = true;
 
-    // @ts-ignore
-    return extractStaticStyle().map((item) => item.style);
+    const styles = extractStaticStyle().map(item => item.style);
+
+    return <>{styles}</>;
   });
 
   return <StyleProvider cache={extractStaticStyle.cache}>{children}</StyleProvider>;

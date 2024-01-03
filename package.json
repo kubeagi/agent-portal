@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev",
     "lint": "npm run lint:es && npm run lint:style",
     "lint-fix": "npm run lint-fix:es && npm run lint-fix:style",
     "lint-fix:es": "eslint --ext .jsx,.js,.tsx,.ts src --fix",
@@ -13,7 +12,8 @@
     "lint:es": "eslint --ext .jsx,.js,.tsx,.ts src",
     "lint:style": "stylelint \"{src,tests}/**/*.{css,less,js,jsx,ts,tsx}\"",
     "prepare": "husky install",
-    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'"
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "start": "next start"
   },
   "lint-staged": {
     "*.md": [
@@ -62,7 +62,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "prettier": "^3.1.1",
-    "stylelint": "^16.1.0",
+    "stylelint": "^15",
     "typescript": "^5"
   },
   "engines": {

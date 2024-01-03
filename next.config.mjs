@@ -23,7 +23,7 @@ const nextConfig = {
     unoptimized: !isProd,
   },
   reactStrictMode: true,
-  transpilePackages: ['antd-style'],
+  transpilePackages: ['antd', '@ant-design', 'antd-style'],
   webpack: (config) => {
     config.experiments = {
       asyncWebAssembly: true,

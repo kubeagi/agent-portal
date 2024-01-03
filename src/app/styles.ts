@@ -5,11 +5,12 @@ export const useStyles = createStyles(({ css, token }) => {
     main: css`
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       align-items: center;
-      padding: 6rem;
+      justify-content: space-between;
+
       min-height: 100vh;
-  `,
+      padding: 6rem;
+    `,
     logo: {
       // filter: 'invert(1) drop-shadow(0 0 0.3rem #ffffff70)'
       position: 'relative',
@@ -35,19 +36,18 @@ export const useStyles = createStyles(({ css, token }) => {
         backgroundColor: 'rgba(var(--callout-rgb), 0.5)',
         border: '1px solid rgba(var(--callout-border-rgb), 0.3)',
         borderRadius: 'var(--border-radius)',
-      }
+      },
     },
 
     code: css`
       font-weight: 700;
-      font-family: var(--font-mono);
     `,
 
     grid: css`
       display: grid;
       grid-template-columns: repeat(4, minmax(25%, auto));
-      max-width: 100%;
       width: var(--max-width);
+      max-width: 100%;
       a {
         color: inherit;
       }
@@ -55,27 +55,33 @@ export const useStyles = createStyles(({ css, token }) => {
 
     card: css`
       padding: 1rem 1.2rem;
-      border-radius: var(--border-radius);
+
       background: rgba(var(--card-rgb), 0);
       border: 1px solid rgba(var(--card-border-rgb), 0);
-      transition: background 200ms, border 200ms;
-      
+      border-radius: var(--border-radius);
+
+      transition:
+        background 200ms,
+        border 200ms;
+
       span {
         display: inline-block;
         transition: transform 200ms;
       }
 
       h2 {
-        font-weight: 600;
         margin-bottom: 0.7rem;
+        font-weight: 600;
       }
 
       p {
+        max-width: 30ch;
         margin: 0;
-        opacity: 0.6;
+
         font-size: 0.9rem;
         line-height: 1.5;
-        max-width: 30ch;
+
+        opacity: 0.6;
       }
       &:hover {
         background: rgba(var(--card-rgb), 0.1);
@@ -84,33 +90,39 @@ export const useStyles = createStyles(({ css, token }) => {
     `,
 
     center: css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
       position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       padding: 4rem 0;
       &::before {
-        background: var(--secondary-glow);
-        border-radius: 50%;
         width: 480px;
         height: 360px;
         margin-left: -400px;
+
+        background: var(--secondary-glow);
+        border-radius: 50%;
       }
 
       &::after {
-        background: var(--primary-glow);
+        z-index: -1;
         width: 240px;
         height: 180px;
-        z-index: -1;
+        background: var(--primary-glow);
       }
 
-      &::before, &::after {
+      &::before,
+      &::after {
         content: '';
-        left: 50%;
+
         position: absolute;
-        filter: blur(45px);
+        left: 50%;
         transform: translateZ(0);
+
+        filter: blur(45px);
       }
     `,
-  }
-})
+  };
+});

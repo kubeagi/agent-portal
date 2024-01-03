@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from 'antd';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -11,15 +12,16 @@ export default function Text() {
   return (
     <main className={styles.container}>
       <div>
-        <Link className={styles.link} href="/">
-          back to Home
-        </Link>
+        <Link href="/">back to Home</Link>
       </div>
       <div>
-        Pathname: <span className={styles.pathname}>{pathname}</span>
+        <a href="/">back to Home, test a 链接中的文字</a>
       </div>
+      <Button>
+        Pathname: <span>{pathname}</span>
+      </Button>
       <div>
-        <Link href="/test/inner">go to Inner</Link>
+        line 2 Pathname: <span>{pathname}</span> 文字的力量
       </div>
     </main>
   );

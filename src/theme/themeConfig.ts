@@ -1,16 +1,20 @@
-import type { ThemeConfig } from 'antd';
-import { ThemeProviderProps } from "antd-style";
+import { ThemeProviderProps as AntDThemeProviderProps } from 'antd-style';
 
-const theme_props: any = {
+export type ThemeProviderProps = AntDThemeProviderProps<any>;
+
+const colorPrimary = '#2c4ddc';
+
+const theme_props: ThemeProviderProps = {
   customToken: {
     testHeight: '50px',
     colorPrimaryTest: '#f85a5a',
   },
   theme: {
     token: {
-      colorPrimary: '#2c4ddc',
-    }
-  }
-}
+      colorPrimary,
+      colorLink: colorPrimary,
+    },
+  },
+};
 
-export default theme_props
+export default theme_props;
