@@ -1,13 +1,45 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Gitignore for YuntiJS
+################################################################
+
+# general
+.DS_Store
+.idea
+.vscode
+.history
+.temp
+.env.local
+venv
+temp
+tmp
 
 # dependencies
-/node_modules
+node_modules
+*.log
+*.lock
+package-lock.json
+bun.lockb
+
+# ci
+.coverage
+.eslintcache
+.stylelintcache
+coverage
+
+# production
+dist
+es
+lib
+umd
+logs
+test-output
+
+# husky
+.husky/prepare-commit-msg
+
+# dependencies
 /.pnp
 .pnp.js
 .yarn/install-state.gz
-
-# testing
-/coverage
 
 # next.js
 /.next/
@@ -17,13 +49,7 @@
 /build
 
 # misc
-.DS_Store
 *.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # local env files
 .env*.local
@@ -34,3 +60,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# misc
+# add other ignore file below
