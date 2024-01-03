@@ -1,0 +1,69 @@
+# Prettierignore for YuntiJS
+################################################################
+
+# general
+.DS_Store
+.editorconfig
+.idea
+.vscode
+.history
+.temp
+.env.local
+.husky
+.npmrc
+venv
+temp
+tmp
+LICENSE
+
+# dependencies
+node_modules
+*.log
+*.lock
+package-lock.json
+
+# ci
+.coverage
+.eslintcache
+.stylelintcache
+coverage
+test-output
+
+# production
+dist
+es
+lib
+logs
+
+# umi
+.umi
+.umi-production
+.umi-test
+.dumi/tmp*
+
+# ignore files
+.*ignore
+
+# docker
+docker
+Dockerfile*
+
+# image
+*.webp
+*.gif
+*.png
+*.jpg
+
+# misc
+# add other ignore file below
+
+# next
+# production
+/build
+
+# next.js
+/.next/
+/out/
+
+# vercel
+.vercel
