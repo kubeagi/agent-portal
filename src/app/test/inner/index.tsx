@@ -12,10 +12,10 @@ export default function Text() {
   return (
     <main className={styles.container}>
       <div>
-        <Link href="/">back to Home</Link>
+        <Link href="/test">back to Test</Link>
       </div>
       <div>
-        <a href="/">back to Home, test a 链接中的文字</a>
+        <a href="/test">back to Test, test a 链接中的文字</a>
       </div>
       <Button>
         Pathname: <span>{pathname}</span>

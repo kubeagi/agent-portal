@@ -38,14 +38,23 @@
     ]
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@ant-design/nextjs-registry": "^1.0.0",
+    "@lobehub/ui": "^1.125.8",
     "@next/mdx": "^14.0.4",
+    "@reduxjs/toolkit": "^2.0.1",
     "@svgr/webpack": "^8.1.0",
     "antd": "^5.12.6",
+    "antd-mobile": "^5.34.0",
     "antd-style": "^3.6.1",
+    "lucide-react": "^0.304.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-layout-kit": "^1.7.4",
+    "react-redux": "^9.0.4",
+    "redux": "^5.0.1",
+    "redux-devtools-extension": "^2.13.9",
     "ua-parser-js": "2.0.0-alpha.2"
   },
   "devDependencies": {
