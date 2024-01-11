@@ -13,6 +13,5 @@ export const useStyles = createStyles(({ css, token }) => ({
   container: {
     color: token.yellow7,
     textAlign: 'center',
-    paddingTop: '20vh',
   },
 }));
