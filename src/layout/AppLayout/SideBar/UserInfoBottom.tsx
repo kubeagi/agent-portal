@@ -15,19 +15,19 @@ export const useStyles = createStyles(({ css, token }) => {
   const defaultHeight = '60px';
   return {
     userinfo: {
-      position: 'absolute',
-      bottom: 0,
       lineHeight: defaultHeight,
       height: defaultHeight,
       width: '100%',
       padding: '0 12px',
       overflowY: 'hidden',
       borderTop: '1px solid rgba(0, 0, 0, .06)',
+      alignItems: 'center',
+      display: 'flex',
     },
     icons: {
       textAlign: 'right',
       lineHeight: defaultHeight,
-      paddingTop: '5px',
+      paddingTop: '10px',
     },
     avator: {
       minWidth: '38px',
@@ -39,7 +39,6 @@ export const useStyles = createStyles(({ css, token }) => {
     hover: {
       'height': '40px',
       'lineHeight': '40px',
-      'marginTop': '10px',
       'padding': '0 12px',
       '.ant-typography': {
         lineHeight: '40px',
@@ -62,7 +61,7 @@ function UserInfoBottom() {
   }; // await getUserData()
   const dispatch = useDispatch();
   const { styles } = useStyles();
-  const { theme } = useSelector((store: any) => store);
+  const theme = useSelector((store: any) => store.theme);
   const router = useRouter();
   return (
     <Flexbox className={styles.userinfo} distribution={'space-between'} horizontal>
