@@ -1,14 +1,17 @@
-'use client';
+import { Flex } from 'antd';
 
-import { Flexbox } from 'react-layout-kit';
-
-import ChatList from './ChatList';
+import SideBar from './SideBar';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Flexbox flex={1} height={'100vh'} horizontal width={'100vw'}>
-      <ChatList />
+    <Flex
+      style={{
+        width: '100vw',
+        height: '100vh',
+      }}
+    >
+      <SideBar />
       {children}
-    </Flexbox>
+    </Flex>
   );
 }

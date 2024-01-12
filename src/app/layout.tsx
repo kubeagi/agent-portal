@@ -9,8 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // dir === ltr | rtl
   return (
-    <html lang="en">
+    <html dir={'ltr'} lang="en">
       <body>
         <StyleRegistry>
           <GlobalLayout>{children}</GlobalLayout>

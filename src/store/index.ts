@@ -6,6 +6,7 @@ let store: any;
 
 const initialState = {
   theme: localStorage.getItem('theme') || 'light', // todo remove: use server
+  activeChat: 'name',
 };
 
 const reducer = (state = initialState, action: any) => {
@@ -15,6 +16,12 @@ const reducer = (state = initialState, action: any) => {
       return {
         ...state,
         theme: action.theme,
+      };
+    }
+    case 'CLICK_CHAT': {
+      return {
+        ...state,
+        activeChat: action.activeChat,
       };
     }
     default: {
@@ -53,7 +60,8 @@ export const initializeStore = (preloadedState: any) => {
   return _store;
 };
 
-export function useStore(_initialState: any) {
-  const _store = useMemo(() => initializeStore(_initialState), [_initialState]);
+export function useStore(_initialState?: any) {
+  const init = _initialState || initialState;
+  const _store = useMemo(() => initializeStore(init), [init]);
   return _store;
 }
