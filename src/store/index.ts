@@ -1,6 +1,7 @@
-import { applyMiddleware, configureStore } from '@reduxjs/toolkit';
+'use client';
+
+import { configureStore } from '@reduxjs/toolkit';
 import { useMemo } from 'react';
-import { composeWithDevTools } from 'redux-devtools-extension';
 
 let store: any;
 
@@ -34,7 +35,7 @@ function initStore(preloadedState = initialState) {
   return configureStore({
     reducer,
     preloadedState,
-    enhancer: composeWithDevTools(applyMiddleware()),
+    devTools: process.env.NODE_ENV !== 'production',
   });
 }
 
