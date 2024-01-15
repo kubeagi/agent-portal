@@ -56,9 +56,6 @@ dependencies:
   redux:
     specifier: ^5.0.1
     version: 5.0.1
-  redux-devtools-extension:
-    specifier: ^2.13.9
-    version: 2.13.9(redux@5.0.1)
   ua-parser-js:
     specifier: 2.0.0-alpha.2
     version: 2.0.0-alpha.2
@@ -10298,14 +10295,6 @@ packages:
     dependencies:
       esprima: 4.0.1
     dev: true
-
-  /redux-devtools-extension@2.13.9(redux@5.0.1):
-    resolution: {integrity: sha1-a3ZOgCi1B63LdaHK55D3Hmvgiuc=}
-    peerDependencies:
-      redux: ^3.1.0 || ^4.0.0
-    dependencies:
-      redux: 5.0.1
-    dev: false
 
   /redux-thunk@3.1.0(redux@5.0.1):
     resolution: {integrity: sha512-NW2r5T6ksUKXCabzhL9z+h206HQw/NJkcLm1GPImRQ8IzfXwRGqjVhKJGauHirT0DAuyy6hjdnMZaRoAcy0Klw==}
