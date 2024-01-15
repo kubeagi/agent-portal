@@ -9,10 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export const useStyles = createStyles(({ css, token }) => {
   const activeStyle = {
-    translate: 'all .15',
     color: 'black',
     backgroundColor: 'rgba(0, 0, 0, .06)',
-    transition: 'all .15',
+    transition: 'all .15s',
   };
   return {
     chatItem: {
