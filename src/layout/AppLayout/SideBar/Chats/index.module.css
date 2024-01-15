@@ -5,50 +5,6 @@
   padding-right: 8px;
 }
 
-.chats::-webkit-scrollbar {
-  display: none;
-}
-
-.chats:hover::-webkit-scrollbar {
-  display: inline;
-  display: initial;
-  width: 7px;
-  height: 0;
-}
-
-.chats:hover::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.chats:hover::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  background-clip: padding-box;
-  border-bottom: 1px solid transparent;
-}
-
-[dir='ltr'] .chats:hover::-webkit-scrollbar-thumb {
-  border-right: 1px solid transparent;
-  border-radius: 6px 8px 8px;
-}
-
-[dir='rtl'] .chats:hover::-webkit-scrollbar-thumb {
-  border-left: 1px solid transparent;
-  border-radius: 8px 6px 8px 8px;
-}
-
-.chats:hover::-webkit-scrollbar-thumb:hover {
-  background-color: #999;
-  background-clip: padding-box;
-}
-
-[dir='ltr'] .chats:hover::-webkit-scrollbar-thumb:hover {
-  border-right: 1px solid transparent;
-}
-
-[dir='rtl'] .chats:hover::-webkit-scrollbar-thumb:hover {
-  border-left: 1px solid transparent;
-}
-
 .content {
   padding-left: 8px;
 }

@@ -26,7 +26,7 @@ export const useStyles = createStyles(({ css, token }) => ({
     'fontWeight': 600,
     'fontSize': 16,
     '&:hover': {
-      translate: 'all .15',
+      translate: 'all .15s',
       color: 'black',
       backgroundColor: 'rgba(0, 0, 0, .06)',
     },
@@ -60,7 +60,7 @@ export const useStyles = createStyles(({ css, token }) => ({
     'padding': '8px 12px',
     'borderRadius': '12px',
     '&:hover': {
-      translate: 'all .15',
+      translate: 'all .15s',
       backgroundColor: 'rgba(0, 0, 0, .06)',
     },
     'svg': {
