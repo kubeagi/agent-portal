@@ -11,9 +11,11 @@ export const useStyles = createStyles(() => ({
   returnBtn: {
     padding: '0 16px',
     height: '64px',
-    position: 'fixed',
+    position: 'absolute',
     top: 0,
     width: '100%',
+    zIndex: 9,
+    overflowY: 'auto',
   },
   btn: {
     borderRadius: '12px !important',
@@ -22,10 +24,20 @@ export const useStyles = createStyles(() => ({
       height: 25,
     },
   },
+  title: {
+    flex: '1 1',
+    alignItems: 'center',
+    display: 'flex',
+    fontWeight: 590,
+    fontSize: 16,
+    flexDirection: 'column',
+    marginLeft: '-40px',
+  },
 }));
 
 interface ReturnBtnProps {
   to?: string;
+  title?: string;
 }
 
 const ReturnBtn = React.memo<ReturnBtnProps>(props => {
@@ -36,6 +48,7 @@ const ReturnBtn = React.memo<ReturnBtnProps>(props => {
       <Link href={to || '/chat'}>
         <ActionIcon className={styles.btn} icon={ChevronLeft} />
       </Link>
+      <div className={styles.title}>{props.title}</div>
     </Flex>
   );
 });

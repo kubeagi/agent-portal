@@ -13,6 +13,7 @@ const theme_props: ThemeProviderProps = {
   theme: {
     token: {
       colorPrimary,
+      borderRadius: 12,
       colorLink: colorPrimary,
     },
   },

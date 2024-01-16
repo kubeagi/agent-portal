@@ -1,6 +1,5 @@
 'use client';
 
-import classNames from 'classnames';
 import React from 'react';
 
 import ReturnBtn from '@/components/ReturnBtn';
@@ -18,11 +17,15 @@ interface SettingProps {
 const Setting = React.memo<SettingProps>(({ user }: SettingProps) => {
   const { styles } = useStyles();
   return (
-    <div className={classNames(styles.setting, 'showScrollBar')}>
-      <ReturnBtn />
-      <div className={styles.content}>
-        <UserInfo user={user} />
-        <BtnList />
+    <div className={styles.setting}>
+      <div>
+        <ReturnBtn />
+        <div className={'scrollBar'}>
+          <div className={styles.content}>
+            <UserInfo user={user} />
+            <BtnList />
+          </div>
+        </div>
       </div>
     </div>
   );

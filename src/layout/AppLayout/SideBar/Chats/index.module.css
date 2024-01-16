@@ -2,7 +2,6 @@
   position: relative;
   overflow-y: auto;
   flex: 1 1 0%;
-  padding-right: 8px;
 }
 
 .content {

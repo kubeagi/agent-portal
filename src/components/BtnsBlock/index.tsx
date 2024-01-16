@@ -4,6 +4,7 @@ import { ActionIcon } from '@lobehub/ui';
 import { Flex } from 'antd';
 import { createStyles } from 'antd-style';
 import { ChevronRight, User } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
 export const useStyles = createStyles(() => ({
@@ -13,6 +14,12 @@ export const useStyles = createStyles(() => ({
     maxHeight: '100%',
     overflowY: 'auto',
     width: '100%',
+  },
+  linkWrapper: {
+    'color': 'inherit',
+    '&:hover': {
+      color: 'inherit',
+    },
   },
   btn: {
     'width': '100%',
@@ -68,8 +75,9 @@ const BtnsBlock = React.memo<BtnsBlockProps>(props => {
       {btns.map((item, idx) => {
         const icon = item.icon || User;
         const icon_bg = item.icon_bg || theme.colorPrimary;
-        return (
-          <Flex align={'center'} className={styles.btn} key={item.title + idx}>
+        const key = item.title + idx;
+        const children = (
+          <Flex align={'center'} className={styles.btn} key={key}>
             <div className={styles.icon} style={{ backgroundColor: icon_bg }}>
               <ActionIcon color={'white'} icon={icon} />
             </div>
@@ -83,6 +91,14 @@ const BtnsBlock = React.memo<BtnsBlockProps>(props => {
             </Flex>
           </Flex>
         );
+        if (item.href) {
+          return (
+            <Link className={styles.linkWrapper} href={item.href} key={'link-wrapper-' + key}>
+              {children}
+            </Link>
+          );
+        }
+        return children;
       })}
     </div>
   );
