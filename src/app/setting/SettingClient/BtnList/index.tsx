@@ -1,5 +1,6 @@
 import {
   Bot,
+  Cog,
   Info,
   LogOut,
   MessageCircleMore,
@@ -22,8 +23,17 @@ const SettingBtnList = React.memo<any>(() => {
     () => [
       {
         icon: User2Icon,
-        title: '编辑个人资料',
-        href: '/setting/profile',
+        title: '个人资料',
+        href: '/setting/user-info',
+      },
+      {
+        icon: Cog,
+        title: '数据控制',
+        href: '/setting/user-info',
+      },
+      {
+        icon: Settings,
+        title: '账号设置',
       },
     ],
     []
@@ -66,10 +76,6 @@ const SettingBtnList = React.memo<any>(() => {
   const btnsSetting: Btn[] = React.useMemo(
     () => [
       {
-        icon: Settings,
-        title: '账号设置',
-      },
-      {
         icon: LogOut,
         title: '退出登录',
       },
@@ -78,8 +84,8 @@ const SettingBtnList = React.memo<any>(() => {
   );
   return (
     <div className={styles.btnlist}>
-      <BtnsBlock btns={btnsUser} />
       <BtnsBlock btns={btnsMy} />
+      <BtnsBlock btns={btnsUser} />
       <BtnsBlock btns={btnsActions} />
       <BtnsBlock btns={btnsSetting} />
     </div>
