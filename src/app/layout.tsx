@@ -1,40 +1,20 @@
-'use client';
+import type { Metadata } from 'next';
 
-import { App } from 'antd';
-import { ThemeProvider } from 'antd-style';
-
+import GlobalLayout from '@/layout/GlobalLayout';
 import StyleRegistry from '@/layout/StyleRegistry';
-import { GlobalStyle } from '@/styles';
-import themeConfig from '@/theme/themeConfig';
 
-import './globals.css';
-
-// export const metadata: Metadata = {
-//   title: 'Agent Portal',
-//   description: 'Agent Portal',
-// }
+export const metadata: Metadata = {
+  title: 'Agent Portal',
+  description: 'Agent Portal',
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // dir === ltr | rtl
   return (
-    <html lang="en">
+    <html dir={'ltr'} lang="en">
       <body>
         <StyleRegistry>
-          <ThemeProvider {...themeConfig}>
-            <GlobalStyle />
-            <App style={{ minHeight: 'inherit', width: 'inherit', fontFamily: 'inherit' }}>
-              {children}
-            </App>
-            {/* <ConfigProvider
-              theme={{
-                token: {
-                  colorPrimary: '#2c4ddc',
-                  colorLink: 'red',
-                }
-              }}
-            >
-              {children}
-            </ConfigProvider> */}
-          </ThemeProvider>
+          <GlobalLayout>{children}</GlobalLayout>
         </StyleRegistry>
       </body>
     </html>
