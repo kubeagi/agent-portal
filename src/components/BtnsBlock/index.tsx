@@ -6,7 +6,7 @@ import { createStyles } from 'antd-style';
 import { ChevronRight, User } from 'lucide-react';
 import React from 'react';
 
-export const useStyles = createStyles(({ css, token }) => ({
+export const useStyles = createStyles(() => ({
   btns: {
     marginBottom: 16,
     borderRadius: 16,

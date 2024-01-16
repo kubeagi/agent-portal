@@ -7,7 +7,7 @@ import { ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
-export const useStyles = createStyles(({ css, token }) => ({
+export const useStyles = createStyles(() => ({
   returnBtn: {
     padding: '0 16px',
     height: '64px',

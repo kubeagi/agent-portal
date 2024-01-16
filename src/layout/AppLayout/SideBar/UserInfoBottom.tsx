@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const { Text } = Typography;
 
-export const useStyles = createStyles(({ css, token }) => {
+export const useStyles = createStyles(() => {
   const defaultHeight = '60px';
   return {
     userinfo: {

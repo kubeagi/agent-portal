@@ -7,7 +7,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const useStyles = createStyles(({ css, token }) => {
+export const useStyles = createStyles(({ token }) => {
   const activeStyle = {
     color: 'black',
     backgroundColor: 'rgba(0, 0, 0, .06)',
