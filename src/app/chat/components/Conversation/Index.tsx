@@ -1,7 +1,9 @@
 import React from 'react';
 import { Flexbox } from 'react-layout-kit';
 
-interface ConversationProps {}
+interface ConversationProps {
+  data?: any;
+}
 
 const Conversation = React.memo<ConversationProps>(() => {
   return (

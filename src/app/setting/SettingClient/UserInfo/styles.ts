@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ css, token }) => ({
+export const useStyles = createStyles(() => ({
   userinfo: {
     textAlign: 'center',
     marginBottom: 24,

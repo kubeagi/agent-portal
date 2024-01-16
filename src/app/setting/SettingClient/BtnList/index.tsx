@@ -14,9 +14,9 @@ import BtnsBlock, { Btn } from '@/components/BtnsBlock';
 
 import { useStyles } from './styles';
 
-interface SettingBtnListProps {}
+// interface SettingBtnListProps {}
 
-const SettingBtnList = React.memo<SettingBtnListProps>(() => {
+const SettingBtnList = React.memo<any>(() => {
   const { styles, theme } = useStyles();
   const btnsUser: Btn[] = React.useMemo(
     () => [
