@@ -6,7 +6,7 @@ import { useMemo } from 'react';
 let store: any;
 
 const initialState = {
-  theme: localStorage.getItem('theme') || 'light', // todo remove: use server
+  theme: typeof window === 'undefined' ? 'light' : localStorage.getItem('theme') || 'light', // todo remove: use server
   activeChat: 'name',
 };
 

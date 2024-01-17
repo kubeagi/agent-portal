@@ -29,7 +29,7 @@ const SettingBtnList = React.memo<any>(() => {
       {
         icon: Cog,
         title: '数据控制',
-        href: '/setting/user-info',
+        href: '/setting/data-control',
       },
       {
         icon: Settings,
