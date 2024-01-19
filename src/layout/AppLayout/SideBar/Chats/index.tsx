@@ -14,7 +14,7 @@ const Chats: any = async () => {
     <div className={classnames(styles.chats, 'scrollBar')}>
       <div className={styles.content}>
         {list.map((item: any, idx: number) => (
-          <ChatItem data={item} key={item.name + idx} />
+          <ChatItem data={item} key={item.name + '' + idx} />
         ))}
       </div>
     </div>
