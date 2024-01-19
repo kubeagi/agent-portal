@@ -3,20 +3,25 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useMemo } from 'react';
 
+import oidc from '@/config/oidc.mjs';
+
+const { AUTH_DATA } = oidc;
+
 let store: any;
 
-const initialState = {
-  theme: typeof window === 'undefined' ? 'light' : localStorage.getItem('theme') || 'light', // todo remove: use server
-  activeChat: 'name',
-};
-
-const reducer = (state = initialState, action: any) => {
+const reducer = (state = {}, action: any) => {
   switch (action.type) {
     case 'TRIGGER_SHEME': {
       localStorage.setItem('theme', action.theme); // todo remove
       return {
         ...state,
         theme: action.theme,
+      };
+    }
+    case 'SAVE_AUTH_DATA': {
+      return {
+        ...state,
+        [AUTH_DATA]: action[AUTH_DATA],
       };
     }
     case 'CLICK_CHAT': {
@@ -31,7 +36,7 @@ const reducer = (state = initialState, action: any) => {
   }
 };
 
-function initStore(preloadedState = initialState) {
+function initStore(preloadedState = {}) {
   return configureStore({
     reducer,
     preloadedState,
@@ -62,7 +67,7 @@ export const initializeStore = (preloadedState: any) => {
 };
 
 export function useStore(_initialState?: any) {
-  const init = _initialState || initialState;
+  const init = _initialState || {};
   const _store = useMemo(() => initializeStore(init), [init]);
   return _store;
 }

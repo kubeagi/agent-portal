@@ -1,4 +1,6 @@
 
+import config from './src/config/oidc.mjs';
+const oidcUrl = config.server.url;
 const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
@@ -24,6 +26,15 @@ const nextConfig = {
   },
   reactStrictMode: true,
   transpilePackages: ['antd', '@ant-design', 'antd-style', '@lobehub/ui', 'antd-mobile'],
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: '/oidc/token',
+  //       destination: `${oidcUrl}/oidc/token`,
+  //       secure: false,
+  //     },
+  //   ]
+  // },
   webpack: (config) => {
     config.experiments = {
       asyncWebAssembly: true,

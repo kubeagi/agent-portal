@@ -16,3 +16,11 @@ export const isMobileDevice = () => {
   const device = new UAParser(ua || '').getDevice();
   return device.type === 'mobile';
 };
+
+export const atob = (encodedData: string) => {
+  return Buffer.from(encodedData, 'base64').toString();
+};
+
+export const btoa = (stringToEncode: string) => {
+  return Buffer.from(stringToEncode).toString('base64');
+};

@@ -1,3 +1,5 @@
+'use server';
+
 import classnames from 'classnames';
 import React from 'react';
 
