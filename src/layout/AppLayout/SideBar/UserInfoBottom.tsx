@@ -9,6 +9,8 @@ import React from 'react';
 import { Flexbox } from 'react-layout-kit';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { User } from '@/types/user';
+
 const { Text } = Typography;
 
 export const useStyles = createStyles(() => {
@@ -55,10 +57,12 @@ export const useStyles = createStyles(() => {
   };
 });
 
-function UserInfoBottom() {
-  const user = {
-    name: 'testtesttesttesttesttesttesttesttesttesttesttest',
-  }; // await getUserData()
+interface Props {
+  user: User;
+}
+
+function UserInfoBottom(props: Props) {
+  const { user = {} } = props;
   const dispatch = useDispatch();
   const { styles } = useStyles();
   const theme = useSelector((store: any) => store.theme);

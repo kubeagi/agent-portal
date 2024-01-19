@@ -9,6 +9,7 @@ import {
   Share2,
   User2Icon,
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import BtnsBlock, { Btn } from '@/components/BtnsBlock';
@@ -18,6 +19,7 @@ import { useStyles } from './styles';
 // interface SettingBtnListProps {}
 
 const SettingBtnList = React.memo<any>(() => {
+  const router = useRouter();
   const { styles, theme } = useStyles();
   const btnsUser: Btn[] = React.useMemo(
     () => [
@@ -78,6 +80,9 @@ const SettingBtnList = React.memo<any>(() => {
       {
         icon: LogOut,
         title: '退出登录',
+        onClick: () => {
+          router.push('/oidc/logout');
+        },
       },
     ],
     []

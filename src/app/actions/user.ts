@@ -1,16 +1,16 @@
 'use server';
 
-type User = {
-  name: string;
-  full_name: string;
-};
+import { User } from '@/types/user';
 
 export async function getUserData() {
-  // Fetch data from external API
+  // todo
+  // 1. use api
+  // 2. error handle
+
   const res = await fetch(`https://api.github.com/repos/kubeagi/agent-portal`, {
-    // cache: 'no-store',
+    // cache: 'no-store', // 每次都请求动态数据
     next: {
-      revalidate: 5,
+      revalidate: 5, // 缓存
     },
   });
   const data: any = await res.json();

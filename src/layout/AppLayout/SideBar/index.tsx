@@ -1,18 +1,18 @@
 import React from 'react';
 
+import { User } from '@/types/user';
+
 import Chats from './Chats';
 import SideBarHeader from './SideBarHeader';
 import UserInfoBottom from './UserInfoBottom';
 import styles from './index.module.css';
 
-const ChatList = () => {
+export default function SideBar({ user }: { user: User }) {
   return (
     <div className={styles.sidebar}>
       <SideBarHeader />
       <Chats />
-      <UserInfoBottom />
+      <UserInfoBottom user={user} />
     </div>
   );
-};
-
-export default ChatList;
+}

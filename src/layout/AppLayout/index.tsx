@@ -1,8 +1,10 @@
 import { Flex } from 'antd';
 
+import { User } from '@/types/user';
+
 import SideBar from './SideBar';
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
+export default function AppLayout({ children, user }: { children: React.ReactNode; user: User }) {
   return (
     <Flex
       style={{
@@ -10,7 +12,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         height: '100vh',
       }}
     >
-      <SideBar />
+      <SideBar user={user} />
       {children}
     </Flex>
   );
