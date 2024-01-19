@@ -1,11 +1,13 @@
 'use server';
 
-import React from 'react';
-
-import oidc from '@/config/oidc.mjs';
-
-import Logout from './Logout';
+import oidc from '@/config/oidc.mjs'
+import { redirect } from 'next/navigation';
 
 export default async function LogoutServer() {
-  return <Logout oidc={oidc} />;
+  const { client, server } = oidc;
+  const { redirect_uri, origin } = client;
+  const { url } = server;
+  redirect(`${url}/oidc/logout/remove-auth-data?redirect=${encodeURIComponent(
+    `${url}/oidc/auth?redirect_uri=${origin}${redirect_uri}&response_type=code&scope=openid+profile+email+groups+offline_access`
+  )}`);
 }
