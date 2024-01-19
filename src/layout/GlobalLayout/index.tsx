@@ -32,7 +32,7 @@ export default function GlobalLayout({ children }: { children: React.ReactNode }
       theme: localStorage.getItem('theme') || 'light',
       activeChat: 'name',
     });
-  }, []);
+  }, [ pathname ]);
   const store = useStore(initialState);
   return (
     <Provider store={store}>

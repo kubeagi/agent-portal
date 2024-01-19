@@ -1,3 +1,5 @@
+'use server';
+
 import { type NextRequest, NextResponse } from 'next/server';
 
 import oidc from '@/config/oidc.mjs';
