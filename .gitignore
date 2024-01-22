@@ -48,6 +48,9 @@ test-output
 # production
 /build
 
+# dev
+.env.development
+
 # misc
 *.pem
 

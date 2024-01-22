@@ -1,6 +1,5 @@
 import { headers } from 'next/headers';
 import { UAParser } from 'ua-parser-js';
-
 /**
  * check mobile device in server
  */
@@ -15,4 +14,12 @@ export const isMobileDevice = () => {
   // console.debug(ua);
   const device = new UAParser(ua || '').getDevice();
   return device.type === 'mobile';
+};
+
+export const atob = (encodedData: string) => {
+  return Buffer.from(encodedData, 'base64').toString();
+};
+
+export const btoa = (stringToEncode: string) => {
+  return Buffer.from(stringToEncode).toString('base64');
 };
