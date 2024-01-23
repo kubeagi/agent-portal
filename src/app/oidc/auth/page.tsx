@@ -1,8 +1,10 @@
 'use server';
 
-import oidc from '@/config/oidc.mjs';
-import queryString from 'query-string';
 import { redirect } from 'next/navigation';
+import queryString from 'query-string';
+
+import oidc from '@/config/oidc.mjs';
+
 // import { getUserData } from '@/app/actions/user';
 
 const { client, server } = oidc;
@@ -19,7 +21,7 @@ export default async function AuthServer() {
   // todo validate
   // const user = await getUserData();
   // if (!user) {
-  //   redirect(`${url}/oidc/auth?${query}`);
+  //   redirect(`${url}/auth?${query}`);
   // }
-  redirect(`${url}/oidc/auth?${query}`);
+  redirect(`${url}/auth?${query}`);
 }
