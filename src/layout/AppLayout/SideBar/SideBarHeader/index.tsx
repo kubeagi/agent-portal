@@ -16,7 +16,7 @@ const SidebarHeader = () => {
         <Link href="/chat">AgileGPT</Link>
       </div>
       <Flex className={styles.btns} vertical>
-        <Link className={styles.linkItem} href="/">
+        <Link className={styles.linkItem} href="/chat/bot/create">
           <CodepenCircleOutlined />
           <span className={styles.btnName}>创建智能体</span>
           <ChevronRight color={'rgb(204, 204, 204)'} />

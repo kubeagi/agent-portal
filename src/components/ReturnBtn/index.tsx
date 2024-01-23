@@ -33,22 +33,37 @@ export const useStyles = createStyles(() => ({
     flexDirection: 'column',
     marginLeft: '-40px',
   },
+  leftTitle: {
+    fontWeight: 590,
+    fontSize: 16,
+  },
+  layout: {
+    width: '100%'
+  }
 }));
 
 interface ReturnBtnProps {
   to?: string;
   title?: string;
+  isLeftTitle?: boolean;
+  extra?: React.ReactNode;
 }
 
 const ReturnBtn = React.memo<ReturnBtnProps>(props => {
-  const { to } = props;
+  const { to, extra, isLeftTitle } = props;
   const { styles } = useStyles();
   return (
     <Flex align={'center'} className={styles.returnBtn}>
       <Link href={to || '/chat'}>
         <ActionIcon className={styles.btn} icon={ChevronLeft} />
       </Link>
-      <div className={styles.title}>{props.title}</div>
+      {isLeftTitle 
+      ? <Flex align="center" className={styles.layout} justify='space-between'> 
+          <div className={styles.leftTitle}>{props.title}</div>
+          {extra}
+        </Flex> 
+        : <div className={styles.title}>{props.title}</div>
+      }
     </Flex>
   );
 });
