@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     redirect_uri,
   };
   const res: any = await fetchWithTimeout(
-    `${url}/oidc/token`,
+    `${url}/token`,
     {
       method: 'POST',
       headers: {

@@ -7,7 +7,7 @@ export default {
   client: {
     client_id: process.env.CLIENT_ID,
     client_secret: process.env.CLIENT_SECRET,
-    redirect_uri: process.env.CLIENT_REDIRECT_URI,
+    redirect_uri: '/oidc/callback',
     origin: process.env.CLIENT_ORIGIN,
   },
 };
