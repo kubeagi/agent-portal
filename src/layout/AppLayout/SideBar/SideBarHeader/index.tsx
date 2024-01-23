@@ -21,7 +21,7 @@ const SidebarHeader = () => {
           <span className={styles.btnName}>创建智能体</span>
           <ChevronRight color={'rgb(204, 204, 204)'} />
         </Link>
-        <Link className={styles.linkItem} href="/">
+        <Link className={styles.linkItem} href="/agent">
           <SlackSquareOutlined />
           <span className={styles.btnName}>发现智能体</span>
           <ChevronRight color={'rgb(204, 204, 204)'} />
