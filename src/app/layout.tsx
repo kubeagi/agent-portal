@@ -1,11 +1,16 @@
-import type { Metadata } from 'next';
+import type { Viewport } from 'next';
 
 import GlobalLayout from '@/layout/GlobalLayout';
+import PWAHandlerLayout from '@/layout/PWAHandlerLayout';
 import StyleRegistry from '@/layout/StyleRegistry';
 
-export const metadata: Metadata = {
-  title: 'Agent Portal',
-  description: 'Agent Portal',
+export { default as metadata } from './metadata';
+
+export const viewport: Viewport = {
+  themeColor: '#FFFFFF',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -14,7 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html dir={'ltr'} lang="en">
       <body>
         <StyleRegistry>
-          <GlobalLayout>{children}</GlobalLayout>
+          <GlobalLayout>
+            <PWAHandlerLayout>{children}</PWAHandlerLayout>
+          </GlobalLayout>
         </StyleRegistry>
       </body>
     </html>

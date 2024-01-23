@@ -50,9 +50,12 @@ test-output
 
 # dev
 .env.development
+.env.production
 
 # misc
 *.pem
+/cert/*.crt
+/cert/*.key
 
 # local env files
 .env*.local
@@ -66,3 +69,5 @@ next-env.d.ts
 
 # misc
 # add other ignore file below
+public/*.js
+public/*.js.map

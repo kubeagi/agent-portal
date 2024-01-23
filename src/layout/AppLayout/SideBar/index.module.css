@@ -41,6 +41,9 @@
     width: 100%;
     transition: var(--slide-transition);
   }
+  .sidebar.hide_sidebar {
+    display: none;
+  }
 
   [dir='ltr'] .sidebar {
     left: 0;

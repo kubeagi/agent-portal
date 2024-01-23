@@ -13,15 +13,17 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import BtnsBlock, { Btn } from '@/components/BtnsBlock';
+import { useInstallPrompt } from '@/layout/PWAHandlerLayout';
+import { AUTH_DATA } from '@/utils/constants';
 
 import { useStyles } from './styles';
-import { AUTH_DATA } from '@/utils/constants';
 
 // interface SettingBtnListProps {}
 
 const SettingBtnList = React.memo<any>(() => {
   const router = useRouter();
   const { styles, theme } = useStyles();
+  const installPrompt: any = useInstallPrompt();
   const btnsUser: Btn[] = React.useMemo(
     () => [
       {
@@ -63,6 +65,26 @@ const SettingBtnList = React.memo<any>(() => {
       {
         icon: MonitorDown,
         title: '添加至桌面',
+        onClick: () => {
+          if (installPrompt) {
+            console.warn('installPrompt', installPrompt);
+            installPrompt.prompt();
+
+            // 等待用户做出选择
+            installPrompt.userChoice.then(choiceResult => {
+              if (choiceResult.outcome === 'accepted') {
+                console.warn('用户接受了安装应用');
+                // 在这里你可以执行接受安装后的额外逻辑
+              } else {
+                console.warn('用户拒绝了安装应用');
+                // 在这里你可以执行拒绝安装后的额外逻辑
+              }
+
+              // 清除 installPrompt，因为它不能被重用
+              // setInstallPrompt(null);
+            });
+          }
+        },
       },
       {
         icon: MessageCircleMore,
@@ -73,7 +95,7 @@ const SettingBtnList = React.memo<any>(() => {
         title: '关于',
       },
     ],
-    []
+    [installPrompt]
   );
 
   const btnsSetting: Btn[] = React.useMemo(
