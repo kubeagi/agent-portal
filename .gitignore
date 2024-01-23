@@ -18,10 +18,13 @@
 
 # dev
 .env.development
+.env.production
 
 # misc
 .DS_Store
 *.pem
+/cert/*.crt
+/cert/*.key
 
 # debug
 npm-debug.log*
@@ -37,3 +40,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+public/*.js
+public/*.js.map

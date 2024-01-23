@@ -12,7 +12,7 @@ let store: any;
 const reducer = (state = {}, action: any) => {
   switch (action.type) {
     case 'TRIGGER_SHEME': {
-      localStorage.setItem('theme', action.theme); // todo remove
+      localStorage.setItem('theme', action.theme); // todo remove, use user profile by bff
       return {
         ...state,
         theme: action.theme,

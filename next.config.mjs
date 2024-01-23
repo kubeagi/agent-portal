@@ -1,7 +1,19 @@
+import nextPWA from '@ducanh2912/next-pwa';
+import analyzer from '@next/bundle-analyzer';
 
-import config from './src/config/oidc.mjs';
-const oidcUrl = config.server.url;
 const isProd = process.env.NODE_ENV === 'production';
+
+const withBundleAnalyzer = analyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+const withPWA = nextPWA({
+  dest: 'public',
+  register: true,
+  workboxOptions: {
+    skipWaiting: true,
+  },
+});
 
 const nextConfig = {
   compress: isProd,
@@ -26,15 +38,6 @@ const nextConfig = {
   },
   reactStrictMode: true,
   transpilePackages: ['antd', '@ant-design', 'antd-style', '@lobehub/ui', 'antd-mobile'],
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: '/oidc/token',
-  //       destination: `${oidcUrl}/oidc/token`,
-  //       secure: false,
-  //     },
-  //   ]
-  // },
   webpack: (config) => {
     config.experiments = {
       asyncWebAssembly: true,
@@ -59,4 +62,4 @@ const nextConfig = {
   },
 }
 
-export default nextConfig
+export default isProd ? withBundleAnalyzer(withPWA(nextConfig)) : nextConfig;

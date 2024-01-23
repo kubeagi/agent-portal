@@ -8,7 +8,6 @@ export default async function DesktopPage() {
   const props = {
     user,
   };
-  // todo fetch server data
   return (
     <>
       <UserInfoClient {...props} />
