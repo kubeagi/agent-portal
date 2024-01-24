@@ -14,8 +14,8 @@
     "lint:style": "stylelint \"{src,tests}/**/*.{css,less,js,jsx,ts,tsx}\"",
     "prepare": "husky install",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "start": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 next start",
-    "start:https": "cross-env NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 node server.mjs"
+    "start": "next start",
+    "start:https": "cross-env NODE_ENV=production node server.mjs"
   },
   "lint-staged": {
     "*.md": [

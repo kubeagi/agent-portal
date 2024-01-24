@@ -9,12 +9,12 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   https.createServer({
-    key: fs.readFileSync('./cert/cert.key'),
-    cert: fs.readFileSync('./cert/cert.crt'),
+    // key: fs.readFileSync('./cert/cert.key'),
+    // cert: fs.readFileSync('./cert/cert.crt'),
     // key: fs.readFileSync('./cert/key.pem'),
     // cert: fs.readFileSync('./cert/cert.pem'),
-    // key: fs.readFileSync('./localhost-key.pem'),
-    // cert: fs.readFileSync('./localhost.pem'),
+    key: fs.readFileSync('./localhost-key.pem'),
+    cert: fs.readFileSync('./localhost.pem'),
   }, (req, res) => {
     handle(req, res);
   }).listen(port, err => {

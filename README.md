@@ -43,3 +43,24 @@ cp .env.example .env.production
 ```
 
 复制并重命名为 .env.production, 修改 oidc(必须) 等参数
+
+## 本地运行 pwa (添加到桌面)
+
+- 构建
+
+```
+npm run build
+```
+
+- 安装 [mkcert](https://github.com/FiloSottile/mkcert) 并生成证书
+
+```
+mkcert -install
+mkcert localhost
+```
+
+- 运行带自签名证书的生产模式
+
+```
+npm run start:https
+```
