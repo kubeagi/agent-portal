@@ -4,7 +4,7 @@ import GlobalLayout from '@/layout/GlobalLayout';
 import PWAHandlerLayout from '@/layout/PWAHandlerLayout';
 import StyleRegistry from '@/layout/StyleRegistry';
 
-export { default as metadata } from './metadata';
+export { generateMetadata } from './metadata';
 
 export const viewport: Viewport = {
   themeColor: '#FFFFFF',

@@ -3,10 +3,12 @@
 import { redirect } from 'next/navigation';
 
 import oidc from '@/config/oidc.mjs';
+import { getOriginServerSide } from '@/utils';
 
 export default async function LogoutServer() {
+  const origin = getOriginServerSide();
   const { client, server } = oidc;
-  const { redirect_uri, origin } = client;
+  const { redirect_uri } = client;
   const { url } = server;
   // todo build render err
   redirect(

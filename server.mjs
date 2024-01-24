@@ -1,6 +1,6 @@
-const fs = require('fs');
-const https = require('https');
-const next = require('next');
+import fs from 'fs';
+import https from 'https';
+import next from 'next';
 
 const port = 3000;
 const dev = process.env.NODE_ENV !== 'production';

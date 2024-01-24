@@ -1,5 +1,6 @@
 import { headers } from 'next/headers';
 import { UAParser } from 'ua-parser-js';
+
 /**
  * check mobile device in server
  */
@@ -22,4 +23,12 @@ export const atob = (encodedData: string) => {
 
 export const btoa = (stringToEncode: string) => {
   return Buffer.from(stringToEncode).toString('base64');
+};
+
+export const getOriginServerSide = () => {
+  const heads = headers();
+  if (!heads.get('x-forwarded-proto') || !heads.get('host')) {
+    throw new Error('get origin err');
+  }
+  return `${heads.get('x-forwarded-proto')}://${heads.get('host')}`;
 };

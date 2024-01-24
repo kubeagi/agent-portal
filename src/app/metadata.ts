@@ -1,10 +1,6 @@
 import type { Metadata } from 'next';
 
-import oidc from '@/config/oidc.mjs';
-
-const {
-  client: { origin },
-} = oidc;
+import { getOriginServerSide } from '@/utils';
 
 const APP_NAME = 'AgileGPT';
 const APP_DEFAULT_TITLE = APP_NAME;
@@ -13,7 +9,7 @@ const APP_DESCRIPTION = 'Agile GPTs';
 
 const metadata: Metadata = {
   applicationName: APP_NAME,
-  metadataBase: new URL(origin || 'http://localhost:3000'),
+  metadataBase: new URL('http://localhost:3000'),
   title: {
     default: APP_DEFAULT_TITLE,
     template: APP_TITLE_TEMPLATE,
@@ -49,4 +45,19 @@ const metadata: Metadata = {
   },
 };
 
-export default metadata;
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const origin = getOriginServerSide();
+  return Object.assign(
+    metadata,
+    origin
+      ? {
+          metadataBase: new URL(origin),
+        }
+      : {}
+  );
+}

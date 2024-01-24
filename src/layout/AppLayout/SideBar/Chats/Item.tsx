@@ -5,7 +5,7 @@ import { Flex, Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import classNames from 'classnames';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import React from 'react';
 
 import { DEFAULT_CHAT } from '@/utils/constants';
@@ -59,6 +59,7 @@ export const useStyles = createStyles(({ token }) => {
   };
 });
 
+const CHAT_OTHER_PAGES = new Set(['/chat/bot/create']);
 interface Props {
   data: {
     key: string;
@@ -70,12 +71,15 @@ const ChatItem: any = (props: Props) => {
   const { data } = props;
   const { styles } = useStyles();
   const { id: activeChat } = useParams();
+  const pathname = usePathname();
+  const isChatPage = pathname.startsWith('/chat') && !CHAT_OTHER_PAGES.has(pathname);
   const isDefaultChat = data.key === DEFAULT_CHAT;
   return (
     <Link
       className={classNames(
         styles.chatItem,
-        activeChat === data.key || (!activeChat && isDefaultChat) ? styles.activeItem : ''
+        isChatPage &&
+          (activeChat === data.key || (!activeChat && isDefaultChat) ? styles.activeItem : '')
       )}
       href={isDefaultChat ? '/chat' : `/chat/${data.key}`}
     >
