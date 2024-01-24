@@ -12,7 +12,6 @@ export const useStyles = createStyles(({ token }) => ({
   content: {
     maxWidth: '600px',
     margin: '0 auto',
-    paddingTop: '64px',
-    paddingBottom: '24px',
+    padding: '64px 16px 24px 16px',
   },
 }));

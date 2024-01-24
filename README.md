@@ -26,13 +26,41 @@ bun dev
 
 Open <http://localhost:3000> with your browser to see the result.
 
-## Development OIDC 配置
+## .env 配置 (示例: ./.env.example)
 
-根目录新建 `.env.development`
+### 开发模式
 
 ```
-OIDC_SERVER_URL=[OIDC_SERVER_URL]
-CLIENT_ID=[CLIENT_ID]
-CLIENT_SECRET=[CLIENT_SECRET]
-CLIENT_ORIGIN=[CLIENT_ORIGIN]
+cp .env.example .env.development
+```
+
+复制并重命名为 .env.development, 修改 oidc(必须) 等参数
+
+### 生产模式
+
+```
+cp .env.example .env.production
+```
+
+复制并重命名为 .env.production, 修改 oidc(必须) 等参数
+
+## 本地运行 pwa (添加到桌面)
+
+- 构建
+
+```
+npm run build
+```
+
+- 安装 [mkcert](https://github.com/FiloSottile/mkcert) 并生成证书
+
+```
+mkcert -install
+mkcert localhost
+```
+
+- 运行带自签名证书的生产模式
+
+```
+npm run start:https
 ```

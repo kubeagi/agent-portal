@@ -4,14 +4,16 @@ import { redirect } from 'next/navigation';
 import queryString from 'query-string';
 
 import oidc from '@/config/oidc.mjs';
+import { getOriginServerSide } from '@/utils';
 
 // import { getUserData } from '@/app/actions/user';
 
 const { client, server } = oidc;
 const { url } = server;
-const { client_id, redirect_uri, origin } = client;
+const { client_id, redirect_uri } = client;
 
 export default async function AuthServer() {
+  const origin = getOriginServerSide();
   const query = queryString.stringify({
     client_id,
     redirect_uri: `${origin}${redirect_uri}`,

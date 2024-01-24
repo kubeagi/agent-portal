@@ -3,9 +3,12 @@
 import { GoogleOutlined } from '@ant-design/icons';
 import { Flex, Typography } from 'antd';
 import { createStyles } from 'antd-style';
+import classNames from 'classnames';
 import Link from 'next/link';
+import { useParams, usePathname } from 'next/navigation';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { DEFAULT_CHAT } from '@/utils/constants';
 
 export const useStyles = createStyles(({ token }) => {
   const activeStyle = {
@@ -56,6 +59,7 @@ export const useStyles = createStyles(({ token }) => {
   };
 });
 
+const CHAT_OTHER_PAGES = new Set(['/chat/bot/create']);
 interface Props {
   data: {
     key: string;
@@ -66,18 +70,18 @@ interface Props {
 const ChatItem: any = (props: Props) => {
   const { data } = props;
   const { styles } = useStyles();
-  const dispatch = useDispatch();
-  const activeChat = useSelector((store: any) => store.activeChat);
+  const { id: activeChat } = useParams();
+  const pathname = usePathname();
+  const isChatPage = pathname.startsWith('/chat') && !CHAT_OTHER_PAGES.has(pathname);
+  const isDefaultChat = data.key === DEFAULT_CHAT;
   return (
     <Link
-      className={styles.chatItem + ' ' + (activeChat === data.key ? styles.activeItem : '')}
-      href="/chat"
-      onClick={() => {
-        dispatch({
-          type: 'CLICK_CHAT',
-          activeChat: data.key,
-        });
-      }}
+      className={classNames(
+        styles.chatItem,
+        isChatPage &&
+          (activeChat === data.key || (!activeChat && isDefaultChat) ? styles.activeItem : '')
+      )}
+      href={isDefaultChat ? '/chat' : `/chat/${data.key}`}
     >
       <Flex align={'center'} gap={8} justify={'space-between'}>
         <div className={styles.icon}>
