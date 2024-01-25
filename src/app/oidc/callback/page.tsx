@@ -18,6 +18,6 @@ export default async function CallbackServer(props: any) {
       method: 'POST',
     }
   );
-  const data = await res.json();
+  const data = await res?.json();
   return <Callback data={data} />;
 }

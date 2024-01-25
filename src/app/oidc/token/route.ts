@@ -1,6 +1,8 @@
 'use server';
 
+import https from 'https';
 import { type NextRequest, NextResponse } from 'next/server';
+import fetch, { RequestInit } from 'node-fetch';
 
 import oidc from '@/config/oidc.mjs';
 import { btoa } from '@/utils';
@@ -8,6 +10,8 @@ import { btoa } from '@/utils';
 const { client, server } = oidc;
 const { url } = server;
 const { client_id, client_secret } = client;
+
+const dev = process.env.NODE_ENV === 'development';
 
 function fetchWithTimeout(url: string, options: RequestInit, timeout = 3000) {
   const fetchPromise = fetch(url, options);
@@ -37,6 +41,9 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
+      agent: new https.Agent({
+        rejectUnauthorized: false,
+      }),
     },
     10_000
   );

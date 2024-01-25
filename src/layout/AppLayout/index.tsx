@@ -4,7 +4,7 @@ import { User } from '@/types/user';
 
 import SideBar from './SideBar';
 
-export default function AppLayout({ children, user }: { children: React.ReactNode; user: User }) {
+export default function AppLayout({ children, user }: { children: React.ReactNode; user?: User }) {
   return (
     <Flex
       style={{

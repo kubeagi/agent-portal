@@ -1,12 +1,11 @@
+import { User } from '@tenx-ui/bff-client';
 import { Avatar } from 'antd';
 import React from 'react';
 
 import { useStyles } from './styles';
 
 interface SettingUserInfoProps {
-  user: {
-    name: string;
-  };
+  user: User;
 }
 
 const SettingUserInfo = React.memo<SettingUserInfoProps>(({ user }) => {
