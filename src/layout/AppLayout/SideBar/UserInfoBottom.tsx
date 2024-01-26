@@ -1,6 +1,7 @@
 'use client';
 
 import { ActionIcon } from '@lobehub/ui';
+import { sdk } from '@tenx-ui/bff-client';
 import { Avatar, Space, Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import { Moon, Settings, Sun } from 'lucide-react';
@@ -8,8 +9,6 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { Flexbox } from 'react-layout-kit';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { bffClient } from '@/utils/client';
 
 const { Text } = Typography;
 
@@ -62,7 +61,7 @@ export default function UserInfoBottom() {
   const { styles } = useStyles();
   const theme = useSelector((store: any) => store.theme);
   const router = useRouter();
-  const { data } = bffClient.useGetCurrentUser();
+  const { data } = sdk.useGetCurrentUser();
   const user = data?.userCurrent;
   return (
     <Flexbox className={styles.userinfo} distribution={'space-between'} horizontal>

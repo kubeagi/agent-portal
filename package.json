@@ -46,7 +46,7 @@
     "@next/mdx": "^14.0.4",
     "@reduxjs/toolkit": "^2.0.1",
     "@svgr/webpack": "^8.1.0",
-    "@tenx-ui/bff-client": "^0.3.0",
+    "@tenx-ui/bff-client": "^0.3.1",
     "@tenx-ui/icon": "^2.4.40",
     "@tenx-ui/request": "1.0.0-beta.6",
     "@yuntijs/arcadia-bff-sdk": "^1.0.71",
