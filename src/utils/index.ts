@@ -1,6 +1,10 @@
 import { headers } from 'next/headers';
 import { UAParser } from 'ua-parser-js';
 
+// todo: server side bff err
+// import { sdk } from '@yuntijs/arcadia-bff-sdk';
+// export const bff = sdk;
+
 /**
  * check mobile device in server
  */

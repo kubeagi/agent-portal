@@ -1,19 +1,15 @@
-'use server';
+'use client';
 
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 
-import oidc from '@/config/oidc.mjs';
-import { getOriginServerSide } from '@/utils';
+import { AUTH_DATA } from '@/utils/constants';
 
-export default async function LogoutServer() {
-  const origin = getOriginServerSide();
-  const { client, server } = oidc;
-  const { redirect_uri } = client;
-  const { url } = server;
-  // todo build render err
-  redirect(
-    `${url}/logout/remove-auth-data?redirect=${encodeURIComponent(
-      `${url}/auth?redirect_uri=${origin}${redirect_uri}&response_type=code&scope=openid+profile+email+groups+offline_access`
-    )}`
-  );
+export default function Logout() {
+  const router = useRouter();
+  React.useEffect(() => {
+    window.localStorage.removeItem(AUTH_DATA);
+    router.push('/oidc/remove-auth-and-login');
+  });
+  return <></>;
 }

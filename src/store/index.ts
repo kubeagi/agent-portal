@@ -3,9 +3,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useMemo } from 'react';
 
-import oidc from '@/config/oidc.mjs';
-
-const { AUTH_DATA } = oidc;
+import { AUTH_DATA } from '@/utils/constants';
 
 let store: any;
 

@@ -1,4 +1,5 @@
 import nextPWA from '@ducanh2912/next-pwa';
+import withLess from 'next-with-less';
 import analyzer from '@next/bundle-analyzer';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -62,4 +63,4 @@ const nextConfig = {
   },
 }
 
-export default isProd ? withBundleAnalyzer(withPWA(nextConfig)) : nextConfig;
+export default isProd ? withBundleAnalyzer(withPWA(withLess(nextConfig))) : withLess(nextConfig);

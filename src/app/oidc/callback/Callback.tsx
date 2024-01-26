@@ -1,9 +1,10 @@
 'use client';
 
-import { AUTH_DATA } from '@/utils/constants';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+
+import { AUTH_DATA } from '@/utils/constants';
 
 export default function Callback({ data: res }: { data: any }) {
   const dispatch = useDispatch();
@@ -14,7 +15,12 @@ export default function Callback({ data: res }: { data: any }) {
       return;
     }
     if (res?.data) {
-      localStorage.setItem(AUTH_DATA, JSON.stringify(res.data));
+      localStorage.setItem(
+        AUTH_DATA,
+        JSON.stringify({
+          token: res.data,
+        })
+      );
       dispatch({
         type: 'SAVE_AUTH_DATA',
         authData: res.data,

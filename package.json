@@ -4,8 +4,7 @@
   "scripts": {
     "build": "next build",
     "build:analyze": "cross-env ANALYZE=true next build",
-    "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 next dev",
-    "dev:https": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 next dev --experimental-https --experimental-https-key ./cert/key.pem --experimental-https-cert ./cert/cert.pem",
+    "dev": "cross-env NODE_ENV=development node server.mjs",
     "lint": "npm run lint:es && npm run lint:style",
     "lint-fix": "npm run lint-fix:es && npm run lint-fix:style",
     "lint-fix:es": "eslint --ext .jsx,.js,.tsx,.ts src --fix",
@@ -15,7 +14,7 @@
     "prepare": "husky install",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "start": "next start",
-    "start:https": "cross-env NODE_ENV=production node server.mjs"
+    "start:https": "cross-env NODE_ENV=production PWA=TRUE node server.mjs"
   },
   "lint-staged": {
     "*.md": [
@@ -47,18 +46,28 @@
     "@next/mdx": "^14.0.4",
     "@reduxjs/toolkit": "^2.0.1",
     "@svgr/webpack": "^8.1.0",
+    "@tenx-ui/bff-client": "^0.3.0",
+    "@tenx-ui/icon": "^2.4.40",
+    "@tenx-ui/request": "1.0.0-beta.6",
+    "@yuntijs/arcadia-bff-sdk": "^1.0.71",
     "antd": "^5.12.6",
     "antd-mobile": "^5.34.0",
     "antd-style": "^3.6.1",
+    "babel-runtime": "^6.26.0",
     "classnames": "^2.5.1",
+    "express": "^4.18.2",
+    "http-proxy-middleware": "^2.0.6",
     "lucide-react": "^0.304.0",
     "next": "14.0.4",
+    "next-with-less": "^3.0.1",
+    "node-fetch": "^3.3.2",
     "query-string": "^8.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-layout-kit": "^1.7.4",
     "react-redux": "^9.0.4",
     "redux": "^5.0.1",
+    "swr": "^2.2.4",
     "ua-parser-js": "2.0.0-alpha.2"
   },
   "devDependencies": {

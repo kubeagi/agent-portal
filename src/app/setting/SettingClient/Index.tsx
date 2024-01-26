@@ -3,19 +3,18 @@
 import React from 'react';
 
 import ReturnBtn from '@/components/ReturnBtn';
+import { bffClient } from '@/utils/client';
 
 import BtnList from './BtnList';
 import UserInfo from './UserInfo';
 import { useStyles } from './styles';
 
-interface SettingProps {
-  user: {
-    name: string;
-  };
-}
+// interface SettingProps {}
 
-const Setting = React.memo<SettingProps>(({ user }: SettingProps) => {
+const Setting = React.memo(() => {
   const { styles } = useStyles();
+  const { data } = bffClient.useGetCurrentUser();
+  const user: User = data?.userCurrent;
   return (
     <div className={styles.setting}>
       <div>

@@ -45,12 +45,12 @@ const metadata: Metadata = {
   },
 };
 
-type Props = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+// type Props = {
+//   params: { id: string };
+//   searchParams: { [key: string]: string | string[] | undefined };
+// };
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const origin = getOriginServerSide();
   return Object.assign(
     metadata,

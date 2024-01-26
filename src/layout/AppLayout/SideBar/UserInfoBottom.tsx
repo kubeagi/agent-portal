@@ -9,7 +9,7 @@ import React from 'react';
 import { Flexbox } from 'react-layout-kit';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { User } from '@/types/user';
+import { bffClient } from '@/utils/client';
 
 const { Text } = Typography;
 
@@ -57,16 +57,13 @@ export const useStyles = createStyles(() => {
   };
 });
 
-interface Props {
-  user: User;
-}
-
-function UserInfoBottom(props: Props) {
-  const { user = {} } = props;
+export default function UserInfoBottom() {
   const dispatch = useDispatch();
   const { styles } = useStyles();
   const theme = useSelector((store: any) => store.theme);
   const router = useRouter();
+  const { data } = bffClient.useGetCurrentUser();
+  const user = data?.userCurrent;
   return (
     <Flexbox className={styles.userinfo} distribution={'space-between'} horizontal>
       <div className={styles.username}>
@@ -74,7 +71,7 @@ function UserInfoBottom(props: Props) {
           <div className={styles.avator}>
             <Avatar size={28} />
           </div>
-          <Text ellipsis>{user.name}</Text>
+          <Text ellipsis>{user?.name}</Text>
         </Flexbox>
       </div>
       <div className={styles.icons}>
@@ -111,5 +108,3 @@ function UserInfoBottom(props: Props) {
     </Flexbox>
   );
 }
-
-export default UserInfoBottom;

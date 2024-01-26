@@ -1,6 +1,5 @@
 
 export default {
-  AUTH_DATA: 'authData',
   server: {
     url: process.env.OIDC_SERVER_URL,
   },

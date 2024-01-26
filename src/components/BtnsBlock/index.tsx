@@ -27,14 +27,18 @@ export const useStyles = createStyles(({ token }) => ({
     'paddingLeft': '16px',
     'cursor': 'pointer',
     '&:hover': {
-      backgroundColor: 'rgba(0, 0, 0, .06)',
+      backgroundColor: 'rgba(0, 0, 0, .05)',
       transition: 'all .15s',
+      // content: {
+      //   boxSadow: 'unset',
+      // }
     },
   },
   content: {
     flex: '1 1',
     padding: '12px 12px 12px 0',
     minHeight: '56px',
+    boxShadow: '0 -1px 0 rgba(0, 0 ,0 ,.05)',
   },
   content_left: {
     'flex': '1 1',
