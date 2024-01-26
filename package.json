@@ -13,7 +13,7 @@
     "lint:style": "stylelint \"{src,tests}/**/*.{css,less,js,jsx,ts,tsx}\"",
     "prepare": "husky install",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "start": "next start",
+    "start": "cross-env NODE_ENV=production node server.mjs",
     "start:https": "cross-env NODE_ENV=production PWA=TRUE node server.mjs"
   },
   "lint-staged": {
@@ -49,7 +49,7 @@
     "@tenx-ui/bff-client": "^0.3.1",
     "@tenx-ui/icon": "^2.4.40",
     "@tenx-ui/request": "1.0.0-beta.6",
-    "@yuntijs/arcadia-bff-sdk": "^1.0.71",
+    "@yuntijs/arcadia-bff-sdk": "^1.1.0",
     "antd": "^5.12.6",
     "antd-mobile": "^5.34.0",
     "antd-style": "^3.6.1",
