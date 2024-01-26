@@ -4,7 +4,7 @@
   "scripts": {
     "build": "next build",
     "build:analyze": "cross-env ANALYZE=true next build",
-    "dev": "cross-env NODE_ENV=development node server.mjs",
+    "dev": "node server.mjs",
     "lint": "npm run lint:es && npm run lint:style",
     "lint-fix": "npm run lint-fix:es && npm run lint-fix:style",
     "lint-fix:es": "eslint --ext .jsx,.js,.tsx,.ts src --fix",
@@ -13,7 +13,7 @@
     "lint:style": "stylelint \"{src,tests}/**/*.{css,less,js,jsx,ts,tsx}\"",
     "prepare": "husky install",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "start": "next start",
+    "start": "cross-env NODE_ENV=production node server.mjs",
     "start:https": "cross-env NODE_ENV=production PWA=TRUE node server.mjs"
   },
   "lint-staged": {

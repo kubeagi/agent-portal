@@ -13,8 +13,8 @@ const SettingUserInfo = React.memo<SettingUserInfoProps>(({ user }) => {
   return (
     <div className={styles.userinfo}>
       <Avatar size={100}>V</Avatar>
-      <div className={styles.name}>{user.name}</div>
-      <div className={styles.userid}>id: {user.name}</div>
+      <div className={styles.name}>{user?.name}</div>
+      <div className={styles.userid}>id: {user?.name}</div>
     </div>
   );
 });

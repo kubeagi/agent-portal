@@ -14,7 +14,7 @@ import { useStyles } from './styles';
 const Setting = React.memo(() => {
   const { styles } = useStyles();
   const { data } = bffClient.useGetCurrentUser();
-  const user: User = data?.userCurrent;
+  const user: any = data?.userCurrent;
   return (
     <div className={styles.setting}>
       <div>
