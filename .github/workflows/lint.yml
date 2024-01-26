@@ -16,8 +16,17 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install pnpm v8.x
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: setting token to npmrc
+        run: |
+          npm set //dev-npm.tenxcloud.net/:_authToken="${{ secrets.NPMTOKEN }}"
+
       - name: Install deps
-        run: npm i
+        run: pnpm i
 
       - name: Lint
         run: npm run lint
