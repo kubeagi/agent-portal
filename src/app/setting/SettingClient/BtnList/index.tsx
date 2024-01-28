@@ -14,7 +14,6 @@ import React from 'react';
 
 import BtnsBlock, { Btn } from '@/components/BtnsBlock';
 import { useInstallPrompt } from '@/layout/PWAHandlerLayout';
-import { AUTH_DATA } from '@/utils/constants';
 
 import { useStyles } from './styles';
 
@@ -104,7 +103,6 @@ const SettingBtnList = React.memo<any>(() => {
         icon: LogOut,
         title: '退出登录',
         onClick: () => {
-          localStorage.removeItem(AUTH_DATA);
           router.push('/oidc/logout');
         },
       },

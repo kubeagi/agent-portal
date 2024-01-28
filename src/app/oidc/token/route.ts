@@ -11,8 +11,6 @@ const { client, server } = oidc;
 const { url } = server;
 const { client_id, client_secret } = client;
 
-const dev = process.env.NODE_ENV === 'development';
-
 function fetchWithTimeout(url: string, options: RequestInit, timeout = 3000) {
   const fetchPromise = fetch(url, options);
   const timeoutPromise = new Promise((resolve, reject) => {

@@ -12,6 +12,13 @@ import { GlobalStyle } from '@/styles';
 import themeConfig from '@/theme/themeConfig';
 import { AUTH_DATA } from '@/utils/constants';
 
+const NO_AUTH_ROUTES = new Set([
+  '/oidc/callback',
+  '/oidc/logout',
+  '/oidc/remove-auth-and-login',
+  '/oidc/auth',
+]);
+
 // import './globals.css';
 
 export default function GlobalLayout({ children }: { children: React.ReactNode }) {
@@ -19,7 +26,7 @@ export default function GlobalLayout({ children }: { children: React.ReactNode }
   const pathname = usePathname();
   const router = useRouter();
   React.useEffect(() => {
-    if (pathname === '/oidc/callback') {
+    if (NO_AUTH_ROUTES.has(pathname)) {
       return;
     }
     const auth = localStorage.getItem(AUTH_DATA);
