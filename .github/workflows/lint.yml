@@ -21,12 +21,12 @@ jobs:
         with:
           version: 8
 
-      - name: setting token to npmrc
+      - name: Setting token to npmrc
         run: |
           npm set //dev-npm.tenxcloud.net/:_authToken="${{ secrets.NPMTOKEN }}"
 
       - name: Install deps
-        run: pnpm i
+        run: pnpm install
 
       - name: Lint
         run: npm run lint
