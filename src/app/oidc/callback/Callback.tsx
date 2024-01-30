@@ -1,5 +1,6 @@
 'use client';
 
+import { notification } from 'antd';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -10,8 +11,14 @@ export default function Callback({ data: res }: { data: any }) {
   const dispatch = useDispatch();
   const router = useRouter();
   const saveAuth = async () => {
-    if (res?.data?.errors) {
+    if (res?.data?.errors || !res?.data) {
       console.warn(res?.data?.errors);
+      notification.warning({
+        message: '认证失败请重试',
+      });
+      setTimeout(() => {
+        router.push('/oidc/logout');
+      }, 5000);
       return;
     }
     if (res?.data) {

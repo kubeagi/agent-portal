@@ -4,13 +4,14 @@ import { App } from 'antd';
 import { ThemeProvider } from 'antd-style';
 import 'antd/dist/reset.css';
 import { usePathname, useRouter } from 'next/navigation';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Provider } from 'react-redux';
 
 import { useStore } from '@/store';
 import { GlobalStyle } from '@/styles';
 import themeConfig from '@/theme/themeConfig';
 import { AUTH_DATA } from '@/utils/constants';
+import { initAxios } from '@/utils/initAxios';
 
 const NO_AUTH_ROUTES = new Set([
   '/oidc/callback',
@@ -21,7 +22,7 @@ const NO_AUTH_ROUTES = new Set([
 
 // import './globals.css';
 
-export default function GlobalLayout({ children }: { children: React.ReactNode }) {
+const GlobalLayout = React.memo<PropsWithChildren>(({ children }: PropsWithChildren) => {
   const [initialState, setInitState] = React.useState<any>();
   const pathname = usePathname();
   const router = useRouter();
@@ -33,11 +34,14 @@ export default function GlobalLayout({ children }: { children: React.ReactNode }
     if (!auth) {
       router.push('/oidc/auth');
     }
+  }, [pathname]);
+  React.useEffect(() => {
     setInitState({
       theme: localStorage.getItem('theme') || 'light',
       activeChat: 'name',
     });
-  }, [pathname]);
+    initAxios();
+  }, []);
   const store = useStore(initialState);
   return (
     <Provider store={store}>
@@ -49,4 +53,6 @@ export default function GlobalLayout({ children }: { children: React.ReactNode }
       </ThemeProvider>
     </Provider>
   );
-}
+});
+
+export default GlobalLayout;

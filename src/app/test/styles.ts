@@ -2,7 +2,7 @@ import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ css }) => {
   return {
-    main: css`
+    wrapper: css`
       display: flex;
       flex-direction: column;
       align-items: center;

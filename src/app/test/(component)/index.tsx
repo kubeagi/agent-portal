@@ -9,7 +9,7 @@ export default function Text() {
   const pathname = usePathname();
   const { styles } = useStyles();
   return (
-    <main className={styles.container}>
+    <div className={styles.container}>
       <div>
         <Link className={styles.link} href="/">
           back to Home
@@ -21,6 +21,6 @@ export default function Text() {
       <div>
         <Link href="/test/inner">go to Inner</Link>
       </div>
-    </main>
+    </div>
   );
 }

@@ -10,7 +10,7 @@ export default function Text() {
   const pathname = usePathname();
   const { styles } = useStyles();
   return (
-    <main className={styles.container}>
+    <div className={styles.container}>
       <div>
         <Link href="/test">back to Test</Link>
       </div>
@@ -23,6 +23,6 @@ export default function Text() {
       <div>
         line 2 Pathname: <span>{pathname}</span> 文字的力量
       </div>
-    </main>
+    </div>
   );
 }

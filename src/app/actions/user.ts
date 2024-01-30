@@ -1,22 +1,15 @@
 'use server';
 
+import axios from 'axios';
+
 import { User } from '@/types/user';
-import requestSsr from '@/utils/request.ssr';
 
 export async function getUserData() {
   // todo
   // 1. use api / sdk
   // 2. error handle
 
-  const res = await requestSsr.get({
-    url: `https://api.github.com/repos/kubeagi/agent-portal`,
-    options: {
-      // cache: 'no-store', // 每次都请求动态数据
-      next: {
-        revalidate: 5, // 缓存
-      },
-    },
-  });
+  const res = await axios.get(`https://api.github.com/repos/kubeagi/agent-portal`);
   const data: any = res;
   const user: User = {
     name: data.name,
