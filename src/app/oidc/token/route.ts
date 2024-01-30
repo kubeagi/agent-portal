@@ -1,8 +1,8 @@
 'use server';
 
+import axios from 'axios';
 import https from 'https';
 import { type NextRequest, NextResponse } from 'next/server';
-import fetch, { RequestInit } from 'node-fetch';
 
 import oidc from '@/config/oidc.mjs';
 import { btoa } from '@/utils';
@@ -10,16 +10,6 @@ import { btoa } from '@/utils';
 const { client, server } = oidc;
 const { url } = server;
 const { client_id, client_secret } = client;
-
-function fetchWithTimeout(url: string, options: RequestInit, timeout = 3000) {
-  const fetchPromise = fetch(url, options);
-  const timeoutPromise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject(new Error('Request timed out'));
-    }, timeout);
-  });
-  return Promise.race([fetchPromise, timeoutPromise]);
-}
 
 export async function POST(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -30,21 +20,16 @@ export async function POST(request: NextRequest) {
     code,
     redirect_uri,
   };
-  const res: any = await fetchWithTimeout(
-    `${url}/token`,
-    {
-      method: 'POST',
-      headers: {
-        'Authorization': `Basic ${btoa(`${client_id}:${client_secret}`)}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-      agent: new https.Agent({
-        rejectUnauthorized: false,
-      }),
+  const httpsAgent = new https.Agent({
+    rejectUnauthorized: false,
+  });
+  const res: any = await axios.post(`${url}/token`, body, {
+    headers: {
+      'Authorization': `Basic ${btoa(`${client_id}:${client_secret}`)}`,
+      'Content-Type': 'application/json',
     },
-    10_000
-  );
-  const data = await res.json();
-  return NextResponse.json({ data });
+    httpsAgent,
+    timeout: 10_000,
+  });
+  return NextResponse.json({ data: res.data });
 }

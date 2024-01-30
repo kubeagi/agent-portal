@@ -1,5 +1,7 @@
 'use server';
 
+import axios from 'axios';
+import https from 'https';
 import React from 'react';
 
 import oidc from '@/config/oidc.mjs';
@@ -12,12 +14,15 @@ export default async function CallbackServer(props: any) {
   const { code } = searchParams;
   const { redirect_uri } = oidc.client;
   const origin = getOriginServerSide();
-  const res = await fetch(
+  const httpsAgent = new https.Agent({
+    rejectUnauthorized: false,
+  });
+  const res: any = await axios.post(
     `${origin}/oidc/token?code=${code}&redirect_uri=${origin}${redirect_uri}`,
+    {},
     {
-      method: 'POST',
+      httpsAgent,
     }
   );
-  const data = await res?.json();
-  return <Callback data={data} />;
+  return <Callback data={res?.data} />;
 }

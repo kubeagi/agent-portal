@@ -16,7 +16,7 @@ export default async function DesktopPage() {
       Authorization: 'bearer <id_token>',
     })
     .catch(error => {
-      console.warn('getCurrentUser failed');
+      console.warn('getCurrentUser failed', error);
     });
 
   return (

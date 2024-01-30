@@ -92,6 +92,7 @@ const SettingBtnList = React.memo<any>(() => {
       {
         icon: Info,
         title: '关于',
+        href: '/test',
       },
     ],
     [installPrompt]
