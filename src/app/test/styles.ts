@@ -2,15 +2,23 @@ import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ css }) => {
   return {
-    wrapper: css`
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
+    wrapper: {
+      'display': 'flex',
+      'flexDirection': 'column',
+      'alignItems': 'center',
+      'justifyContent': 'space-between',
 
-      min-height: 60vh;
-      padding: 2rem;
-    `,
+      'minHeight': '60vh',
+      'padding': '2rem',
+      '.ant-spin-nested-loading': {
+        'width': '100%',
+        '.ant-list': {
+          backgroundColor: 'white',
+          margin: '16px auto',
+          width: 500,
+        },
+      },
+    },
     logo: {
       // filter: 'invert(1) drop-shadow(0 0 0.3rem #ffffff70)'
       position: 'relative',
