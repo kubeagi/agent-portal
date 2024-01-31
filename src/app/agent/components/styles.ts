@@ -32,6 +32,7 @@ export const useStyles = createStyles(() => ({
     backgroundColor: '#EEEEEE',
     padding: 16,
     borderRadius: '16px',
+    cursor: 'pointer',
   },
   left: {
     height: '72px',

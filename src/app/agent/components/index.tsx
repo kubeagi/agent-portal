@@ -1,10 +1,10 @@
 'use client';
 
-// import { useSearchParams } from 'next/navigation'
 import { FireOutlined } from '@ant-design/icons';
 import { sdk as bff } from '@yuntijs/arcadia-bff-sdk';
 import { Avatar, Button, Col, Row, Spin, Tooltip } from 'antd';
 import classNames from 'classnames';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import ReturnBtn from '@/components/ReturnBtn';
@@ -52,8 +52,9 @@ const Agent = React.memo<AgentProps>(({ agentData }) => {
     },
     { fallbackData: agentData }
   );
-
+  const router = useRouter();
   // const searchParams = useSearchParams()
+
   useEffect(() => {
     // console.log(searchParams.get('classification'))
   }, []);
@@ -62,6 +63,9 @@ const Agent = React.memo<AgentProps>(({ agentData }) => {
     setSelectedTags(tag);
   };
 
+  const onLink = item => {
+    router.push(`/chat?appName=${item.name}`);
+  };
   return (
     <div className={styles.agentContainer}>
       <div className={styles.agentContent}>
@@ -76,7 +80,12 @@ const Agent = React.memo<AgentProps>(({ agentData }) => {
                     .filter(item => item.category.includes(selectedTag))
                     .map((item, index) => (
                       <Col {...layout} key={index}>
-                        <div className={styles.card}>
+                        <div
+                          className={styles.card}
+                          onClick={() => {
+                            onLink(item);
+                          }}
+                        >
                           <div className={styles.left}>
                             <Avatar shape="square" size={72} src={item.icon} />
                           </div>
