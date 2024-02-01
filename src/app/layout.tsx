@@ -1,5 +1,6 @@
 import type { Viewport } from 'next';
 
+import AxiosConfigLayout from '@/layout/AxiosConfigLayout';
 import GlobalLayout from '@/layout/GlobalLayout';
 import PWAHandlerLayout from '@/layout/PWAHandlerLayout';
 import StyleRegistry from '@/layout/StyleRegistry';
@@ -18,11 +19,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html dir={'ltr'} lang="en">
       <body>
-        <StyleRegistry>
-          <GlobalLayout>
-            <PWAHandlerLayout>{children}</PWAHandlerLayout>
-          </GlobalLayout>
-        </StyleRegistry>
+        <PWAHandlerLayout>
+          <AxiosConfigLayout>
+            <StyleRegistry>
+              <GlobalLayout>{children}</GlobalLayout>
+            </StyleRegistry>
+          </AxiosConfigLayout>
+        </PWAHandlerLayout>
       </body>
     </html>
   );

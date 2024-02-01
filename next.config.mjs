@@ -36,7 +36,7 @@ const nextConfig = {
   images: {
     unoptimized: !isProd,
   },
-  reactStrictMode: true,
+  reactStrictMode: isProd,
   transpilePackages: ['antd', '@ant-design', 'antd-style', '@lobehub/ui', 'antd-mobile'],
   webpack: (config) => {
     config.experiments = {
