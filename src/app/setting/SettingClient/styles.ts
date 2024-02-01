@@ -3,7 +3,7 @@ import { createStyles } from 'antd-style';
 export const useStyles = createStyles(({ token }) => ({
   setting: {
     'width': '100%',
-    'background': token.colorBgLayout,
+    'backgroundColor': token.colorBgLayout,
     'position': 'relative',
     '& > div': {
       height: '100%',

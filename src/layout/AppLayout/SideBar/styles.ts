@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(() => ({
+export const useStyles = createStyles(({ token }) => ({
   sidebar: {
     'position': 'relative',
     'display': 'flex',
@@ -8,15 +8,14 @@ export const useStyles = createStyles(() => ({
     'flexShrink': '0',
     'width': '336px',
     'height': '100%',
-    'backgroundColor': 'white',
-
+    'backgroundColor': token.colorBgBase,
     // 处理 [dir='ltr'] 和 [dir='rtl']
     '@global': {
       "[dir='ltr'] &": {
-        borderRight: '1px solid rgba(0, 0, 0, 0.06)',
+        borderRight: `1px solid ${token.colorSplit}`,
       },
       "[dir='rtl'] &": {
-        borderLeft: '1px solid rgba(0, 0, 0, 0.06)',
+        borderLeft: `1px solid ${token.colorSplit}`,
       },
     },
 

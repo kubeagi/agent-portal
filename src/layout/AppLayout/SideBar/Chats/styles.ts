@@ -13,4 +13,10 @@ export const useStyles = createStyles(() => ({
       marginBottom: 'unset',
     },
   },
+  emptyItem: {
+    'padding': '12px 16px 0 16px',
+    '.ant-skeleton-header': {
+      paddingInlineEnd: '8px',
+    },
+  },
 }));

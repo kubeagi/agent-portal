@@ -3,6 +3,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useMemo } from 'react';
 
+import { setCookie } from '@/utils/client';
 import { AUTH_DATA } from '@/utils/constants';
 
 let store: any;
@@ -10,7 +11,7 @@ let store: any;
 const reducer = (state = {}, action: any) => {
   switch (action.type) {
     case 'TRIGGER_SHEME': {
-      localStorage.setItem('theme', action.theme); // todo remove, use user profile by bff
+      setCookie('theme', action.theme); // todo remove, use user profile by bff ?
       return {
         ...state,
         theme: action.theme,
@@ -20,12 +21,6 @@ const reducer = (state = {}, action: any) => {
       return {
         ...state,
         [AUTH_DATA]: action[AUTH_DATA],
-      };
-    }
-    case 'CLICK_CHAT': {
-      return {
-        ...state,
-        activeChat: action.activeChat,
       };
     }
     default: {

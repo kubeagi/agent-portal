@@ -1,6 +1,6 @@
 import { css } from 'antd-style';
 
-export default ({ prefixCls }: { prefixCls: string; token: any }) => css`
+export default ({ prefixCls, token }: { prefixCls: string; token: any }) => css`
   html,
   body,
   #__next,
@@ -9,6 +9,12 @@ export default ({ prefixCls }: { prefixCls: string; token: any }) => css`
     overscroll-behavior: none;
     height: 100% !important;
     min-height: 100% !important;
+  }
+
+  body {
+    color: CanvasText;
+    color-scheme: light dark;
+    background-color: Canvas !important;
   }
 
   ::-webkit-scrollbar {
@@ -78,6 +84,15 @@ export default ({ prefixCls }: { prefixCls: string; token: any }) => css`
         width: 0;
         height: 0;
       }
+    }
+  }
+
+  @keyframes inactivelink-hover-animation {
+    0% {
+      background-color: transparent;
+    }
+    to {
+      background-color: ${token.controlItemBgHover};
     }
   }
 `;
