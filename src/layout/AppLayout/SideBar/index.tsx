@@ -1,24 +1,23 @@
-import classNames from 'classnames';
-import { headers } from 'next/headers';
-import React from 'react';
+'use client';
 
-import { User } from '@/types/user';
+import classNames from 'classnames';
+import { usePathname } from 'next/navigation';
+import React from 'react';
 
 import Chats from './Chats';
 import SideBarHeader from './SideBarHeader';
 import UserInfoBottom from './UserInfoBottom';
-import styles from './index.module.css';
+import { useStyles } from './styles';
 
-export default function SideBar(props: any | User) {
-  const { user } = props;
-  const heads = headers();
-  const pathname: any = heads.get('next-url'); // get pathname server side
+export default function SideBar() {
+  const { styles } = useStyles();
+  const pathname: any = usePathname();
   const showSidebar = ['/chat'].includes(pathname);
   return (
-    <div className={classNames(styles.sidebar, showSidebar ? '' : styles.hide_sidebar)}>
+    <div className={classNames(styles.sidebar, showSidebar ? '' : 'hide_sidebar')}>
       <SideBarHeader />
       <Chats />
-      <UserInfoBottom user={user} />
+      <UserInfoBottom />
     </div>
   );
 }

@@ -42,6 +42,10 @@ export const useStyles = createStyles(({ token }) => {
     },
     content: {
       flex: '1 1 0%',
+      display: 'flex',
+      flexDirection: 'column',
+      flexGrow: '1',
+      overflow: 'hidden',
     },
     title: {
       alignItems: 'center',
@@ -62,8 +66,9 @@ export const useStyles = createStyles(({ token }) => {
 const CHAT_OTHER_PAGES = new Set(['/chat/bot/create']);
 interface Props {
   data: {
-    key: string;
-    value: string;
+    id: string;
+    title: string;
+    desc: string;
   };
 }
 
@@ -73,25 +78,34 @@ const ChatItem: any = (props: Props) => {
   const { id: activeChat } = useParams();
   const pathname = usePathname();
   const isChatPage = pathname.startsWith('/chat') && !CHAT_OTHER_PAGES.has(pathname);
-  const isDefaultChat = data.key === DEFAULT_CHAT;
+  const isDefaultChat = data.id === DEFAULT_CHAT;
   return (
     <Link
       className={classNames(
         styles.chatItem,
         isChatPage &&
-          (activeChat === data.key || (!activeChat && isDefaultChat) ? styles.activeItem : '')
+          (activeChat === data.id || (!activeChat && isDefaultChat) ? styles.activeItem : '')
       )}
-      href={isDefaultChat ? '/chat' : `/chat/${data.key}`}
+      href={isDefaultChat ? '/chat' : `/chat/${data.id}`}
     >
-      <Flex align={'center'} gap={8} justify={'space-between'}>
+      <Flex
+        align={'center'}
+        gap={8}
+        justify={'space-between'}
+        style={{
+          maxWidth: '100%',
+        }}
+      >
         <div className={styles.icon}>
           <GoogleOutlined />
         </div>
         <div className={styles.content}>
-          <div className={styles.title}>{data.key}</div>
-          <Typography.Text className={styles.msg} ellipsis>
-            {data.value}
-          </Typography.Text>
+          <Typography.Paragraph className={styles.title} ellipsis>
+            {data.title}
+          </Typography.Paragraph>
+          <Typography.Paragraph className={styles.msg} ellipsis>
+            {data.desc}
+          </Typography.Paragraph>
         </div>
       </Flex>
     </Link>

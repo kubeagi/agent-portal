@@ -1,9 +1,0 @@
-.chats {
-  position: relative;
-  overflow-y: auto;
-  flex: 1 1 0%;
-}
-
-.content {
-  padding-left: 8px;
-}
