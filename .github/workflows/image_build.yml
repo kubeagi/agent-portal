@@ -55,7 +55,7 @@ jobs:
         id: short-sha
       - name: Setting token to npmrc
         run: |
-          echo '//dev-npm.tenxcloud.net/:_authToken="${{ secrets.NPMTOKEN }}"' > /tmp/npmrc
+          echo '//dev-npm.k8s.com.cn/:_authToken="${{ secrets.NPMTOKEN }}"' > /tmp/npmrc
       - name: Build dist
         id: dist-build
         uses: docker/build-push-action@v5

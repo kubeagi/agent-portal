@@ -23,7 +23,7 @@ jobs:
 
       - name: Setting token to npmrc
         run: |
-          npm set //dev-npm.tenxcloud.net/:_authToken="${{ secrets.NPMTOKEN }}"
+          npm set //dev-npm.k8s.com.cn/:_authToken="${{ secrets.NPMTOKEN }}"
 
       - name: Install deps
         run: pnpm install
