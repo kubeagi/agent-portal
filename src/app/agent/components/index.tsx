@@ -79,7 +79,7 @@ const Agent = React.memo<AgentProps>(({ agentData }) => {
                   {(ListData?.GPT?.listGPT?.nodes || [])
                     .filter(item => item.category.includes(selectedTag))
                     .map((item, index) => (
-                      <Col {...layout} key={index}>
+                      <Col {...layout}>
                         <div
                           className={styles.card}
                           onClick={() => {
