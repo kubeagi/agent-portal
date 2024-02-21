@@ -12,7 +12,7 @@ const useStyles = createStyles(({ css, token }) => ({
     flex-direction: column;
   `,
   drawer: {
-    // background: token.colorBgLayout,
+    // backgroundColor: token.colorBgLayout,
     position: 'relative',
   },
   header: css`

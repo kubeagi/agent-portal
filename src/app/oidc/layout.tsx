@@ -22,6 +22,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       justify={'center'}
       style={{
         height: '100vh',
+        width: '100vw',
+        position: 'absolute',
+        left: '0',
+        zIndex: '10',
       }}
     >
       <Spin

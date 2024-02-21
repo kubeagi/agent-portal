@@ -4,7 +4,7 @@ export const useStyles = createStyles(({ token }) => ({
   dataControl: {
     'height': '100%',
     'width': '100%',
-    'background': token.colorBgLayout,
+    'backgroundColor': token.colorBgLayout,
     'position': 'relative',
     '& > div': {
       position: 'relative',

@@ -1,5 +1,6 @@
 import type { GetCurrentUserQuery } from '@tenx-ui/bff-client';
-import { Avatar } from 'antd';
+import { Avatar, Skeleton } from 'antd';
+import classNames from 'classnames';
 import React from 'react';
 
 import { useStyles } from './styles';
@@ -10,11 +11,25 @@ interface SettingUserInfoProps {
 
 const SettingUserInfo = React.memo<SettingUserInfoProps>(({ user }) => {
   const { styles } = useStyles();
-  return (
+  return user?.name ? (
     <div className={styles.userinfo}>
       <Avatar size={100}>{user?.name?.slice(0, 1)?.toUpperCase() || '-'}</Avatar>
       <div className={styles.name}>{user?.name}</div>
       <div className={styles.userid}>id: {user?.name}</div>
+    </div>
+  ) : (
+    <div className={styles.userinfo}>
+      <Skeleton
+        avatar={{ size: 100 }}
+        className={styles.avatorSkeleton}
+        paragraph={false}
+        title={false}
+      />
+      <Skeleton className={classNames(styles.name, styles.emptyline)} paragraph={false} />
+      <Skeleton
+        className={classNames(styles.emptylineUserid, styles.emptyline)}
+        paragraph={false}
+      />
     </div>
   );
 });

@@ -1,5 +1,7 @@
 import type { Viewport } from 'next';
+import { cookies } from 'next/headers';
 
+import AppLayout from '@/layout/AppLayout';
 import AxiosConfigLayout from '@/layout/AxiosConfigLayout';
 import GlobalLayout from '@/layout/GlobalLayout';
 import PWAHandlerLayout from '@/layout/PWAHandlerLayout';
@@ -22,7 +24,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PWAHandlerLayout>
           <AxiosConfigLayout>
             <StyleRegistry>
-              <GlobalLayout>{children}</GlobalLayout>
+              <GlobalLayout theme={cookies().get('theme')?.value || 'auto'}>
+                <AppLayout>{children}</AppLayout>
+              </GlobalLayout>
             </StyleRegistry>
           </AxiosConfigLayout>
         </PWAHandlerLayout>

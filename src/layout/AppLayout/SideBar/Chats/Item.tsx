@@ -12,8 +12,8 @@ import { DEFAULT_CHAT } from '@/utils/constants';
 
 export const useStyles = createStyles(({ token }) => {
   const activeStyle = {
-    color: 'black',
-    backgroundColor: 'rgba(0, 0, 0, .06)',
+    color: token.colorTextBase,
+    backgroundColor: token.controlItemBgHover,
     transition: 'all .15s',
   };
   return {
@@ -26,7 +26,7 @@ export const useStyles = createStyles(({ token }) => {
       'overflow': 'visible',
       'padding': '0 12px',
       'position': 'relative',
-      'color': 'black',
+      'color': token.colorTextBase,
       '&:hover': activeStyle,
       '&:not(:first-child)': {
         marginTop: 1,
@@ -55,7 +55,7 @@ export const useStyles = createStyles(({ token }) => {
       lineHeight: '24px',
     },
     msg: {
-      color: '#666',
+      color: token.colorTextSecondary,
       fontSize: 14,
       fontWeight: 400,
       lineHeight: '24px',

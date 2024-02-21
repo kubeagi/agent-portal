@@ -23,12 +23,12 @@ export const useStyles = createStyles(({ token }) => ({
   },
   btn: {
     'width': '100%',
-    'background': 'white',
+    'backgroundColor': token.colorBgBase,
     'paddingLeft': '16px',
     'cursor': 'pointer',
     '&:hover': {
       backgroundColor: 'rgba(0, 0, 0, .05)',
-      transition: 'all .15s',
+      animation: 'inactivelink-hover-animation 150ms ease forwards',
       // content: {
       //   boxSadow: 'unset',
       // }

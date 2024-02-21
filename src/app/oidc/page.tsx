@@ -1,7 +1,1 @@
-'use client';
-
-import React from 'react';
-
-export default function oidc() {
-  return <></>;
-}
+export { default } from '../page';

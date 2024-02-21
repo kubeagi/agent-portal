@@ -3,12 +3,12 @@ import { createStyles } from 'antd-style';
 export const useStyles = createStyles(({ token }) => ({
   sidebarHeader: {
     overflow: 'hidden',
-    background: 'white',
+    backgroundColor: token.colorBgBase,
   },
   btns: {
     flex: '1 1 0%',
     padding: 8,
-    borderBottom: '1px solid rgba(0,0,0,.06)',
+    borderBottom: `1px solid ${token.colorSplit}`,
   },
   btnName: {
     flex: '1 1 0%',
@@ -22,13 +22,13 @@ export const useStyles = createStyles(({ token }) => ({
     'display': 'flex',
     'alignItems': 'center',
     'gap': '12px',
-    'color': 'black',
+    'color': token.colorText,
     'fontWeight': 600,
     'fontSize': 16,
     '&:hover': {
       translate: 'all .15s',
-      color: 'black',
-      backgroundColor: 'rgba(0, 0, 0, .06)',
+      color: token.colorText,
+      backgroundColor: token.controlItemBgHover,
     },
     '.anticon': {
       fontSize: 42,
@@ -38,7 +38,7 @@ export const useStyles = createStyles(({ token }) => ({
   logo: {
     height: '50px',
     lineHeight: '50px',
-    borderBottom: '1px solid #E5E5E5',
+    borderBottom: `1px solid ${token.colorSplit}`,
     color: token.colorPrimary,
     padding: '0 1rem',
     fontWeight: 'bolder',
@@ -61,7 +61,7 @@ export const useStyles = createStyles(({ token }) => ({
     'borderRadius': '12px',
     '&:hover': {
       translate: 'all .15s',
-      backgroundColor: 'rgba(0, 0, 0, .06)',
+      backgroundColor: token.controlItemBgHover,
     },
     'svg': {
       marginRight: 8,
