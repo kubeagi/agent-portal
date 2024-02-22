@@ -13,9 +13,9 @@ interface SettingProps {
   userData?: GetCurrentUserQuery;
 }
 
-const Setting = React.memo<SettingProps>(({ userData }) => {
+const Setting = React.memo<SettingProps>(() => {
   const { styles } = useStyles();
-  const { data } = sdk.useGetCurrentUser(undefined, { fallbackData: userData });
+  const { data } = sdk.useGetCurrentUser();
   return (
     <div className={styles.setting}>
       <div>
