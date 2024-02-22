@@ -10,7 +10,7 @@ import ReturnBtn from '@/components/ReturnBtn';
 import { useStyles } from './styles';
 
 interface Props {
-  user: {
+  user?: {
     name: string;
   };
 }

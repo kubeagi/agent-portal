@@ -1,8 +1,9 @@
 'use client';
 
-import { App } from 'antd';
+import { App, ConfigProvider } from 'antd';
 import { ThemeMode, ThemeProvider } from 'antd-style';
 import 'antd/dist/reset.css';
+import { Locale } from 'antd/lib/locale';
 import cloneDeep from 'lodash/cloneDeep';
 import merge from 'lodash/merge';
 import { usePathname, useRouter } from 'next/navigation';
@@ -25,9 +26,10 @@ const NO_AUTH_ROUTES = new Set([
 
 interface Props extends PropsWithChildren {
   theme?: ThemeMode; // 刷新页面时, 从 cookie 获取保存的 theme, 作为初始值
+  locale: Locale;
 }
 
-const ThemeLayout = React.memo<Props>(({ children, theme: init_page_theme }) => {
+const ThemeLayout = React.memo<Props>(({ children, theme: init_page_theme, locale }) => {
   const { setAxiosConfigured, isAxiosConfigured } = useAxiosConfig();
   const [theme, setTheme] = React.useState<ThemeMode | undefined>(init_page_theme);
   const [mediaQuery, setMediaQuery] = React.useState<any>();
@@ -94,9 +96,11 @@ const ThemeLayout = React.memo<Props>(({ children, theme: init_page_theme }) => 
       {...themeConfig}
     >
       <GlobalStyle />
-      <App style={{ minHeight: 'inherit', width: 'inherit', fontFamily: 'inherit' }}>
-        {children}
-      </App>
+      <ConfigProvider locale={locale}>
+        <App style={{ minHeight: 'inherit', width: 'inherit', fontFamily: 'inherit' }}>
+          {children}
+        </App>
+      </ConfigProvider>
     </ThemeProvider>
   );
 });

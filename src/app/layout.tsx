@@ -1,5 +1,5 @@
 import type { Viewport } from 'next';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 
 import AppLayout from '@/layout/AppLayout';
 import AxiosConfigLayout from '@/layout/AxiosConfigLayout';
@@ -18,13 +18,15 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   // dir === ltr | rtl
+  const { get } = headers();
+  const locale = get('accept-language');
   return (
     <html dir={'ltr'} lang="en">
       <body>
         <PWAHandlerLayout>
           <AxiosConfigLayout>
             <StyleRegistry>
-              <GlobalLayout theme={cookies().get('theme')?.value || 'auto'}>
+              <GlobalLayout locale={locale} theme={cookies().get('theme')?.value || 'auto'}>
                 <AppLayout>{children}</AppLayout>
               </GlobalLayout>
             </StyleRegistry>

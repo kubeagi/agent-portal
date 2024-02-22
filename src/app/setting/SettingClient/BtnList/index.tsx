@@ -38,6 +38,7 @@ const SettingBtnList = React.memo<any>(() => {
       {
         icon: Settings,
         title: '账号设置',
+        href: '/setting/account',
       },
     ],
     []
