@@ -32,11 +32,13 @@ export const useStyles = createStyles(({ token }) => ({
       '[dir="ltr"] &': {
         left: 0,
         borderRight: '1px solid',
+        zIndex: 9,
       },
 
       '[dir="rtl"] &': {
         right: 0,
         borderLeft: '1px solid',
+        zIndex: 9,
       },
 
       '&': {

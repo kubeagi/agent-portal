@@ -70,18 +70,18 @@ const SettingBtnList = React.memo<any>(() => {
             installPrompt.prompt();
 
             // 等待用户做出选择
-            installPrompt.userChoice.then(choiceResult => {
-              if (choiceResult.outcome === 'accepted') {
-                console.warn('用户接受了安装应用');
-                // 在这里你可以执行接受安装后的额外逻辑
-              } else {
-                console.warn('用户拒绝了安装应用');
-                // 在这里你可以执行拒绝安装后的额外逻辑
-              }
+            installPrompt.userChoice.then(
+              (choiceResult: { outcome: 'accepted' | 'dismissed'; platform: string }) => {
+                if (choiceResult.outcome === 'accepted') {
+                  // console.warn('用户接受了安装应用');
+                } else {
+                  // console.warn('用户拒绝了安装应用');
+                }
 
-              // 清除 installPrompt，因为它不能被重用
-              // setInstallPrompt(null);
-            });
+                // 清除 installPrompt，因为它不能被重用
+                // setInstallPrompt(null);
+              }
+            );
           }
         },
       },
