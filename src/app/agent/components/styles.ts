@@ -1,16 +1,15 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(() => ({
+export const useStyles = createStyles(({ token, isDarkMode }) => ({
   agentContainer: {
     'width': '100%',
-    'background': '#ffffff',
     'position': 'relative',
+    'backgroundColor': token.colorBgBase,
     '& > div': {
       height: '100%',
     },
   },
   agentContent: {
-    // maxWidth:'1440px',
     margin: '0 auto',
   },
   main: {
@@ -29,9 +28,10 @@ export const useStyles = createStyles(() => ({
   },
   card: {
     display: 'flex',
-    backgroundColor: '#EEEEEE',
+    backgroundColor: token.colorBgLayout,
     padding: 16,
     borderRadius: '16px',
+    border: `${isDarkMode ? '1px solid' + token.colorBorder : null}`,
     cursor: 'pointer',
   },
   left: {
@@ -52,7 +52,7 @@ export const useStyles = createStyles(() => ({
     fontWeight: 700,
   },
   desc: {
-    color: '#535353',
+    color: token.colorTextDescription,
     fontSize: 14,
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -61,7 +61,7 @@ export const useStyles = createStyles(() => ({
   info: {
     fontSize: 12,
     marginTop: 4,
-    color: '#959595',
+    color: token.colorTextDescription,
     display: 'flex',
   },
   heat: {

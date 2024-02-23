@@ -6,63 +6,61 @@ export const useStyles = createStyles(({ token }) => ({
     width: `100%`,
   },
   btnList: {
-    display: "flex",
-    overflow: "auto"
+    display: 'flex',
+    overflow: 'auto',
   },
   arrows: {},
   arrow: {
-    position: 'absolute',
-    alignItems: 'center',
-    cursor: 'pointer',
-    display: 'flex',
-    height: '30px',
-    justifyContent: 'flex-end',
-    zIndex: "3",
-    width: '30px',
+    'color': 'rgb(204, 204, 204)',
+    'position': 'absolute',
+    'alignItems': 'center',
+    'cursor': 'pointer',
+    'display': 'flex',
+    'height': '30px',
+    'justifyContent': 'flex-end',
+    'zIndex': '3',
+    'width': '30px',
     '&:hover': {
       color: token.colorPrimary,
-      cursor: 'pointer'
-    }
+      cursor: 'pointer',
+    },
   },
-  hidden:{
-    display:'none'
-  },
-  shadowLeft:{
+  shadowLeft: {
     position: 'absolute',
-    background:`linear-gradient(to left,transparent,#fff 100%)`,
-    height: "36px",
-    pointerEvents: "none",
-    width: "52px",
-    left:'0',
-    zIndex: "3",
+    background: `linear-gradient(to left,transparent,${token.colorBgBase} 100%)`,
+    height: '36px',
+    pointerEvents: 'none',
+    width: '52px',
+    left: '0',
+    zIndex: '3',
   },
-  shadowRight:{
+  shadowRight: {
     position: 'absolute',
-    background:'linear-gradient(to right,transparent,#fff 100%)',
-    height: "36px",
-    pointerEvents: "none",
-    width: "52px",
+    background: `linear-gradient(to right,transparent,${token.colorBgBase} 100%)`,
+    height: '36px',
+    pointerEvents: 'none',
+    width: '52px',
     right: '10px',
-    zIndex: "3",
+    zIndex: '3',
   },
   left: {
-    left:'0',
+    left: '0',
   },
   right: {
-    right: '10px'
+    right: '10px',
   },
   btn: {
-    whiteSpace: "nowrap",
+    'whiteSpace': 'nowrap',
     '&.ant-radio-button-wrapper': {
-      borderInlineStart: `1px solid #d9d9d9`,
+      borderInlineStart: `1px solid ${token.colorBorder}`,
       marginRight: 10,
       borderRadius: '12px',
     },
-    "&.ant-radio-button-wrapper:not(:first-child)::before": {
-      backgroundColor: 'transparent'
+    '&.ant-radio-button-wrapper:not(:first-child)::before': {
+      backgroundColor: 'transparent',
     },
-    "&.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)": {
+    '&.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)': {
       borderColor: token.colorPrimary,
-    }
-  }
-}))
+    },
+  },
+}));
