@@ -93,20 +93,21 @@ const TagContent = React.memo<TagContentProps>(props => {
       }
     });
   }, []);
-
   return (
     <div className={styles.tagContent}>
       <div className={styles.arrows}>
-        <div className={classNames(styles.shadowLeft, !leftArrowVisible && styles.hidden)}></div>
-        <div className={classNames(styles.arrow, styles.left, !leftArrowVisible && styles.hidden)}>
-          <LeftOutlined onClick={() => handleScroll('left')} />
-        </div>
-        <div className={classNames(styles.shadowRight, !rightArrowVisible && styles.hidden)}></div>
-        <div
-          className={classNames(styles.arrow, styles.right, !rightArrowVisible && styles.hidden)}
-        >
-          <RightOutlined onClick={() => handleScroll('right')} />
-        </div>
+        {leftArrowVisible && <div className={classNames(styles.shadowLeft)}></div>}
+        {leftArrowVisible && (
+          <div className={classNames(styles.arrow, styles.left)}>
+            <LeftOutlined onClick={() => handleScroll('left')} />
+          </div>
+        )}
+        {rightArrowVisible && <div className={classNames(styles.shadowRight)}></div>}
+        {rightArrowVisible && (
+          <div className={classNames(styles.arrow, styles.right)}>
+            <RightOutlined onClick={() => handleScroll('right')} />
+          </div>
+        )}
       </div>
       <Radio.Group
         buttonStyle="solid"
