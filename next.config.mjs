@@ -2,6 +2,9 @@ import nextPWA from '@ducanh2912/next-pwa';
 import analyzer from '@next/bundle-analyzer';
 import { execSync } from 'child_process';
 import webpack from 'webpack';
+import createNextIntlPlugin from 'next-intl/plugin';
+ 
+const withNextIntl = createNextIntlPlugin();
 
 const getLastCommitHash = () => {
   try {
@@ -95,4 +98,7 @@ const nextConfig = {
   },
 }
 
-export default isProd ? withBundleAnalyzer(withPWA(nextConfig)) : nextConfig;
+export default isProd ?
+  withBundleAnalyzer(withPWA(withNextIntl(nextConfig)))
+  :
+  withNextIntl(nextConfig);

@@ -1,0 +1,24 @@
+import { getTranslations } from 'next-intl/server';
+import React from 'react';
+
+// import { getUserData } from '../../actions/user';
+import DataControlClient from './DataControlClient';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations({ locale, namespace: 'DataControl' });
+  return {
+    title: t('index.shuJuKongZhi'),
+  };
+}
+
+export default async function SettingDataControlPage() {
+  // const user = await getUserData();
+  const props = {
+    // user,
+  };
+  return (
+    <>
+      <DataControlClient {...props} />
+    </>
+  );
+}

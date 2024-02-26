@@ -1,0 +1,21 @@
+{
+  "baiduApiKey": {
+    "appId": "20230227001578444",
+    "appKey": "U1bG31W0HhRhWD8j6Y9T"
+  },
+  "baiduLangMap": {
+    "en-US": "en"
+  },
+  "defaultTranslateKeyApi": "Pinyin",
+  "distLangs": ["en"],
+  "googleApiKey": "",
+  "ignoreDir": ["./.next", "./src/app/test/*"],
+  "ignoreFile": [],
+  "importI18N": "// todo remove, useTranslations from next-intl",
+  "kiwiDir": "./messages",
+  "srcLang": "zh",
+  "translateOptions": {
+    "concurrentLimit": 10,
+    "requestOptions": {}
+  }
+}

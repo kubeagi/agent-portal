@@ -5,6 +5,7 @@ import { Button, Flex } from 'antd';
 import { createStyles } from 'antd-style';
 import classNames from 'classnames';
 import { ChevronRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
 
@@ -95,6 +96,7 @@ export interface BtnsBlockProps {
 const BtnsBlock = React.memo<BtnsBlockProps>(props => {
   const { styles, theme } = useStyles();
   const { btns, extra } = props;
+  const t = useTranslations('BtnsBlock');
   return (
     <>
       <div className={styles.btns}>
@@ -111,7 +113,7 @@ const BtnsBlock = React.memo<BtnsBlockProps>(props => {
               ) : null}
               <Flex align={'center'} className={styles.content}>
                 <Button className={styles.content_left} danger={item.danger} type="text">
-                  {item.title || '默认标题'}
+                  {item.title || t('index.moRenBiaoTi')}
                 </Button>
                 {item.btn_extra ? (
                   <Flex

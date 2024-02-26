@@ -1,5 +1,6 @@
 import type { Viewport } from 'next';
-import { cookies, headers } from 'next/headers';
+import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { cookies } from 'next/headers';
 
 import AppLayout from '@/layout/AppLayout';
 import AxiosConfigLayout from '@/layout/AxiosConfigLayout';
@@ -16,19 +17,26 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+  params: { locale },
+}: {
+  children: React.ReactNode;
+  params: { locale: string };
+}) {
+  const messages = useMessages();
   // dir === ltr | rtl
-  const { get } = headers();
-  const locale = get('accept-language');
   return (
     <html dir={'ltr'} lang="en">
       <body>
         <PWAHandlerLayout>
           <AxiosConfigLayout>
             <StyleRegistry>
-              <GlobalLayout locale={locale} theme={cookies().get('theme')?.value || 'auto'}>
-                <AppLayout>{children}</AppLayout>
-              </GlobalLayout>
+              <NextIntlClientProvider locale={locale} messages={messages}>
+                <GlobalLayout locale={locale} theme={cookies().get('theme')?.value || 'auto'}>
+                  <AppLayout>{children}</AppLayout>
+                </GlobalLayout>
+              </NextIntlClientProvider>
             </StyleRegistry>
           </AxiosConfigLayout>
         </PWAHandlerLayout>

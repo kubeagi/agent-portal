@@ -2,6 +2,7 @@
 
 import { DraggablePanel, DraggablePanelContainer } from '@lobehub/ui';
 import { createStyles } from 'antd-style';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
 import UserInfoBottom from './UserInfoBottom';
@@ -25,6 +26,7 @@ const useStyles = createStyles(({ css, token }) => ({
 
 const ChatList = () => {
   const { styles } = useStyles();
+  const t = useTranslations('SideBar');
 
   return (
     <DraggablePanel
@@ -46,8 +48,8 @@ const ChatList = () => {
           overflow: 'auto',
         }}
       >
-        <h3 className={styles.part}>智能体列表</h3>
-        <h3>对话列表</h3>
+        <h3 className={styles.part}>{t('index.zhiNengTiLieBiao')}</h3>
+        <h3>{t('index.duiHuaLieBiao')}</h3>
         <UserInfoBottom />
       </DraggablePanelContainer>
     </DraggablePanel>

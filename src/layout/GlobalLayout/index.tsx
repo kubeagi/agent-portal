@@ -17,12 +17,15 @@ interface GlobalLayoutProps extends PropsWithChildren {
 
 const GlobalLayout = React.memo<GlobalLayoutProps>(({ children, theme, locale }) => {
   const store = useStore({
-    // theme: 'light',
     theme,
   });
   return (
     <Provider store={store}>
-      <ThemeLayout locale={locale?.startsWith('zh-CN') ? zhCN : enUS} theme={theme}>
+      <ThemeLayout
+        antdLocale={locale?.startsWith('zh') ? zhCN : enUS}
+        locale={locale}
+        theme={theme}
+      >
         {children}
       </ThemeLayout>
     </Provider>

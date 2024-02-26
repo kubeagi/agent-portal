@@ -5,6 +5,7 @@ import { sdk } from '@tenx-ui/bff-client';
 import { Avatar, Dropdown, Skeleton, Space, Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import { Check, Monitor, Moon, Settings, Sun } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { Flexbox } from 'react-layout-kit';
@@ -86,6 +87,7 @@ export const useStyles = createStyles(({ token }) => {
 });
 
 export default function UserInfoBottom() {
+  const t = useTranslations('SideBar');
   const dispatch = useDispatch();
   const { styles } = useStyles();
   const theme = useSelector((store: any) => store.theme);
@@ -111,15 +113,15 @@ export default function UserInfoBottom() {
   const items = [
     {
       key: 'light',
-      label: getTitle('light', '亮色模式'),
+      label: getTitle('light', t('UserInfoBottom.liangSeMoShi')),
     },
     {
       key: 'dark',
-      label: getTitle('dark', '黑暗模式'),
+      label: getTitle('dark', t('UserInfoBottom.heiAnMoShi')),
     },
     {
       key: 'auto',
-      label: getTitle('auto', '跟随系统'),
+      label: getTitle('auto', t('UserInfoBottom.genSuiXiTong')),
     },
   ];
   return (
@@ -181,7 +183,7 @@ export default function UserInfoBottom() {
             style={{
               borderRadius: '12px',
             }}
-            title={'设置'}
+            title={t('UserInfoBottom.sheZhi')}
           />
           {/* <ActionIcon
             icon={Phone}
