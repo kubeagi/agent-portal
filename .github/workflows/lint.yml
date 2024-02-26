@@ -21,12 +21,9 @@ jobs:
         with:
           version: 8
 
-      - name: Setting token to npmrc
-        run: |
-          npm set //dev-npm.tenxcloud.net/:_authToken="${{ secrets.NPMTOKEN }}"
-
       - name: Install deps
-        run: pnpm install
+        run: pnpm un @tenx-ui/bff-client -s && pnpm install
+        # run: pnpm install --only=dev --ignore-scripts && pnpm add react -D --only=dev --ignore-scripts
 
       - name: Lint
         run: npm run lint
