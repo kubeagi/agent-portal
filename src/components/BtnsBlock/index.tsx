@@ -3,7 +3,9 @@
 import { ActionIcon } from '@lobehub/ui';
 import { Button, Flex } from 'antd';
 import { createStyles } from 'antd-style';
+import classNames from 'classnames';
 import { ChevronRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
 
@@ -70,13 +72,17 @@ export const useStyles = createStyles(({ token }) => ({
     fontSize: token.fontSize,
     transform: 'translateY(-16px)',
   },
+  btn_extra: {
+    color: token.colorTextTertiary,
+  },
 }));
 
 export interface Btn {
   icon?: any;
   title: string;
   onClick?: () => void;
-  href?: string;
+  btn_extra?: React.ReactNode | string; // extra + onClick 显示箭头
+  href?: string; // href 显示箭头
   danger?: boolean;
   action?: React.ReactNode | string; // action 和 href 二选一
   icon_bg?: string;
@@ -90,6 +96,7 @@ export interface BtnsBlockProps {
 const BtnsBlock = React.memo<BtnsBlockProps>(props => {
   const { styles, theme } = useStyles();
   const { btns, extra } = props;
+  const t = useTranslations('BtnsBlock');
   return (
     <>
       <div className={styles.btns}>
@@ -106,9 +113,17 @@ const BtnsBlock = React.memo<BtnsBlockProps>(props => {
               ) : null}
               <Flex align={'center'} className={styles.content}>
                 <Button className={styles.content_left} danger={item.danger} type="text">
-                  {item.title || '默认标题'}
+                  {item.title || t('index.moRenBiaoTi')}
                 </Button>
-                {item.href ? (
+                {item.btn_extra ? (
+                  <Flex
+                    align={'center'}
+                    className={classNames(styles.content_right, styles.btn_extra)}
+                  >
+                    {item.btn_extra}
+                  </Flex>
+                ) : null}
+                {item.href || item.btn_extra ? (
                   <Flex align={'center'} className={styles.content_right}>
                     <ChevronRight color={'rgb(204, 204, 204)'} />
                   </Flex>

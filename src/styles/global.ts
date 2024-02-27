@@ -6,7 +6,10 @@ export default ({ prefixCls, token }: { prefixCls: string; token: any }) => css`
   #__next,
   .${prefixCls}-app {
     position: relative;
+
+    overflow: hidden;
     overscroll-behavior: none;
+
     height: 100% !important;
     min-height: 100% !important;
   }

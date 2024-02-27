@@ -1,11 +1,15 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(() => {
+export const useStyles = createStyles(({ token }) => {
   return {
     wrapper404: {
       height: '100vh',
       width: '100vw',
-      position: 'relative',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      zIndex: 10,
+      backgroundColor: token.colorBgBase,
     },
 
     content: {

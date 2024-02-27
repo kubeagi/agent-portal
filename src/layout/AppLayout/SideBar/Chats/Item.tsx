@@ -48,8 +48,6 @@ export const useStyles = createStyles(({ token }) => {
       overflow: 'hidden',
     },
     title: {
-      alignItems: 'center',
-      display: 'flex',
       fontSize: 16,
       fontWeight: 600,
       lineHeight: '24px',

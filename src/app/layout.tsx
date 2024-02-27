@@ -1,4 +1,5 @@
 import type { Viewport } from 'next';
+import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { cookies } from 'next/headers';
 
 import AppLayout from '@/layout/AppLayout';
@@ -16,7 +17,14 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+  params: { locale },
+}: {
+  children: React.ReactNode;
+  params: { locale: string };
+}) {
+  const messages = useMessages();
   // dir === ltr | rtl
   return (
     <html dir={'ltr'} lang="en">
@@ -24,9 +32,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PWAHandlerLayout>
           <AxiosConfigLayout>
             <StyleRegistry>
-              <GlobalLayout theme={cookies().get('theme')?.value || 'auto'}>
-                <AppLayout>{children}</AppLayout>
-              </GlobalLayout>
+              <NextIntlClientProvider locale={locale} messages={messages}>
+                <GlobalLayout locale={locale} theme={cookies().get('theme')?.value || 'auto'}>
+                  <AppLayout>{children}</AppLayout>
+                </GlobalLayout>
+              </NextIntlClientProvider>
             </StyleRegistry>
           </AxiosConfigLayout>
         </PWAHandlerLayout>
