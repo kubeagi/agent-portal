@@ -1,10 +1,9 @@
 'use client';
 
 import { createStyles } from 'antd-style';
-import { useTranslations } from 'next-intl';
-import { usePathname } from 'next/navigation';
 import React from 'react';
 import { Flexbox } from 'react-layout-kit';
+import Chat from '@yuntijs/chat'
 
 export const useStyles = createStyles(({ token }) => ({
   conversationWrapper: {
@@ -18,16 +17,14 @@ interface ConversationProps {
 }
 
 const Conversation = React.memo<ConversationProps>(() => {
-  const pathname = usePathname();
   const { styles } = useStyles();
-  const t = useTranslations('Conversation');
   return (
-    <Flexbox className={styles.conversationWrapper} flex={1} horizontal>
-      <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
-        <div>{t('index.duiHuaKuang')}</div>
-        <div>{pathname}</div>
-      </div>
-    </Flexbox>
+    <>
+      <link rel="stylesheet" href="/style/yunti-chat.min.css"/>
+      <Flexbox className={styles.conversationWrapper} flex={1} horizontal>
+        <Chat appName="just-chat" appNamespace="rag-eval" isDark={false} gpts={true}/>
+      </Flexbox>
+    </>
   );
 });
 
