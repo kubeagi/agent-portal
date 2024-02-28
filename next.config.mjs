@@ -42,7 +42,7 @@ const bannerFlag = 'Licensed Materials'; // `Licensed Materials - Property of ${
 const banner = `${bannerFlag}
 (C) Copyright 2024 KubeAGI. All Rights Reserved.
 @date ${Date.now()}
-@hash ${getLastCommitHash()}`; 
+@hash ${process.env.GITHUB_SHA || getLastCommitHash()}`; 
 
 const nextConfig = {
   compress: isProd,
