@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
 
-import { useStyles } from '../styles/not-found-styles';
+import { useStyles } from '../../styles/not-found-styles';
 
 const NotFound = () => {
   const { styles } = useStyles();
