@@ -6,8 +6,6 @@ import queryString from 'query-string';
 import oidc from '@/config/oidc.mjs';
 import { getOriginServerSide } from '@/utils';
 
-// import { getUserData } from '@/app/actions/user';
-
 const { client, server } = oidc;
 const { url } = server;
 const { client_id, redirect_uri } = client;

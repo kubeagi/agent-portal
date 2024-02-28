@@ -18,7 +18,7 @@ const getBase64 = (img: any, callback: (url: string) => void) => {
 };
 
 interface Props {
-  user: {
+  user?: {
     name: string;
   };
 }

@@ -1,7 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import React from 'react';
 
-// import { getUserData } from '../../actions/user';
 import DataControlClient from './DataControlClient';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
