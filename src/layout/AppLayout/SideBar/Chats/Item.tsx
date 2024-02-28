@@ -61,7 +61,6 @@ export const useStyles = createStyles(({ token }) => {
   };
 });
 
-const CHAT_OTHER_PAGES = new Set(['/chat/bot/create']);
 interface Props {
   data: {
     id: string;
@@ -73,9 +72,10 @@ interface Props {
 const ChatItem: any = (props: Props) => {
   const { data } = props;
   const { styles } = useStyles();
-  const { id: activeChat } = useParams();
+  const { id: activeChat, locale } = useParams();
   const pathname = usePathname();
-  const isChatPage = pathname.startsWith('/chat') && !CHAT_OTHER_PAGES.has(pathname);
+  const CHAT_OTHER_PAGES = React.useMemo(() => new Set([`/${locale}/chat/bot/create`]), [locale]);
+  const isChatPage = pathname.startsWith(`/${locale}/chat`) && !CHAT_OTHER_PAGES.has(pathname);
   const isDefaultChat = data.id === DEFAULT_CHAT;
   return (
     <Link
@@ -84,7 +84,7 @@ const ChatItem: any = (props: Props) => {
         isChatPage &&
           (activeChat === data.id || (!activeChat && isDefaultChat) ? styles.activeItem : '')
       )}
-      href={isDefaultChat ? '/chat' : `/chat/${data.id}`}
+      href={isDefaultChat ? `/${locale}/chat` : `/${locale}/chat/${data.id}`}
     >
       <Flex
         align={'center'}
