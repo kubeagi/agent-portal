@@ -13,7 +13,7 @@ interface TagContentProps {
 }
 
 const TagContent = React.memo<TagContentProps>(props => {
-  const t = useTranslations('components');
+  const t = useTranslations();
   const { handleSelectTagChange } = props;
   const { styles } = useStyles();
   const scrollLeftRef = useRef(0);
