@@ -66,6 +66,8 @@ interface Props {
     id: string;
     title: string;
     desc: string;
+    app_namespace: string;
+    app_name: string;
   };
 }
 
@@ -84,7 +86,11 @@ const ChatItem: any = (props: Props) => {
         isChatPage &&
           (activeChat === data.id || (!activeChat && isDefaultChat) ? styles.activeItem : '')
       )}
-      href={isDefaultChat ? `/${locale}/chat` : `/${locale}/chat/${data.id}`}
+      href={
+        isDefaultChat
+          ? `/${locale}/chat`
+          : `/${locale}/chat/${data.id}?appName=${data.app_name}&appNamespace=${data.app_namespace}`
+      }
     >
       <Flex
         align={'center'}
