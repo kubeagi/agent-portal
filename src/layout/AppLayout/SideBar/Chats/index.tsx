@@ -35,6 +35,7 @@ const Chats: any = () => {
     }) || [];
   return (
     <div className={classnames(styles.chats, 'scrollBar')}>
+      <link href="/style/yunti-chat.min.css" rel="stylesheet" />
       <div className={styles.content}>
         {data
           ? [
