@@ -39,7 +39,7 @@ const getBase64 = (img: any, callback: (url: string) => void) => {
 
 const BotCreate = React.memo<BotCreateProps>(() => {
   const t = useTranslations('create');
-  const AGENT_CLASSIFICATION_MAP: AgentClassification[] = React.useMemo(
+  const AGENT_CLASSIFICATION_MAP: AgentClassification[] = React.useMemo(() =>
     [
       { text: t('page.tongYongDuiHua'), value: t('page.tongYongDuiHua') },
       { text: t('page.gongZuoXueXi'), value: t('page.gongZuoXueXi') },
