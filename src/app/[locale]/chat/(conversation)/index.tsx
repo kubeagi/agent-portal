@@ -23,7 +23,6 @@ const Conversation = React.memo<ConversationProps>(() => {
   const searchParams = useSearchParams();
   return (
     <>
-      <link href="/style/yunti-chat.min.css" rel="stylesheet" />
       <Flexbox className={styles.conversationWrapper} flex={1} horizontal>
         <Chat
           appName={searchParams.get('appName') || ''}
