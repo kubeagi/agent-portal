@@ -1,9 +1,10 @@
 'use client';
 
+import Chat from '@yuntijs/chat';
 import { createStyles } from 'antd-style';
+import { useParams, useSearchParams } from 'next/navigation';
 import React from 'react';
 import { Flexbox } from 'react-layout-kit';
-import Chat from '@yuntijs/chat'
 
 export const useStyles = createStyles(({ token }) => ({
   conversationWrapper: {
@@ -18,11 +19,19 @@ interface ConversationProps {
 
 const Conversation = React.memo<ConversationProps>(() => {
   const { styles } = useStyles();
+  const params = useParams();
+  const searchParams = useSearchParams();
   return (
     <>
-      <link rel="stylesheet" href="/style/yunti-chat.min.css"/>
+      <link href="/style/yunti-chat.min.css" rel="stylesheet" />
       <Flexbox className={styles.conversationWrapper} flex={1} horizontal>
-        <Chat appName="just-chat" appNamespace="rag-eval" isDark={false} gpts={true}/>
+        <Chat
+          appName={searchParams.get('appName') || ''}
+          appNamespace={searchParams.get('appNamespace') || ''}
+          conversationId={params.id as string}
+          gpts
+          isDark={false}
+        />
       </Flexbox>
     </>
   );
