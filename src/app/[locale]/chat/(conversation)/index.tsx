@@ -29,13 +29,14 @@ const Conversation = React.memo<ConversationProps>(() => {
     theme === 'dark' ||
     (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
   useDark(isDark);
+
   return (
     <>
       <Flexbox className={styles.conversationWrapper} flex={1} horizontal>
         <Chat
           appName={searchParams.get('appName') || ''}
           appNamespace={searchParams.get('appNamespace') || ''}
-          conversationId={params.id as string}
+          conversationId={params.id === 'new' ? undefined : (params.id as string)}
           gpts
           isDark={isDark}
         />

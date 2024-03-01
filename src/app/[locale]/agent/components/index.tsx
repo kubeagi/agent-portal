@@ -65,9 +65,6 @@ const Agent = React.memo<AgentProps>(({ agentData }) => {
     setSelectedTags(tag);
   };
 
-  const onLink = item => {
-    router.push(`/chat?appName=${item.name}`);
-  };
   return (
     <div className={styles.agentContainer}>
       <div className={styles.agentContent}>
@@ -87,11 +84,11 @@ const Agent = React.memo<AgentProps>(({ agentData }) => {
                     .filter(item => item.category.includes(selectedTag))
                     .map((item, index) => (
                       <Col {...layout} key={index}>
-                        <div
+                        <a
                           className={styles.card}
-                          onClick={() => {
-                            onLink(item);
-                          }}
+                          href={`/chat/new?appNamespace=${item.name?.split(
+                            '/'
+                          )?.[0]}&appName=${item.name?.split('/')?.[1]}`}
                         >
                           <div className={styles.left}>
                             <Avatar shape="square" size={72} src={item.icon} />
@@ -108,7 +105,7 @@ const Agent = React.memo<AgentProps>(({ agentData }) => {
                               <span className={styles.creator}>@{item.creator}</span>
                             </div>
                           </div>
-                        </div>
+                        </a>
                       </Col>
                     ))}
                 </Row>
