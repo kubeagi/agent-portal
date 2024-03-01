@@ -5,6 +5,9 @@ FROM node:18.19-alpine as builder
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+ARG GITHUB_SHA
+ENV GITHUB_SHA=$GITHUB_SHA
+
 # Install dependencies modules
 ADD .npmrc package.json pnpm-lock.yaml ./
 
