@@ -1,6 +1,6 @@
 export default {
   layout: {
-    jiaZaiZhong: 'Loading...',
+    jiaZaiZhong: 'Loading ...',
     dengChuZhong: 'Logging out...',
   },
 };

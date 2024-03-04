@@ -1,11 +1,11 @@
 export default {
   index: {
-    tuiChuDengLu: 'Log out',
+    tuiChuDengLu: 'Logout',
     guanYu: 'About',
     shiYongFanKui: 'Feedback',
-    tianJiaZhiZhuoMian: 'Add to desktop',
+    tianJiaZhiZhuoMian: 'Add to Desktop',
     fenXiang: 'Share',
-    woDeZhiNengTi: 'My AI entity',
-    geRenZiLiao: 'Personal information',
+    woDeZhiNengTi: 'My AI Agents',
+    geRenZiLiao: 'Profile',
   },
 };

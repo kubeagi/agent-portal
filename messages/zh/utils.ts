@@ -1,6 +1,6 @@
 export default {
   constants: {
-    aIHuiHua: 'AI绘画',
+    aIHuiHua: 'AI 绘画',
     youXiDongMan: '游戏动漫',
   },
 };

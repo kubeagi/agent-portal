@@ -1,5 +1,5 @@
 export default {
   index: {
-    moRenBiaoTi: 'Default title',
+    moRenBiaoTi: 'Default Title',
   },
 };

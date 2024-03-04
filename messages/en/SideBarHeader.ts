@@ -1,8 +1,8 @@
 export default {
   index: {
-    xinDuiHua: 'New conversation',
+    xinDuiHua: 'New Conversation',
     duiHua: 'Conversation',
-    faXianZhiNengTi: 'Discover AI entities',
-    chuangJianZhiNengTi: 'Create AI entity',
+    faXianZhiNengTi: 'Discover AI Agent',
+    chuangJianZhiNengTi: 'Create AI Agent',
   },
 };

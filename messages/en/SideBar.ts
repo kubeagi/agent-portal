@@ -1,12 +1,12 @@
 export default {
   index: {
-    duiHuaLieBiao: 'Conversation list',
-    zhiNengTiLieBiao: 'AI entity list',
+    duiHuaLieBiao: 'Conversation List',
+    zhiNengTiLieBiao: 'AI Agent List',
   },
   UserInfoBottom: {
     sheZhi: 'Settings',
-    genSuiXiTong: 'Follow system',
-    heiAnMoShi: 'Dark mode',
-    liangSeMoShi: 'Light mode',
+    genSuiXiTong: 'Follow System',
+    heiAnMoShi: 'Dark Mode',
+    liangSeMoShi: 'Light Mode',
   },
 };

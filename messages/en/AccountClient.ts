@@ -1,11 +1,12 @@
 export default {
   index: {
-    tongGuoNiDePian: 'Recommend content that may interest you based on your preferences.',
-    zhangHaoSheZhi: 'Account settings',
-    zhuXiaoZhangHu: 'Log out of account',
+    tongGuoNiDePian:
+      'Based on your preference features, we recommend content that may be of interest to you.',
+    zhangHaoSheZhi: 'Account Setting',
+    zhuXiaoZhangHu: 'Logout',
     youXiang: 'Email',
     weiXin: 'WeChat',
-    shouJi: 'Phone',
+    shouJi: 'Mobile',
     geXingHuaNeiRong: 'Personalized content recommendation',
   },
 };

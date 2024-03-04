@@ -1,7 +1,7 @@
 export default {
   index: {
-    faXianAIZhi: 'Discover AI entities',
-    dengLu: 'Log in',
+    faXianAIZhi: 'Discover AI Agents',
+    dengLu: 'Login',
     tuiJian: 'Recommend',
   },
 };

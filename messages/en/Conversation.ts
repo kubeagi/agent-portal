@@ -1,5 +1,5 @@
 export default {
   index: {
-    duiHuaKuang: 'Conversation box',
+    duiHuaKuang: 'Dialogue Box',
   },
 };

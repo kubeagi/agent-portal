@@ -1,5 +1,5 @@
 export default {
   page: {
-    geRenSheZhi: 'Personal settings',
+    geRenSheZhi: 'Personal Settings',
   },
 };
