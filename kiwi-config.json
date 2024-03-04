@@ -9,7 +9,7 @@
   "defaultTranslateKeyApi": "Pinyin",
   "distLangs": ["en"],
   "googleApiKey": "",
-  "ignoreDir": ["./.next", "./src/app/test/*"],
+  "ignoreDir": ["./.next", "./src/app/[locale]/test/*"],
   "ignoreFile": [],
   "importI18N": "// todo remove, useTranslations from next-intl",
   "kiwiDir": "./messages",

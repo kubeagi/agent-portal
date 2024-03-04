@@ -11,7 +11,6 @@ import app from './app';
 import callback from './callback';
 import components from './components';
 import create from './create';
-import inner from './inner';
 import oidc from './oidc';
 import setting from './setting';
 import utils from './utils';
@@ -30,7 +29,6 @@ export default Object.assign(
     setting,
     BtnList,
     UserInfoClient,
-    inner,
     BtnsBlock,
     Chats,
     SideBar,
