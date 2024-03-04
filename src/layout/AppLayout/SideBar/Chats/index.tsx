@@ -2,7 +2,8 @@
 
 import { Skeleton } from 'antd';
 import classnames from 'classnames';
-import React from 'react';
+import { useParams } from 'next/navigation';
+import React, { useMemo } from 'react';
 
 import { useAxiosRequest } from '@/utils/axios';
 
@@ -25,16 +26,20 @@ const Chats: any = () => {
     url: '/kubeagi-apis/chat/conversations',
     method: 'POST',
   });
-  const list =
-    data?.map((item: any) => {
-      return {
+  const { id } = useParams();
+  const list = useMemo(() => {
+    const res =
+      data?.map((item: any) => ({
         title: item.messages?.[0]?.query,
         desc: item.messages?.[0]?.answer,
         ...item,
-      };
-    }) || [];
+      })) || [];
+    return res;
+  }, [data, id]);
+
   return (
     <div className={classnames(styles.chats, 'scrollBar')}>
+      <link href="/style/yunti-chat.min.css" rel="stylesheet" />
       <div className={styles.content}>
         {data
           ? [
