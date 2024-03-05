@@ -1,9 +1,10 @@
 'use client';
 
-import { GoogleOutlined } from '@ant-design/icons';
-import { Flex, Typography } from 'antd';
+import { EllipsisOutlined, GoogleOutlined } from '@ant-design/icons';
+import { Button, Dropdown, Flex, MenuProps, Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import classNames from 'classnames';
+import { MinusCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
 import React from 'react';
@@ -28,6 +29,9 @@ export const useStyles = createStyles(({ token }) => {
       'position': 'relative',
       'color': token.colorTextBase,
       '&:hover': activeStyle,
+      '&:hover .showBtn': {
+        display: 'block',
+      },
       '&:not(:first-child)': {
         marginTop: 1,
       },
@@ -58,6 +62,29 @@ export const useStyles = createStyles(({ token }) => {
       fontWeight: 400,
       lineHeight: '24px',
     },
+    itemBtn: {
+      'display': 'none',
+      'position': 'absolute',
+      'top': '20px',
+      'right': '25px',
+      '.ant-btn': {
+        'padding': '4px 10px',
+        'border': 'unset',
+        'boxShadow': '0 1px 8px 0 rgba(0,0,0,.12)',
+        '.anticon': {
+          color: 'black',
+          transform: 'scale(1.5)',
+        },
+      },
+    },
+    dropmenus: {
+      '.ant-btn-link': {
+        'padding': 0,
+        '.ant-btn-icon': {
+          verticalAlign: 'bottom',
+        },
+      },
+    },
   };
 });
 
@@ -79,6 +106,29 @@ const ChatItem: any = (props: Props) => {
   const CHAT_OTHER_PAGES = React.useMemo(() => new Set([`/${locale}/chat/bot/create`]), [locale]);
   const isChatPage = pathname.startsWith(`/${locale}/chat`) && !CHAT_OTHER_PAGES.has(pathname);
   const isDefaultChat = data.id === DEFAULT_CHAT;
+
+  const items: MenuProps['items'] = React.useMemo(
+    () => [
+      {
+        key: '1',
+        label: (
+          <Button
+            danger
+            icon={<MinusCircle size={18} />}
+            onClick={e => {
+              e.preventDefault();
+              // console.log('del conver' + data.id) // todo
+            }}
+            type="link"
+          >
+            删除对话
+          </Button>
+        ),
+      },
+    ],
+    [data]
+  );
+  const id = 'chatItem' + data.id;
   return (
     <Link
       className={classNames(
@@ -91,6 +141,7 @@ const ChatItem: any = (props: Props) => {
           ? `/${locale}/chat`
           : `/${locale}/chat/${data.id}?appName=${data.app_name}&appNamespace=${data.app_namespace}`
       }
+      id={id}
     >
       <Flex
         align={'center'}
@@ -110,6 +161,24 @@ const ChatItem: any = (props: Props) => {
           <Typography.Paragraph className={styles.msg} ellipsis>
             {data.desc}
           </Typography.Paragraph>
+          {isDefaultChat ? null : (
+            <div className={classNames(styles.itemBtn, 'showBtn')}>
+              <Dropdown
+                getPopupContainer={() => document.querySelector('#' + id) || document.body}
+                menu={{ items }}
+                overlayClassName={styles.dropmenus}
+                placement="bottomLeft"
+              >
+                <Button
+                  onClick={e => {
+                    e.preventDefault();
+                  }}
+                >
+                  <EllipsisOutlined />
+                </Button>
+              </Dropdown>
+            </div>
+          )}
         </div>
       </Flex>
     </Link>

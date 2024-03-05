@@ -10,13 +10,11 @@ export const useStyles = createStyles(({ token }) => ({
     'height': '100%',
     'backgroundColor': token.colorBgBase,
     // 处理 [dir='ltr'] 和 [dir='rtl']
-    '@global': {
-      "[dir='ltr'] &": {
-        borderRight: `1px solid ${token.colorSplit}`,
-      },
-      "[dir='rtl'] &": {
-        borderLeft: `1px solid ${token.colorSplit}`,
-      },
+    'html[dir="ltr"] &': {
+      borderRight: `1px solid ${token.colorSplit}`,
+    },
+    'html[dir="rtl"] &': {
+      borderLeft: `1px solid ${token.colorSplit}`,
     },
 
     // 媒体查询
@@ -29,13 +27,13 @@ export const useStyles = createStyles(({ token }) => ({
         },
       },
 
-      '[dir="ltr"] &': {
+      'html[dir="ltr"] &': {
         left: 0,
         borderRight: '1px solid',
         zIndex: 9,
       },
 
-      '[dir="rtl"] &': {
+      'html[dir="rtl"] &': {
         right: 0,
         borderLeft: '1px solid',
         zIndex: 9,
