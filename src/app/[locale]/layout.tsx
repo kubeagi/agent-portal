@@ -1,8 +1,10 @@
 import type { Viewport } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { cookies } from 'next/headers';
+import React from 'react';
 
-import AppLayout from '@/layout/AppLayout';
+import AppLayoutTemplate from '@/layout/AppLayoutTemplate';
+import AuthLayout from '@/layout/AuthLayout';
 import AxiosConfigLayout from '@/layout/AxiosConfigLayout';
 import GlobalLayout from '@/layout/GlobalLayout';
 import PWAHandlerLayout from '@/layout/PWAHandlerLayout';
@@ -31,13 +33,15 @@ export default function RootLayout({
       <body>
         <PWAHandlerLayout>
           <AxiosConfigLayout>
-            <StyleRegistry>
-              <NextIntlClientProvider locale={locale} messages={messages}>
-                <GlobalLayout locale={locale} theme={cookies().get('theme')?.value || 'auto'}>
-                  <AppLayout>{children}</AppLayout>
-                </GlobalLayout>
-              </NextIntlClientProvider>
-            </StyleRegistry>
+            <AuthLayout>
+              <StyleRegistry>
+                <NextIntlClientProvider locale={locale} messages={messages}>
+                  <GlobalLayout locale={locale} theme={cookies().get('theme')?.value || 'auto'}>
+                    <AppLayoutTemplate>{children}</AppLayoutTemplate>
+                  </GlobalLayout>
+                </NextIntlClientProvider>
+              </StyleRegistry>
+            </AuthLayout>
           </AxiosConfigLayout>
         </PWAHandlerLayout>
       </body>

@@ -37,3 +37,53 @@ export const setCookie = (name: string, value: string, days?: number, path?: str
     window.document.cookie = `${name}=${value}${expires}; path=${path || '/'}`;
   }
 };
+
+interface ParsedToken {
+  alg: string;
+  kid: string;
+  iss: string;
+  sub: string;
+  aud: string;
+  exp: number;
+  iat: number;
+  at_hash: string;
+  c_hash: string;
+  email: string;
+  email_verified: boolean;
+  groups: string[];
+  name: string;
+  preferred_username: string;
+}
+
+/**
+ * 判断 auth 是否过期。
+ * @param {string} id_token token.id_token。
+ */
+
+function parseToken(token: string): ParsedToken {
+  return token
+    .split('.')
+    .map(str => {
+      try {
+        return JSON.parse(atob(str));
+      } catch (error) {
+        console.warn('parer token err', error);
+      }
+      return {};
+    })
+    .reduce(
+      (pr, cu) => ({
+        ...pr,
+        ...cu,
+      }),
+      {}
+    );
+}
+
+export function isTokenExpired(id_token?: string): boolean {
+  if (!id_token) {
+    return true;
+  }
+  const expiredTimestampInMs = parseToken(id_token).exp * 1000;
+  return Date.now() >= expiredTimestampInMs;
+}

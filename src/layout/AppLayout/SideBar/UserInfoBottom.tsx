@@ -1,11 +1,13 @@
 'use client';
 
+import { UserOutlined } from '@ant-design/icons';
 import { ActionIcon } from '@lobehub/ui';
 import { sdk } from '@tenx-ui/bff-client';
 import { Avatar, Dropdown, Skeleton, Space, Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import { Check, Monitor, Moon, Settings, Sun } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { Flexbox } from 'react-layout-kit';
@@ -130,7 +132,16 @@ export default function UserInfoBottom() {
         {user?.name ? (
           <Flexbox className={styles.hover} distribution={'start'} horizontal>
             <div className={styles.avator}>
-              <Avatar size={28} />
+              <Avatar
+                icon={
+                  user?.avatar ? (
+                    <Image alt="avatar" height={28} src={user?.avatar} width={28} />
+                  ) : (
+                    <UserOutlined />
+                  )
+                }
+                size={28}
+              />
             </div>
             <Text ellipsis>{user?.name}</Text>
           </Flexbox>

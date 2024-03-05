@@ -2,7 +2,6 @@
 
 import Chat from '@yuntijs/chat';
 import { createStyles } from 'antd-style';
-import { useParams, useSearchParams } from 'next/navigation';
 import React from 'react';
 import { Flexbox } from 'react-layout-kit';
 import { useSelector } from 'react-redux';
@@ -17,13 +16,12 @@ export const useStyles = createStyles(({ token }) => ({
 }));
 
 interface ConversationProps {
-  data?: any;
+  params?: any;
+  searchParams?: any;
 }
 
-const Conversation = React.memo<ConversationProps>(() => {
+const Conversation = React.memo<ConversationProps>(({ params, searchParams }) => {
   const { styles } = useStyles();
-  const params = useParams();
-  const searchParams = useSearchParams();
   const theme = useSelector((store: any) => store.theme);
   const isDark =
     theme === 'dark' ||
@@ -34,8 +32,8 @@ const Conversation = React.memo<ConversationProps>(() => {
     <>
       <Flexbox className={styles.conversationWrapper} flex={1} horizontal>
         <Chat
-          appName={searchParams.get('appName') || ''}
-          appNamespace={searchParams.get('appNamespace') || ''}
+          appName={searchParams.appName || ''}
+          appNamespace={searchParams.appNamespace || ''}
           conversationId={params.id === 'new' ? undefined : (params.id as string)}
           gpts
           isDark={isDark}

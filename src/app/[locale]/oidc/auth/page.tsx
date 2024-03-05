@@ -18,10 +18,5 @@ export default async function AuthServer() {
     response_type: 'code',
     scope: 'openid profile email groups offline_access',
   });
-  // todo validate
-  // const user = await getUserData();
-  // if (!user) {
-  //   redirect(`${url}/auth?${query}`);
-  // }
   redirect(`${url}/auth?${query}`);
 }

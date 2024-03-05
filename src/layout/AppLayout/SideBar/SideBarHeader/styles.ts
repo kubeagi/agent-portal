@@ -6,9 +6,12 @@ export const useStyles = createStyles(({ token }) => ({
     backgroundColor: token.colorBgBase,
   },
   btns: {
-    flex: '1 1 0%',
-    padding: 8,
-    borderBottom: `1px solid ${token.colorSplit}`,
+    'flex': '1 1 0%',
+    'padding': 8,
+    'borderBottom': `1px solid ${token.colorSplit}`,
+    '.anticon': {
+      color: token.colorPrimary,
+    },
   },
   btnName: {
     flex: '1 1 0%',
@@ -44,6 +47,12 @@ export const useStyles = createStyles(({ token }) => ({
     fontWeight: 'bolder',
     fontSize: '24px',
     cursor: 'pointer',
+    a: {
+      verticalAlign: 'sub',
+    },
+    svg: {
+      fill: token.colorTextBase,
+    },
   },
   chatsTitle: {
     padding: '8px 8px 8px 20px',

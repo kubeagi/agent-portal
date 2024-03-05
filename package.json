@@ -65,9 +65,11 @@
     "query-string": "^8.1.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-layout-kit": "^1.7.4",
     "react-redux": "^9.0.4",
     "redux": "^5.0.1",
+    "sharp": "^0.33.2",
     "swr": "^2.2.4",
     "ua-parser-js": "2.0.0-alpha.2"
   },

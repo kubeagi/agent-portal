@@ -34,7 +34,7 @@ export default function Callback({ data: res }: { data: any }) {
         type: 'SAVE_AUTH_DATA',
         authData: res.data,
       });
-      router.push('/chat');
+      router.push('/');
     }
   };
   React.useEffect(() => {
