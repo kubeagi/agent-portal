@@ -20,7 +20,7 @@ const NotFound = () => {
           <Button
             ghost
             onClick={() => {
-              router.push(`/chat`);
+              router.push(`/`);
             }}
             size="large"
             type="primary"

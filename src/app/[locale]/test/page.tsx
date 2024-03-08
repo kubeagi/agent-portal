@@ -7,7 +7,7 @@ import { Settings } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 
-import LogoSvg from '@/../public/logo.svg';
+import LogoSvg from '@/../public/svg/logo.svg';
 import { useAxiosRequest } from '@/utils/axios';
 
 import TextComponent from './(component)';
@@ -109,7 +109,7 @@ const Test = React.memo<any>(() => {
 
       <div className={styles.center}>
         <LogoSvg className={styles.logo} height={37} width={180} />
-        <Image alt="logo" className={styles.logo} height={37} src={'/logo.svg'} width={180} />
+        <Image alt="logo" className={styles.logo} height={37} src={'/svg/logo.svg'} width={180} />
       </div>
 
       <Space>

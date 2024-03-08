@@ -22,7 +22,8 @@ export const getAuthData = () => {
 export const createCustomAxios = (configs?: CreateAxiosDefaults): AxiosInstance => {
   const { token } = getAuthData();
   if (!token) {
-    throw new Error('create axios instance error');
+    console.warn('create axios instance error');
+    return {};
   }
   const { token_type, id_token } = token;
   const authHeaders = {

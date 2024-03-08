@@ -38,8 +38,8 @@ export const useStyles = createStyles(() => ({
     fontSize: 16,
   },
   layout: {
-    width: '100%'
-  }
+    width: '100%',
+  },
 }));
 
 interface ReturnBtnProps {
@@ -54,16 +54,17 @@ const ReturnBtn = React.memo<ReturnBtnProps>(props => {
   const { styles } = useStyles();
   return (
     <Flex align={'center'} className={styles.returnBtn}>
-      <Link href={to || '/chat'}>
+      <Link href={to || '/'}>
         <ActionIcon className={styles.btn} icon={ChevronLeft} />
       </Link>
-      {isLeftTitle 
-      ? <Flex align="center" className={styles.layout} justify='space-between'> 
+      {isLeftTitle ? (
+        <Flex align="center" className={styles.layout} justify="space-between">
           <div className={styles.leftTitle}>{props.title}</div>
           {extra}
-        </Flex> 
-        : <div className={styles.title}>{props.title}</div>
-      }
+        </Flex>
+      ) : (
+        <div className={styles.title}>{props.title}</div>
+      )}
     </Flex>
   );
 });

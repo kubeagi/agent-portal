@@ -57,7 +57,6 @@ const AccountClient: React.FC<Props> = ({ url }) => {
         title: t('index.weiXin'),
         // btn_extra: user?.phone,
         onClick: () => {
-          // todo 服务端渲染刷新时报错了, 但是清缓存刷新可以正常交互, 只在dev模式下有问题, 待处理 dynamic ?
           // dynamic BtnsBlock 会闪一下(没有 block 占位), 再细分 dynamic ?
           modal.confirm({
             title: user?.name,

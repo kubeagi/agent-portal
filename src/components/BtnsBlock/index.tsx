@@ -29,7 +29,7 @@ export const useStyles = createStyles(({ token }) => ({
     'paddingLeft': '16px',
     'cursor': 'pointer',
     '&:hover': {
-      backgroundColor: 'rgba(0, 0, 0, .05)',
+      backgroundColor: token.controlItemBgHover,
       animation: 'inactivelink-hover-animation 150ms ease forwards',
       // content: {
       //   boxSadow: 'unset',

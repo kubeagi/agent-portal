@@ -6,13 +6,15 @@ import 'antd/dist/reset.css';
 import { Locale } from 'antd/lib/locale';
 import cloneDeep from 'lodash/cloneDeep';
 import merge from 'lodash/merge';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import React, { PropsWithChildren } from 'react';
 import { useSelector } from 'react-redux';
 
+import { useAuthContext } from '@/layout/AuthLayout';
 import { GlobalStyle } from '@/styles';
 import { dark, default_theme, light } from '@/theme/themeConfig';
 import { initAxiosHooks } from '@/utils/axios';
+import { isTokenExpired } from '@/utils/client';
 import { AUTH_DATA } from '@/utils/constants';
 
 import { useAxiosConfig } from '../../AxiosConfigLayout';
@@ -26,11 +28,11 @@ interface Props extends PropsWithChildren {
 const ThemeLayout = React.memo<Props>(
   ({ children, theme: init_page_theme, antdLocale, locale }) => {
     const { setAxiosConfigured, isAxiosConfigured } = useAxiosConfig();
+    const { setAuthed } = useAuthContext();
     const [theme, setTheme] = React.useState<ThemeMode | undefined>(init_page_theme);
     const [mediaQuery, setMediaQuery] = React.useState<any>();
     const theme_from_store = useSelector((store: any) => store.theme);
     const pathname = usePathname();
-    const router = useRouter();
 
     const NO_AUTH_ROUTES = React.useMemo(
       () =>
@@ -47,10 +49,18 @@ const ThemeLayout = React.memo<Props>(
         return;
       }
       const auth = localStorage.getItem(AUTH_DATA);
-      if (!auth) {
-        router.push('/oidc/auth');
+      let authObj: any;
+      try {
+        authObj = JSON.parse(auth || '');
+      } catch (error) {
+        console.warn('no auth or parse auth err', error);
+      }
+      if (!auth || isTokenExpired(authObj.token.id_token)) {
+        // router.push('/oidc/auth'); // 暂时屏蔽 => 自动跳转认证
+        setAuthed(false);
         return;
       }
+      setAuthed(true);
       if (!isAxiosConfigured) {
         setAxiosConfigured(initAxiosHooks());
       }

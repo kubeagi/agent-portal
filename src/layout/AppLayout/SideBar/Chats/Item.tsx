@@ -1,14 +1,17 @@
 'use client';
 
-import { EllipsisOutlined, GoogleOutlined } from '@ant-design/icons';
+import { EllipsisOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Flex, MenuProps, Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import classNames from 'classnames';
 import { MinusCircle } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
+import { MenuClickEventHandler } from 'rc-menu';
 import React from 'react';
 
+import { createCustomAxios } from '@/utils/axios';
 import { DEFAULT_CHAT } from '@/utils/constants';
 
 export const useStyles = createStyles(({ token }) => {
@@ -28,7 +31,11 @@ export const useStyles = createStyles(({ token }) => {
       'padding': '0 12px',
       'position': 'relative',
       'color': token.colorTextBase,
+      'width': '100%',
       '&:hover': activeStyle,
+      '&:active': {
+        backgroundColor: token.controlItemBgActiveDisabled,
+      },
       '&:hover .showBtn': {
         display: 'block',
       },
@@ -36,7 +43,12 @@ export const useStyles = createStyles(({ token }) => {
         marginTop: 1,
       },
     },
-    activeItem: activeStyle,
+    activeItem: {
+      ...activeStyle,
+      '&:active': {
+        backgroundColor: `${token.controlItemBgHover} !important`,
+      },
+    },
     icon: {
       'display': 'flex',
       '.anticon': {
@@ -72,7 +84,7 @@ export const useStyles = createStyles(({ token }) => {
         'border': 'unset',
         'boxShadow': '0 1px 8px 0 rgba(0,0,0,.12)',
         '.anticon': {
-          color: 'black',
+          color: token.colorTextBase,
           transform: 'scale(1.5)',
         },
       },
@@ -81,7 +93,7 @@ export const useStyles = createStyles(({ token }) => {
       '.ant-btn-link': {
         'padding': 0,
         '.ant-btn-icon': {
-          verticalAlign: 'bottom',
+          verticalAlign: 'text-bottom',
         },
       },
     },
@@ -96,31 +108,26 @@ interface Props {
     app_namespace: string;
     app_name: string;
   };
+  reload?: (isActiveChat?: boolean) => void;
+  delDom: (record?: any, isActiveChat?: boolean) => void;
 }
 
 const ChatItem: any = (props: Props) => {
-  const { data } = props;
+  const { data, delDom } = props;
   const { styles } = useStyles();
+  const router = useRouter();
   const { id: activeChat, locale } = useParams();
   const pathname = usePathname();
   const CHAT_OTHER_PAGES = React.useMemo(() => new Set([`/${locale}/chat/bot/create`]), [locale]);
   const isChatPage = pathname.startsWith(`/${locale}/chat`) && !CHAT_OTHER_PAGES.has(pathname);
   const isDefaultChat = data.id === DEFAULT_CHAT;
-
+  const axios = createCustomAxios();
   const items: MenuProps['items'] = React.useMemo(
     () => [
       {
-        key: '1',
+        key: 'del',
         label: (
-          <Button
-            danger
-            icon={<MinusCircle size={18} />}
-            onClick={e => {
-              e.preventDefault();
-              // console.log('del conver' + data.id) // todo
-            }}
-            type="link"
-          >
+          <Button danger icon={<MinusCircle size={18} />} type="link">
             删除对话
           </Button>
         ),
@@ -129,6 +136,34 @@ const ChatItem: any = (props: Props) => {
     [data]
   );
   const id = 'chatItem' + data.id;
+
+  const delChat = React.useCallback(async () => {
+    try {
+      const res = await axios.delete(`/kubeagi-apis/chat/conversations/${data.id}`);
+      if (res.status === 200) {
+        // reload(data.id === activeChat); // 是否需要重新获取 ?
+        delDom(data, data.id === activeChat);
+        if (data.id === activeChat) {
+          router.push(`/${locale}/chat`); // 删除当前对话, 跳转到默认对话
+        }
+      }
+    } catch (error) {
+      console.warn('del chat err', error);
+    }
+  }, [data, activeChat]);
+
+  const onMenuClick: MenuClickEventHandler = React.useCallback(
+    ({ domEvent, key }: { key: string; domEvent: Event }) => {
+      domEvent.preventDefault();
+      switch (key) {
+        case 'del': {
+          delChat();
+          break;
+        }
+      }
+    },
+    [delChat]
+  );
   return (
     <Link
       className={classNames(
@@ -152,7 +187,7 @@ const ChatItem: any = (props: Props) => {
         }}
       >
         <div className={styles.icon}>
-          <GoogleOutlined />
+          <Image alt="default_chat" height={42} src="/default_chat.png" width={42} />
         </div>
         <div className={styles.content}>
           <Typography.Paragraph className={styles.title} ellipsis>
@@ -165,7 +200,7 @@ const ChatItem: any = (props: Props) => {
             <div className={classNames(styles.itemBtn, 'showBtn')}>
               <Dropdown
                 getPopupContainer={() => document.querySelector('#' + id) || document.body}
-                menu={{ items }}
+                menu={{ items, onClick: onMenuClick }}
                 overlayClassName={styles.dropmenus}
                 placement="bottomLeft"
               >

@@ -2,7 +2,7 @@ import { ThemeProviderProps as AntDThemeProviderProps } from 'antd-style';
 
 export type ThemeProviderProps = AntDThemeProviderProps<any>;
 
-const colorPrimary = '#6C74F5';
+const colorPrimary = '#A060EE';
 
 const default_theme_props: ThemeProviderProps = Object.freeze({
   customToken: {

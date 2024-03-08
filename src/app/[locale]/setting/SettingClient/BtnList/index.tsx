@@ -52,7 +52,7 @@ const SettingBtnList = React.memo<any>(() => {
         icon: Bot,
         icon_bg: theme.colorSuccess,
         title: t('BtnList.index.woDeZhiNengTi'),
-        href: '/chat',
+        href: '/',
       },
     ],
     []

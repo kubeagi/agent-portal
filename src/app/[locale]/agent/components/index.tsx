@@ -5,7 +5,7 @@ import { sdk as bff } from '@yuntijs/arcadia-bff-sdk';
 import { Avatar, Button, Col, Row, Spin, Tooltip } from 'antd';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import ReturnBtn from '@/components/ReturnBtn';
@@ -54,7 +54,7 @@ const Agent = React.memo<AgentProps>(({ agentData }) => {
     },
     { fallbackData: agentData }
   );
-  const router = useRouter();
+  // const router = useRouter();
   // const searchParams = useSearchParams()
 
   useEffect(() => {

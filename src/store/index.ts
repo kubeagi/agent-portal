@@ -17,6 +17,12 @@ const reducer = (state = {}, action: any) => {
         theme: action.theme,
       };
     }
+    case 'TRIGGER_PAGE_LOADING': {
+      return {
+        ...state,
+        pageLoading: action.pageLoading,
+      };
+    }
     case 'SAVE_AUTH_DATA': {
       return {
         ...state,
