@@ -13,6 +13,9 @@ export const useStyles = createStyles(({ token }) => ({
     position: 'relative',
     backgroundColor: token.colorBgLayout,
   },
+  chatContainer: {
+    width: '100%',
+  },
 }));
 
 interface ConversationProps {
@@ -31,13 +34,15 @@ const Conversation = React.memo<ConversationProps>(({ params, searchParams }) =>
   return (
     <>
       <Flexbox className={styles.conversationWrapper} flex={1} horizontal>
-        <Chat
-          appName={searchParams.appName || ''}
-          appNamespace={searchParams.appNamespace || ''}
-          conversationId={params.id === 'new' ? undefined : (params.id as string)}
-          gpts
-          isDark={isDark}
-        />
+        <div className={styles.chatContainer}>
+          <Chat
+            appName={searchParams.appName || ''}
+            appNamespace={searchParams.appNamespace || ''}
+            conversationId={params.id === 'new' ? undefined : (params.id as string)}
+            gpts
+            isDark={isDark}
+          />
+        </div>
       </Flexbox>
     </>
   );
