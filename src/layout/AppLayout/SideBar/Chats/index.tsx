@@ -35,7 +35,7 @@ const Chats: any = () => {
   React.useEffect(() => {
     const _all =
       data?.map((item: any) => ({
-        title: item.messages?.[0]?.query,
+        title: item.messages?.[0]?.query || item.app_name,
         desc: item.messages?.[0]?.answer,
         ...item,
       })) || [];

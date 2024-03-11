@@ -25,6 +25,7 @@ export const useStyles = createStyles(({ token }) => {
       'padding': '0 12px',
       'position': 'relative',
       'color': token.colorTextBase,
+      'width': '100%',
       '&:hover': activeStyle,
       '&:active': {
         backgroundColor: token.controlItemBgActiveDisabled,
@@ -36,7 +37,12 @@ export const useStyles = createStyles(({ token }) => {
         marginTop: 1,
       },
     },
-    activeItem: activeStyle,
+    activeItem: {
+      ...activeStyle,
+      '&:active': {
+        backgroundColor: `${token.controlItemBgHover} !important`,
+      },
+    },
     icon: {
       'display': 'flex',
       '.anticon': {
@@ -72,7 +78,7 @@ export const useStyles = createStyles(({ token }) => {
         'border': 'unset',
         'boxShadow': '0 1px 8px 0 rgba(0,0,0,.12)',
         '.anticon': {
-          color: 'black',
+          color: token.colorTextBase,
           transform: 'scale(1.5)',
         },
       },
@@ -81,7 +87,7 @@ export const useStyles = createStyles(({ token }) => {
       '.ant-btn-link': {
         'padding': 0,
         '.ant-btn-icon': {
-          verticalAlign: 'bottom',
+          verticalAlign: 'text-bottom',
         },
       },
     },

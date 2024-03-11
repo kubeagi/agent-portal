@@ -40,7 +40,7 @@ export const useStyles = createStyles(({ css }) => {
       p: {
         position: 'relative',
         margin: 0,
-        padding: '1rem',
+        padding: '16px',
         backgroundColor: 'rgba(var(--callout-rgb), 0.5)',
         border: '1px solid rgba(var(--callout-border-rgb), 0.3)',
         borderRadius: 'var(--border-radius)',
