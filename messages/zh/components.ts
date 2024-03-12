@@ -1,6 +1,6 @@
 export default {
   index: {
-    faXianAIZhi: '发现 AI 智能体',
+    faXianAIZhi: '发现智能体',
     dengLu: '登录',
     tuiJian: '推荐',
   },
