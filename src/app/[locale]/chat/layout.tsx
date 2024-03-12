@@ -1,4 +1,3 @@
-import '@yuntijs/chat/dist/umd/index.min.css';
 import { ReactNode } from 'react';
 
 type Props = {
