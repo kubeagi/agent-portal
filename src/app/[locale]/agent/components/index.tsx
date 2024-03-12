@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 // import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
-import ReturnBtn from '@/components/ReturnBtn';
+import TitleCom from '@/components/Title';
 
 import TagContent from './TagContent';
 import { useStyles } from './styles';
@@ -68,11 +68,10 @@ const Agent = React.memo<AgentProps>(({ agentData }) => {
   return (
     <div className={styles.agentContainer}>
       <div className={styles.agentContent}>
-        <ReturnBtn
+        <TitleCom
           extra={<Button>{t('index.dengLu')}</Button>}
           isLeftTitle
           title={t('index.faXianAIZhi')}
-          to="/chat"
         />
         <div>
           <div className={styles.main}>

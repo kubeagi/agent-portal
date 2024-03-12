@@ -50,6 +50,7 @@ export const useStyles = createStyles(({ token, isDarkMode }) => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     fontWeight: 700,
+    color: `${isDarkMode ? '#fff' : '#000'}`,
   },
   desc: {
     color: token.colorTextDescription,
