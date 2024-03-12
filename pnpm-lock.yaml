@@ -30,8 +30,8 @@ dependencies:
     specifier: ^1.1.0
     version: 1.1.0(antd@5.12.7)(react@18.2.0)(swr@2.2.4)
   '@yuntijs/chat':
-    specifier: 0.1.0-beta.4
-    version: 0.1.0-beta.4(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@yuntijs/arcadia-bff-sdk@1.1.0)(antd@5.12.7)(classnames@2.5.1)(lodash@4.17.21)(lucide-react@0.304.0)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
+    specifier: 0.1.0-beta.6
+    version: 0.1.0-beta.6(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.1.0)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0)
   antd:
     specifier: ^5.12.6
     version: 5.12.7(react-dom@18.2.0)(react@18.2.0)
@@ -2660,7 +2660,7 @@ packages:
       immer: 10.0.3
       leva: 0.9.35(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       lodash-es: 4.17.21
-      lucide-react: 0.352.0(react@18.2.0)
+      lucide-react: 0.356.0(react@18.2.0)
       polished: 4.2.2
       prism-react-renderer: 2.3.1(react@18.2.0)
       query-string: 8.1.0
@@ -4179,10 +4179,6 @@ packages:
     dependencies:
       tslib: 2.6.2
 
-  /@tenx-ui/auth-utils@0.0.1:
-    resolution: {integrity: sha512-aCo7kgzZ18i3gZ6ZZryoYP0pBbTDyqKT8nSIwNXgMckL+pxUA+Iy5owvbZ/Hptexn603adg+ppocwxkvGxiBaw==, tarball: http://dev-npm.k8s.com.cn/@tenx-ui%2fauth-utils/-/auth-utils-0.0.1.tgz}
-    dev: false
-
   /@tenx-ui/bff-client@0.3.1(antd@5.12.7)(react@18.2.0)(swr@2.2.4):
     resolution: {integrity: sha512-1f7iCNVn1VDMrS1OS5cJuQkllaTLWRCc8b73A9CdHn/j+fXOoo4cF4I0eJey5ZR2oWS7mIf8zml7vyeBQSphcA==}
     peerDependencies:
@@ -4199,20 +4195,6 @@ packages:
       swr: 2.2.4(react@18.2.0)
     transitivePeerDependencies:
       - encoding
-    dev: false
-
-  /@tenx-ui/icon@2.4.41(classnames@2.5.1)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-P3kyp13DF0baRLGevBi5ZM0KQ8fTAb1ztsutQ9dY6KZiTjhWGGjiC3LbZxLTbLbST4WEvoCUp8E7UGb4PgO4ZA==, tarball: http://dev-npm.k8s.com.cn/@tenx-ui%2ficon/-/icon-2.4.41.tgz}
-    peerDependencies:
-      classnames: '>=2.2.5'
-      prop-types: '>=15.6.1'
-      react: '>=16.0.0'
-      react-dom: '>=16.0.0'
-    dependencies:
-      classnames: 2.5.1
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@tenx-ui/request@1.0.0-beta.6:
@@ -4952,33 +4934,30 @@ packages:
       - encoding
     dev: false
 
-  /@yuntijs/chat@0.1.0-beta.4(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@yuntijs/arcadia-bff-sdk@1.1.0)(antd@5.12.7)(classnames@2.5.1)(lodash@4.17.21)(lucide-react@0.304.0)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-9p7k2EPMhqS7ddW9YZil2plt6ERAg2SWy1aj+N17CQlowNJZ0PI2RNKFEHsBDQSaDLtYYE15zh1diVzwvGZxXw==}
+  /@yuntijs/chat@0.1.0-beta.6(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.1.0)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-wpWxbUZdphTSjqr5AORn+bjZ4JCsjWjV6vXMtaq+WkIsTrTVIzq6twXj9qcGIVekYFFIJOgRFbQRUQyiJu5hMQ==}
     peerDependencies:
       '@ant-design/icons': ^5.0.0
       '@lobehub/ui': ^1.128.4
       '@yuntijs/arcadia-bff-sdk': ^1.1.6
       antd: ^5.0.0
-      classnames: ^2.2.7
       lodash: ^4.17.21
       lucide-react: ^0.300.0
       react: '>=16.9.0'
     dependencies:
       '@ant-design/icons': 5.2.6(react-dom@18.2.0)(react@18.2.0)
       '@lobehub/ui': 1.125.8(@types/react-dom@18.2.18)(@types/react@18.2.46)(antd-style@3.6.1)(antd@5.12.7)(react-dom@18.2.0)(react@18.2.0)
-      '@tenx-ui/auth-utils': 0.0.1
-      '@tenx-ui/icon': 2.4.41(classnames@2.5.1)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
       '@tenx-ui/request': 1.0.0-beta.6
       '@yuntijs/arcadia-bff-sdk': 1.1.0(antd@5.12.7)(react@18.2.0)(swr@2.2.4)
       antd: 5.12.7(react-dom@18.2.0)(react@18.2.0)
-      classnames: 2.5.1
+      antd-style: 3.6.1(@types/react@18.2.46)(antd@5.12.7)(react-dom@18.2.0)(react@18.2.0)
       kiwi-intl: 1.2.6-beta.0
       lodash: 4.17.21
       lucide-react: 0.304.0(react@18.2.0)
       react: 18.2.0
     transitivePeerDependencies:
+      - '@types/react'
       - encoding
-      - prop-types
       - react-dom
     dev: false
 
@@ -9179,8 +9158,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /lucide-react@0.352.0(react@18.2.0):
-    resolution: {integrity: sha512-GKzcxx6H6PT9onMPN9zxyD4KNqgHDoVaY+ad14vhTzBdXFm3FQZhH5XeP8sHJRhLk9imHHta/8DZe55kd/KerQ==}
+  /lucide-react@0.356.0(react@18.2.0):
+    resolution: {integrity: sha512-MDInjLrmZToccH2UxEshntujBlFwtOofGB22FN/eg39FfGVYV1TT1eMIv2j4rdaTJBpYjUuX7fEo9pwYkNFgwA==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:

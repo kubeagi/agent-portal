@@ -6,8 +6,6 @@ import React from 'react';
 import { Flexbox } from 'react-layout-kit';
 import { useSelector } from 'react-redux';
 
-import useDark from '@/app/[locale]/chat/(conversation)/useDark';
-
 export const useStyles = createStyles(({ token }) => ({
   conversationWrapper: {
     position: 'relative',
@@ -29,7 +27,6 @@ const Conversation = React.memo<ConversationProps>(({ params, searchParams }) =>
   const isDark =
     theme === 'dark' ||
     (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-  useDark(isDark);
 
   return (
     <>
