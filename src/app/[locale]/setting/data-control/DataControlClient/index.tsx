@@ -24,7 +24,7 @@ const DataControlClient: React.FC<Props> = () => {
   const btns1: Btn[] = React.useMemo(
     () => [
       {
-        title: t('DataControlClient.index.liaoTianJiLuYing'),
+        title: t('index.liaoTianJiLuYing'),
         action: (
           <Switch
             checked={checked}
@@ -40,7 +40,7 @@ const DataControlClient: React.FC<Props> = () => {
   const btns_del_all: Btn[] = React.useMemo(
     () => [
       {
-        title: t('DataControlClient.index.shanChuSuoYouLiao'),
+        title: t('index.shanChuSuoYouLiao'),
         danger: true,
         onClick: () => {
           console.warn('handel del all');
@@ -52,33 +52,33 @@ const DataControlClient: React.FC<Props> = () => {
   return (
     <div className={classNames(styles.dataControl)}>
       <div>
-        <ReturnBtn title={t('DataControlClient.index.shuJuKongZhi')} to="/setting" />
+        <ReturnBtn title={t('index.shuJuKongZhi')} to="/setting" />
         <Flex className={'scrollBar'} justify={'center'}>
           <div className={classNames(styles.content)}>
-            <BtnsBlock btns={btns1} extra={t('DataControlClient.index.jiangCiLiuLanQi')} />
+            <BtnsBlock btns={btns1} extra={t('index.jiangCiLiuLanQi')} />
             <BtnsBlock btns={btns_del_all} />
-            <Card bordered={false} title={t('DataControlClient.index.fenXiangLianJie')}>
+            <Card bordered={false} title={t('index.fenXiangLianJie')}>
               <Table
                 className={styles.table}
                 columns={[
                   {
                     dataIndex: 'name',
-                    title: t('DataControlClient.index.duiHuaMingCheng'),
+                    title: t('index.duiHuaMingCheng'),
                     width: '50%',
                   },
                   {
                     dataIndex: 'time',
-                    title: t('DataControlClient.index.fenXiangShiJian'),
+                    title: t('index.fenXiangShiJian'),
                     width: '50%',
                   },
                   {
                     dataIndex: 'opera',
-                    title: t('DataControlClient.index.caoZuo'),
+                    title: t('index.caoZuo'),
                     width: 120,
                     render: () => {
                       return (
                         <Button danger type="primary">
-                          {t('DataControlClient.index.shanChu')}
+                          {t('index.shanChu')}
                         </Button>
                       );
                     },
@@ -86,7 +86,7 @@ const DataControlClient: React.FC<Props> = () => {
                 ]}
                 dataSource={[
                   {
-                    name: t('DataControlClient.index.duiHua'),
+                    name: t('index.duiHua'),
                     time: '2024-01-01 08:08:08',
                   },
                 ]}

@@ -1,3 +1,4 @@
+import { theme } from 'antd';
 import { ThemeProviderProps as AntDThemeProviderProps } from 'antd-style';
 
 export type ThemeProviderProps = AntDThemeProviderProps<any>;
@@ -8,9 +9,9 @@ const default_theme_props: ThemeProviderProps = Object.freeze({
   customToken: {
     testHeight: '50px',
     colorPrimaryTest: '#f85a5a',
-    // colorBgLayout: 'red',
   },
   theme: {
+    algorithm: theme.defaultAlgorithm,
     token: {
       colorPrimary,
       borderRadius: 12,

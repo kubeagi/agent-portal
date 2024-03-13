@@ -4,7 +4,7 @@ import React from 'react';
 import DataControlClient from './DataControlClient';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
-  const t = await getTranslations({ locale, namespace: 'DataControl' });
+  const t = await getTranslations({ locale, namespace: 'DataControlClient' });
   return {
     title: t('index.shuJuKongZhi'),
   };

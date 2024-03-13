@@ -43,7 +43,7 @@ export const useStyles = createStyles(({ token }) => ({
     lineHeight: '50px',
     borderBottom: `1px solid ${token.colorSplit}`,
     color: token.colorPrimary,
-    padding: '0 1rem',
+    padding: '0 16px',
     fontWeight: 'bolder',
     fontSize: '24px',
     cursor: 'pointer',
