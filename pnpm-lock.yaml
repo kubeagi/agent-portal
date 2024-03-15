@@ -30,8 +30,8 @@ dependencies:
     specifier: ^1.1.0
     version: 1.1.0(antd@5.12.7)(react@18.2.0)(swr@2.2.4)
   '@yuntijs/chat':
-    specifier: 0.1.0-beta.6
-    version: 0.1.0-beta.6(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.1.0)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0)
+    specifier: 0.1.0-beta.7
+    version: 0.1.0-beta.7(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.1.0)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0)
   antd:
     specifier: ^5.12.6
     version: 5.12.7(react-dom@18.2.0)(react@18.2.0)
@@ -2660,7 +2660,7 @@ packages:
       immer: 10.0.3
       leva: 0.9.35(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       lodash-es: 4.17.21
-      lucide-react: 0.356.0(react@18.2.0)
+      lucide-react: 0.358.0(react@18.2.0)
       polished: 4.2.2
       prism-react-renderer: 2.3.1(react@18.2.0)
       query-string: 8.1.0
@@ -4197,18 +4197,6 @@ packages:
       - encoding
     dev: false
 
-  /@tenx-ui/request@1.0.0-beta.6:
-    resolution: {integrity: sha512-4W4yKKiw+BfXnVOLwpYvJDm/c+csrbR8EyQnDEM7T91KYvSqBB4A60Mh/jR5A7+YQz3LCGgWME4fZEn1Ol3/aw==, tarball: http://dev-npm.k8s.com.cn/@tenx-ui%2frequest/-/request-1.0.0-beta.6.tgz}
-    dependencies:
-      '@babel/runtime': 7.23.7
-      abort-controller: 3.0.0
-      downloadjs: 1.4.7
-      isomorphic-fetch: 3.0.0
-      qs: 6.11.0
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
   /@tootallnate/once@2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
@@ -4934,8 +4922,8 @@ packages:
       - encoding
     dev: false
 
-  /@yuntijs/chat@0.1.0-beta.6(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.1.0)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-wpWxbUZdphTSjqr5AORn+bjZ4JCsjWjV6vXMtaq+WkIsTrTVIzq6twXj9qcGIVekYFFIJOgRFbQRUQyiJu5hMQ==}
+  /@yuntijs/chat@0.1.0-beta.7(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.1.0)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-LhDPv/dQPuQOvdGyNx7xKAUwxzJ/QKnW6PiM+giJoSmeff67eYGPXbq14FLxHy6XeGRTpf4aROua8yYLBGZEpg==}
     peerDependencies:
       '@ant-design/icons': ^5.0.0
       '@lobehub/ui': ^1.128.4
@@ -4947,8 +4935,8 @@ packages:
     dependencies:
       '@ant-design/icons': 5.2.6(react-dom@18.2.0)(react@18.2.0)
       '@lobehub/ui': 1.125.8(@types/react-dom@18.2.18)(@types/react@18.2.46)(antd-style@3.6.1)(antd@5.12.7)(react-dom@18.2.0)(react@18.2.0)
-      '@tenx-ui/request': 1.0.0-beta.6
       '@yuntijs/arcadia-bff-sdk': 1.1.0(antd@5.12.7)(react@18.2.0)(swr@2.2.4)
+      '@yuntijs/request': 1.0.0
       antd: 5.12.7(react-dom@18.2.0)(react@18.2.0)
       antd-style: 3.6.1(@types/react@18.2.46)(antd@5.12.7)(react-dom@18.2.0)(react@18.2.0)
       kiwi-intl: 1.2.6-beta.0
@@ -4957,7 +4945,6 @@ packages:
       react: 18.2.0
     transitivePeerDependencies:
       - '@types/react'
-      - encoding
       - react-dom
     dev: false
 
@@ -5049,6 +5036,16 @@ packages:
       - supports-color
       - typescript
     dev: true
+
+  /@yuntijs/request@1.0.0:
+    resolution: {integrity: sha512-at+Kvxdya8o4QshgMoiGmuEYLxt+7QCzkCXYqYCYDpI8w8tNitRZIF351RCvaPti5wDpceghGtXwhv1552JcBQ==}
+    engines: {node: '>=14 <=16', pnpm: '>=8.1.0'}
+    dependencies:
+      '@babel/runtime': 7.23.7
+      abort-controller: 3.0.0
+      downloadjs: 1.4.7
+      qs: 6.11.0
+    dev: false
 
   /JSONStream@1.3.5:
     resolution: {integrity: sha1-MgjB8I06TZkmGrZPkjArwV4RHKA=}
@@ -8638,15 +8635,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /isomorphic-fetch@3.0.0:
-    resolution: {integrity: sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==}
-    dependencies:
-      node-fetch: 2.7.0
-      whatwg-fetch: 3.6.20
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
   /issue-parser@6.0.0:
     resolution: {integrity: sha512-zKa/Dxq2lGsBIXQ7CUZWTHfvxPC2ej0KfO7fIPqLlHB9J2hJ7rGhZ5rilhuufylr4RXYPzJUeFjKxz305OsNlA==}
     engines: {node: '>=10.13'}
@@ -9158,8 +9146,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /lucide-react@0.356.0(react@18.2.0):
-    resolution: {integrity: sha512-MDInjLrmZToccH2UxEshntujBlFwtOofGB22FN/eg39FfGVYV1TT1eMIv2j4rdaTJBpYjUuX7fEo9pwYkNFgwA==}
+  /lucide-react@0.358.0(react@18.2.0):
+    resolution: {integrity: sha512-rBSptRjZTMBm24zsFhR6pK/NgbT18JegZGKcH4+1H3+UigMSRpeoWLtR/fAwMYwYnlJOZB+y8WpeHne9D6X6Kg==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
@@ -14956,10 +14944,6 @@ packages:
       - esbuild
       - uglify-js
     dev: true
-
-  /whatwg-fetch@3.6.20:
-    resolution: {integrity: sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==}
-    dev: false
 
   /whatwg-url@5.0.0:
     resolution: {integrity: sha1-lmRU6HZUYuN2RNNib2dCzotwll0=}
