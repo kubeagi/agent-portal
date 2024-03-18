@@ -51,11 +51,11 @@ const ThemeLayout = React.memo<Props>(
       const auth = localStorage.getItem(AUTH_DATA);
       let authObj: any;
       try {
-        authObj = JSON.parse(auth || '');
-      } catch (error) {
-        console.warn('no auth or parse auth err', error);
+        authObj = JSON.parse(auth || '{}');
+      } catch {
+        // console.warn('no auth or parse auth err', _);
       }
-      if (!auth || isTokenExpired(authObj.token.id_token)) {
+      if (!auth || isTokenExpired(authObj?.token.id_token)) {
         // router.push('/oidc/auth'); // 暂时屏蔽 => 自动跳转认证
         setAuthed(false);
         return;

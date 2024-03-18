@@ -57,12 +57,11 @@ interface ParsedToken {
 
 /**
  * 判断 auth 是否过期。
- * @param {string} id_token token.id_token。
+ * @param {string} id_token token.id_token without last part。
  */
 
-function parseToken(token: string): ParsedToken {
+function parseToken(token: string[]): ParsedToken {
   return token
-    .split('.')
     .map(str => {
       try {
         return JSON.parse(atob(str));
@@ -84,6 +83,11 @@ export function isTokenExpired(id_token?: string): boolean {
   if (!id_token) {
     return true;
   }
-  const expiredTimestampInMs = parseToken(id_token).exp * 1000;
+  const id_token_split_arr = (() => {
+    const arr = id_token.split('.');
+    arr.pop();
+    return arr;
+  })();
+  const expiredTimestampInMs = parseToken(id_token_split_arr).exp * 1000;
   return Date.now() >= expiredTimestampInMs;
 }
