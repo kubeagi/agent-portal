@@ -30,8 +30,8 @@ dependencies:
     specifier: ^1.1.0
     version: 1.1.0(antd@5.12.7)(react@18.2.0)(swr@2.2.4)
   '@yuntijs/chat':
-    specifier: 0.1.0-beta.7
-    version: 0.1.0-beta.7(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.1.0)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0)
+    specifier: 0.1.0-beta.8
+    version: 0.1.0-beta.8(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.1.0)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0)
   antd:
     specifier: ^5.12.6
     version: 5.12.7(react-dom@18.2.0)(react@18.2.0)
@@ -2660,7 +2660,7 @@ packages:
       immer: 10.0.3
       leva: 0.9.35(@types/react-dom@18.2.18)(@types/react@18.2.46)(react-dom@18.2.0)(react@18.2.0)
       lodash-es: 4.17.21
-      lucide-react: 0.358.0(react@18.2.0)
+      lucide-react: 0.359.0(react@18.2.0)
       polished: 4.2.2
       prism-react-renderer: 2.3.1(react@18.2.0)
       query-string: 8.1.0
@@ -4922,8 +4922,8 @@ packages:
       - encoding
     dev: false
 
-  /@yuntijs/chat@0.1.0-beta.7(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.1.0)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-LhDPv/dQPuQOvdGyNx7xKAUwxzJ/QKnW6PiM+giJoSmeff67eYGPXbq14FLxHy6XeGRTpf4aROua8yYLBGZEpg==}
+  /@yuntijs/chat@0.1.0-beta.8(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.1.0)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Cvl5pWA68shGaFAHjRO1LgH5ysjZ7IgHvVzje924W3hhjkZ6luJhAXic0taOYwWx5yrcE/jMzZtjg7uY/5kRfw==}
     peerDependencies:
       '@ant-design/icons': ^5.0.0
       '@lobehub/ui': ^1.128.4
@@ -9146,8 +9146,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /lucide-react@0.358.0(react@18.2.0):
-    resolution: {integrity: sha512-rBSptRjZTMBm24zsFhR6pK/NgbT18JegZGKcH4+1H3+UigMSRpeoWLtR/fAwMYwYnlJOZB+y8WpeHne9D6X6Kg==}
+  /lucide-react@0.359.0(react@18.2.0):
+    resolution: {integrity: sha512-bxVL+rM/wacjpT0BKShA6r5IIKb6LCRg+ltFG9pnnIwaRX8kK3hq8v5JwMpT7RC6XeqB5cSaaV6GapPWWmtliw==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
