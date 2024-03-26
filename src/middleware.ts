@@ -1,14 +1,25 @@
 import createMiddleware from 'next-intl/middleware';
+import { NextRequest } from 'next/server';
 
 import { locales } from './i18n';
+import { LOCALE } from './utils/constants';
 
-export default createMiddleware({
-  // A list of all locales that are supported
-  locales,
+export default async function middleware(request: NextRequest) {
+  const acceptLanguage =
+    request.headers.get('accept-language')?.split(';')?.[0]?.split(',')?.[0]?.split('-')?.[0] || '';
+  const defaultLocale: string =
+    request.cookies.get(LOCALE)?.value || locales.includes(acceptLanguage) ? acceptLanguage : 'en';
 
-  // Used when no locale matches
-  defaultLocale: 'zh',
-});
+  const handleI18nRouting = createMiddleware({
+    locales,
+    defaultLocale,
+  });
+  const response = handleI18nRouting(request);
+
+  response.headers.set(LOCALE, defaultLocale);
+
+  return response;
+}
 
 export const config = {
   // Match only internationalized pathnames
