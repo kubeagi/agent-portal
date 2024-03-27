@@ -22,7 +22,7 @@ jobs:
           version: 8
 
       - name: Install deps
-        run: pnpm un @tenx-ui/bff-client -s && pnpm install
+        run: pnpm install
         # run: pnpm install --only=dev --ignore-scripts && pnpm add react -D --only=dev --ignore-scripts
 
       - name: Lint

@@ -1,6 +1,6 @@
 'use client';
 
-import { sdk } from '@tenx-ui/bff-client';
+import { sdk } from '@yuntijs/bff-client';
 import { App, Flex, Skeleton, SkeletonProps, Switch } from 'antd';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
