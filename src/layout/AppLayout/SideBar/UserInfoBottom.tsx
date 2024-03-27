@@ -2,7 +2,7 @@
 
 import { UserOutlined } from '@ant-design/icons';
 import { ActionIcon } from '@lobehub/ui';
-import { sdk } from '@tenx-ui/bff-client';
+import { sdk } from '@yuntijs/bff-client';
 import { Avatar, Dropdown, Skeleton, Space, Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import { Check, Monitor, Moon, Settings, Sun } from 'lucide-react';

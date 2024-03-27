@@ -1,4 +1,5 @@
 import { sdk as bff } from '@yuntijs/arcadia-bff-sdk';
+import { Flex } from 'antd';
 import React from 'react';
 
 import Agent from './components';
@@ -16,8 +17,8 @@ export default async function Page() {
     });
 
   return (
-    <>
+    <Flex style={{ overflow: 'hidden', flex: 1 }}>
       <Agent agentData={agentData} />
-    </>
+    </Flex>
   );
 }

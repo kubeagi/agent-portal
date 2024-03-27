@@ -1,6 +1,6 @@
 'use client';
 
-import { type GetCurrentUserQuery, sdk } from '@tenx-ui/bff-client';
+import { type GetCurrentUserQuery, sdk } from '@yuntijs/bff-client';
 import React from 'react';
 
 import ReturnBtn from '@/components/ReturnBtn';

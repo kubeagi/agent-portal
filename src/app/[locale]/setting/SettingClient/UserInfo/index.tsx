@@ -1,5 +1,5 @@
 import { UserOutlined } from '@ant-design/icons';
-import type { GetCurrentUserQuery } from '@tenx-ui/bff-client';
+import type { GetCurrentUserQuery } from '@yuntijs/bff-client';
 import { Avatar, Skeleton } from 'antd';
 import classNames from 'classnames';
 import React from 'react';

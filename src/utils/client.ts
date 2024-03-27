@@ -1,7 +1,7 @@
 'use client';
 
-export { sdk as bffClient } from '@tenx-ui/bff-client';
 export { sdk as bff } from '@yuntijs/arcadia-bff-sdk';
+export { sdk as bffClient } from '@yuntijs/bff-client';
 
 export const getCookie = (cookieString: string, cookieName: string) => {
   const name = `${cookieName}=`;
