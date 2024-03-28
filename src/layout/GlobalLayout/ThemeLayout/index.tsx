@@ -29,9 +29,11 @@ const ThemeLayout = React.memo<Props>(
   ({ children, theme: init_page_theme, antdLocale, locale }) => {
     const { setAxiosConfigured, isAxiosConfigured } = useAxiosConfig();
     const { setAuthed } = useAuthContext();
-    const [theme, setTheme] = React.useState<ThemeMode | undefined>(init_page_theme);
-    const [mediaQuery, setMediaQuery] = React.useState<any>();
     const theme_from_store = useSelector((store: any) => store.theme);
+    const [theme, setTheme] = React.useState<ThemeMode | undefined>(theme_from_store || init_page_theme);
+    const [mediaQuery, setMediaQuery] = React.useState<any>();
+    const clientTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    const [mediaTheme, setMediaTheme] = React.useState<any>(clientTheme);
     const pathname = usePathname();
 
     const NO_AUTH_ROUTES = React.useMemo(
@@ -68,16 +70,16 @@ const ThemeLayout = React.memo<Props>(
 
     const handleThemeChange = React.useCallback(
       (e: MediaQueryListEvent) => {
-        if (theme_from_store !== 'auto') return;
+        // if (theme_from_store !== 'auto') return;
         if (e.matches) {
           // console.log('系统为: 暗黑模式');
-          setTheme('dark');
+          setMediaTheme('dark');
         } else {
           // console.log('系统为: 正常（亮色）模式');
-          setTheme('light');
+          setMediaTheme('light');
         }
       },
-      [theme_from_store, setTheme]
+      [theme_from_store]
     );
 
     React.useEffect(() => {
@@ -100,10 +102,16 @@ const ThemeLayout = React.memo<Props>(
         return;
       }
     }, [theme_from_store, mediaQuery]);
-    const themeConfig =
-      theme === 'auto'
-        ? default_theme
-        : merge(cloneDeep(default_theme), theme === 'dark' ? dark : light);
+    const themeConfig = React.useMemo(() => {
+      if (theme === 'auto') {
+        return merge(cloneDeep(default_theme), mediaTheme === 'dark' ? dark : light);
+      } else if (theme === 'dark') {
+        return merge(cloneDeep(default_theme), dark);
+      } else {
+        return merge(cloneDeep(default_theme), light);
+      }
+    }, [theme, mediaTheme]);
+
     return (
       <ThemeProvider
         themeMode={theme} // 主题模式; ps: themeMode 和 appearance 都可以实现效果, themeMode 更贴合目前功能的含义
