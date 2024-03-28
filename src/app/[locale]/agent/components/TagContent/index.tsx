@@ -11,10 +11,9 @@ import { useStyles } from './styles';
 interface TagContentProps {
   handleSelectTagChange?: (tag: string) => void;
 }
-
-const TagContent = React.memo<TagContentProps>(props => {
+// 首先这里不能 memo， 用户存在使用过程中拖拽窗口大小
+const TagContent = ({ handleSelectTagChange }: TagContentProps) => {
   const t = useTranslations();
-  const { handleSelectTagChange } = props;
   const { styles } = useStyles();
   const scrollLeftRef = useRef(0);
   const currentBtnRef = useRef(null);
@@ -66,36 +65,13 @@ const TagContent = React.memo<TagContentProps>(props => {
       });
     }
   };
-
   useEffect(() => {
     // 获取包含内容的元素，例如 body 或任何带有横向滚动的容器
     const scrollContainer = document?.querySelector('#btns');
-    // 添加滚动事件监听器
-    scrollContainer?.addEventListener('scroll', function () {
-      // 获取横向滚动的距离
-      const scrollLeft = scrollContainer?.scrollLeft;
-      scrollLeftRef.current = scrollLeft;
-      const visibleWidth = document?.documentElement.clientWidth;
-      // 执行您的滚动事件处理逻辑
-      if (scrollLeft + visibleWidth >= scrollContainer.scrollWidth) {
-        setRightArrowVisible(false);
-      } else {
-        setRightArrowVisible(true);
-        if (scrollLeft <= 0) {
-          setLeftArrowVisible(false);
-        } else {
-          setLeftArrowVisible(true);
-        }
-      }
-    });
 
-    window.addEventListener('resize', () => {
-      const scrollLeft = scrollContainer!.scrollLeft;
-      if (scrollLeft > 0) {
-        setLeftArrowVisible(true);
-      } else {
-        setLeftArrowVisible(false);
-      }
+    const resize = () => {
+      const scrollLeft: number = scrollContainer!.scrollLeft || 0;
+      setLeftArrowVisible(scrollLeft > 0);
       // 如果可视页面比容器小，说明需要出滚动条了，那么选中的tag也需要滚动到页面中间
       const visibleWidth = document?.documentElement.clientWidth;
       if (visibleWidth > scrollContainer!.scrollWidth) {
@@ -105,7 +81,27 @@ const TagContent = React.memo<TagContentProps>(props => {
         setRightArrowVisible(true);
         onChange(currentBtnRef.current);
       }
-    });
+    };
+
+    // 添加滚动事件监听器
+    const scroll = () => {
+      // 获取横向滚动的距离
+      const scrollLeft: number = scrollContainer?.scrollLeft || 0;
+      scrollLeftRef.current = scrollLeft;
+      const visibleWidth = document?.documentElement.clientWidth;
+      // 执行您的滚动事件处理逻辑
+      setRightArrowVisible(scrollLeft + visibleWidth < scrollContainer!.scrollWidth);
+      // 在滚动过程中，只要左边存在隐藏标签状态，就需要出现左移动按钮
+      setLeftArrowVisible(scrollLeft > 0);
+    };
+    scrollContainer?.addEventListener('scroll', scroll);
+    window.addEventListener('resize', resize);
+    // 由于初次刷新，按钮肯定没有选中过，此时如果需要判断左移动和右移动，可以手动调用resize函数
+    resize(); // 如果初次渲染不想显示箭头，可以注释此行函数
+    return () => {
+      window.removeEventListener('resize', resize);
+      scrollContainer?.removeEventListener('scroll', scroll);
+    };
   }, []);
   return (
     <div className={styles.tagContent}>
@@ -138,6 +134,6 @@ const TagContent = React.memo<TagContentProps>(props => {
       </Radio.Group>
     </div>
   );
-});
+};
 
 export default TagContent;
