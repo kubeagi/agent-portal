@@ -30,7 +30,7 @@ const light_theme_props: ThemeProviderProps = Object.freeze({
   },
 });
 
-const datk_theme_props: ThemeProviderProps = Object.freeze({
+const dark_theme_props: ThemeProviderProps = Object.freeze({
   theme: {
     token: {
       colorBgBase: '#000',
@@ -46,5 +46,5 @@ const datk_theme_props: ThemeProviderProps = Object.freeze({
 });
 
 export const light = light_theme_props;
-export const dark = datk_theme_props;
+export const dark = dark_theme_props;
 export const default_theme = default_theme_props;

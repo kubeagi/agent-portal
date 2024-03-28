@@ -159,7 +159,7 @@ export default function UserInfoBottom() {
               onClick: ({ key }) => {
                 if (theme === key) return;
                 dispatch({
-                  type: 'TRIGGER_SHEME',
+                  type: 'TRIGGER_THEME',
                   theme: key,
                 });
               },
@@ -176,7 +176,7 @@ export default function UserInfoBottom() {
               onClick={() => {
                 if (theme === 'auto') return;
                 dispatch({
-                  type: 'TRIGGER_SHEME',
+                  type: 'TRIGGER_THEME',
                   theme: theme === 'light' ? 'dark' : 'light',
                 });
               }}
