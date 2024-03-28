@@ -20,7 +20,7 @@ export default function SideBar() {
   if (is_no_sidebar_route) return <></>;
   const showSidebar = ['/chat'].includes(pathname);
   return (
-    <div className={classNames(styles.sidebar, showSidebar ? '' : 'hide_sidebar')}>
+    <div className={classNames(styles.sidebar, showSidebar ? '' : 'need_hide_sidebar')}>
       <SideBarHeader />
       <Chats />
       <UserInfoBottom />

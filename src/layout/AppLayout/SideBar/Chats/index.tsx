@@ -85,6 +85,7 @@ const Chats: any = () => {
       <div className={styles.content}>
         {data && showData.length > 0 ? (
           <InfiniteScroll
+            className={styles.scroll}
             dataLength={showData.length}
             endMessage={
               allData.length > default_load_size ? (
@@ -120,6 +121,7 @@ const Chats: any = () => {
                     reload={() => {
                       getList();
                     }}
+                    wrapperClass={styles.chats}
                   />
                 </List.Item>
               )}
