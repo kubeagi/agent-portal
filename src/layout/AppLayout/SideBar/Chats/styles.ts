@@ -26,4 +26,7 @@ export const useStyles = createStyles(({ token }) => ({
   dividerText: {
     color: `${token.colorTextDescription} !important`,
   },
+  scroll: {
+    paddingBottom: 70,
+  },
 }));

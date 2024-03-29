@@ -42,9 +42,8 @@ export const useStyles = createStyles(({ token }) => ({
       '&': {
         'position': 'absolute',
         'width': '100%',
-        'transition': 'var(--slide-transition)',
 
-        '&.hide_sidebar': {
+        '&.need_hide_sidebar': {
           display: 'none',
         },
       },
