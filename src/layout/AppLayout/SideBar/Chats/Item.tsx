@@ -103,6 +103,7 @@ export const useStyles = createStyles(({ token }) => {
 interface Props {
   data: {
     id: string;
+    icon: string; // img base64 = =
     title: string;
     desc: string;
     app_namespace: string;
@@ -187,7 +188,7 @@ const ChatItem: any = (props: Props) => {
         }}
       >
         <div className={styles.icon}>
-          <Image alt="default_chat" height={42} src="/default_chat.png" width={42} />
+          <Image alt="default_chat" height={42} src={data.icon || '/default_chat.png'} width={42} />
         </div>
         <div className={styles.content}>
           <Typography.Paragraph className={styles.title} ellipsis>
