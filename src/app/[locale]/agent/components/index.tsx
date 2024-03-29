@@ -2,21 +2,18 @@
 
 import { FireOutlined } from '@ant-design/icons';
 import { sdk as bff } from '@yuntijs/arcadia-bff-sdk';
-import { Avatar, Button, Col, Row, Spin, Tooltip } from 'antd';
+import { Avatar, Button, Col, Empty, Row, Spin, Tooltip } from 'antd';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 // import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
+import { AgentProps, GPTNode } from '@/app/[locale]/agent/type';
 import TitleCom from '@/components/Title';
 
 import TagContent from './TagContent';
 import { useStyles } from './styles';
-
-interface AgentProps {
-  agentData?: any;
-  TZH_AGENT_CATEGORY: string[];
-}
 
 const layout = {
   xs: {
@@ -55,22 +52,31 @@ const Agent = React.memo<AgentProps>(({ agentData, TZH_AGENT_CATEGORY }) => {
     },
     { fallbackData: agentData }
   );
-  // const router = useRouter();
+
+  const router = useRouter();
   // const searchParams = useSearchParams()
 
   useEffect(() => {
     // console.log(searchParams.get('classification'))
   }, []);
 
-  const handleSelectTagChange = tag => {
+  const handleSelectTagChange = (tag: string) => {
     setSelectedTags(tag);
   };
-
+  const nodes = (ListData?.GPT?.listGPT?.nodes || []) as GPTNode[];
   return (
     <div className={styles.agentContainer}>
       <div className={styles.agentContent}>
         <TitleCom
-          extra={<Button>{t('index.dengLu')}</Button>}
+          extra={
+            <Button
+              onClick={() => {
+                router.push('/oidc/auth');
+              }}
+            >
+              {t('index.dengLu')}
+            </Button>
+          }
           isLeftTitle
           title={t('index.faXianAIZhi')}
         />
@@ -84,34 +90,41 @@ const Agent = React.memo<AgentProps>(({ agentData, TZH_AGENT_CATEGORY }) => {
             <div className={classNames(styles.content, 'scrollBar')}>
               <Spin spinning={loading}>
                 <Row gutter={[16, 16]}>
-                  {(ListData?.GPT?.listGPT?.nodes || [])
-                    .filter(item => item.category.includes(selectedTag))
-                    .map((item, index) => (
-                      <Col {...layout} key={index}>
-                        <a
-                          className={styles.card}
-                          href={`/chat/new?appNamespace=${item.name?.split(
-                            '/'
-                          )?.[0]}&appName=${item.name?.split('/')?.[1]}`}
-                        >
-                          <div className={styles.left}>
-                            <Avatar shape="square" size={72} src={item.icon} />
-                          </div>
-                          <div className={styles.right}>
-                            <div className={styles.title}>{item.displayName}</div>
-                            <Tooltip title={item.description || '-'}>
-                              <div className={styles.desc}>{item.description || '-'}</div>
-                            </Tooltip>
-                            <div className={styles.info}>
-                              <span className={styles.heat}>
-                                <FireOutlined /> {item.hot} w
-                              </span>
-                              <span className={styles.creator}>@{item.creator}</span>
+                  {nodes.length > 0 ? (
+                    nodes
+                      .filter(item => item?.category?.includes(selectedTag))
+                      .map((item, index) => (
+                        <Col {...layout} key={index}>
+                          <a
+                            className={styles.card}
+                            href={`/chat/new?appNamespace=${item.name?.split(
+                              '/'
+                            )?.[0]}&appName=${item.name?.split('/')?.[1]}`}
+                          >
+                            <div className={styles.left}>
+                              <Avatar shape="square" size={72} src={item.icon} />
                             </div>
-                          </div>
-                        </a>
-                      </Col>
-                    ))}
+                            <div className={styles.right}>
+                              <div className={styles.title}>{item.displayName}</div>
+                              <Tooltip title={item.description || '-'}>
+                                <div className={styles.desc}>{item.description || '-'}</div>
+                              </Tooltip>
+                              <div className={styles.info}>
+                                <span className={styles.heat}>
+                                  <FireOutlined /> {item.hot} w
+                                </span>
+                                <span className={styles.creator}>@{item.creator}</span>
+                              </div>
+                            </div>
+                          </a>
+                        </Col>
+                      ))
+                  ) : (
+                    <Empty
+                      image={Empty.PRESENTED_IMAGE_SIMPLE}
+                      style={{ flex: 1, marginTop: '20vh' }}
+                    />
+                  )}
                 </Row>
               </Spin>
             </div>

@@ -5,6 +5,8 @@ import React from 'react';
 
 import { AGENT_CATEGORY_INDEXES } from '@/utils/constants';
 
+import { AgentData } from '@/app/[locale]/agent/type';
+
 import Agent from './components';
 
 export default async function Page() {
@@ -22,7 +24,7 @@ export default async function Page() {
   const TZH_AGENT_CATEGORY = AGENT_CATEGORY_INDEXES.map(item => t_zh(item));
   return (
     <Flex style={{ overflow: 'hidden', flex: 1 }}>
-      <Agent TZH_AGENT_CATEGORY={TZH_AGENT_CATEGORY} agentData={agentData} />
+      <Agent TZH_AGENT_CATEGORY={TZH_AGENT_CATEGORY} agentData={agentData as AgentData} />
     </Flex>
   );
 }
