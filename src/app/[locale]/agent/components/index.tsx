@@ -5,6 +5,7 @@ import { sdk as bff } from '@yuntijs/arcadia-bff-sdk';
 import { Avatar, Button, Col, Row, Spin, Tooltip } from 'antd';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 // import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
@@ -41,6 +42,7 @@ const layout = {
 
 const Agent = React.memo<AgentProps>(({ agentData, TZH_AGENT_CATEGORY }) => {
   const t = useTranslations('components');
+  const router = useRouter();
   const { styles } = useStyles();
   const [selectedTag, setSelectedTags] = useState(TZH_AGENT_CATEGORY[0]);
   // const [pageSize, setPageSize] = useState(-1);
@@ -70,7 +72,7 @@ const Agent = React.memo<AgentProps>(({ agentData, TZH_AGENT_CATEGORY }) => {
     <div className={styles.agentContainer}>
       <div className={styles.agentContent}>
         <TitleCom
-          extra={<Button>{t('index.dengLu')}</Button>}
+          extra={<Button onClick={() => router.push('/oidc/auth')}>{t('index.dengLu')}</Button>}
           isLeftTitle
           title={t('index.faXianAIZhi')}
         />
