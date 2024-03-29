@@ -4,36 +4,30 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Radio } from 'antd';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+
+import { AGENT_CATEGORY_INDEXES } from '@/utils/constants';
 
 import { useStyles } from './styles';
 
 interface TagContentProps {
-  handleSelectTagChange?: (tag: string) => void;
+  handleSelectTagChange: (tag: string) => void;
+  TZH_AGENT_CATEGORY: string[];
+  selectedTag: string;
 }
 // 首先这里不能 memo， 用户存在使用过程中拖拽窗口大小
-const TagContent = ({ handleSelectTagChange }: TagContentProps) => {
+const TagContent = ({
+  handleSelectTagChange,
+  TZH_AGENT_CATEGORY,
+  selectedTag,
+}: TagContentProps) => {
   const t = useTranslations();
   const { styles } = useStyles();
   const scrollLeftRef = useRef(0);
   const currentBtnRef = useRef(null);
   const [leftArrowVisible, setLeftArrowVisible] = useState(false);
   const [rightArrowVisible, setRightArrowVisible] = useState(false);
-  const [selectedTag, setSelectedTags] = useState(t('components.index.tuiJian'));
-  const AGENT_CATEGORY = React.useMemo(
-    () => [
-      t('utils.constants.youXiDongMan'),
-      t('create.page.tongYongDuiHua'),
-      t('create.page.gongZuoXueXi'),
-      t('create.page.neiRongChuangZuo'),
-      t('utils.constants.aIHuiHua'),
-      t('create.page.yingYinShengCheng'),
-      t('create.page.jueSeBanYan'),
-      t('create.page.shengHuoQuWei'),
-      t('create.page.qiTa'),
-    ],
-    [t]
-  );
+  const T_AGENT_CATEGORY = useMemo(() => AGENT_CATEGORY_INDEXES.map(item => t(item)), [t]);
 
   const handleScroll = useCallback((direction: string) => {
     const scrollAmount = window.innerWidth - 39; // You can adjust the scroll amount as needed
@@ -47,7 +41,6 @@ const TagContent = ({ handleSelectTagChange }: TagContentProps) => {
 
   const onChange = (tag: any) => {
     handleSelectTagChange(tag?.target?.value);
-    setSelectedTags(tag?.target?.value);
     currentBtnRef.current = tag;
     // 获取事件源（按钮元素）
     const button = document?.querySelector(`[id='${tag?.target?.value}']`);
@@ -126,8 +119,13 @@ const TagContent = ({ handleSelectTagChange }: TagContentProps) => {
         onChange={onChange}
         value={selectedTag}
       >
-        {[t('components.index.tuiJian'), ...AGENT_CATEGORY]?.map(item => (
-          <Radio.Button className={styles.btn} id={item} key={item} value={item}>
+        {T_AGENT_CATEGORY.map((item: string, idx: number) => (
+          <Radio.Button
+            className={styles.btn}
+            id={TZH_AGENT_CATEGORY[idx]}
+            key={TZH_AGENT_CATEGORY[idx]}
+            value={TZH_AGENT_CATEGORY[idx]}
+          >
             {item}
           </Radio.Button>
         ))}

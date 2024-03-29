@@ -15,6 +15,7 @@ import { useStyles } from './styles';
 
 interface AgentProps {
   agentData?: any;
+  TZH_AGENT_CATEGORY: string[];
 }
 
 const layout = {
@@ -38,10 +39,10 @@ const layout = {
   },
 };
 
-const Agent = React.memo<AgentProps>(({ agentData }) => {
+const Agent = React.memo<AgentProps>(({ agentData, TZH_AGENT_CATEGORY }) => {
   const t = useTranslations('components');
   const { styles } = useStyles();
-  const [selectedTag, setSelectedTags] = useState(t('index.tuiJian'));
+  const [selectedTag, setSelectedTags] = useState(TZH_AGENT_CATEGORY[0]);
   // const [pageSize, setPageSize] = useState(-1);
   // const [page, setPage] = useState(1);
   const { data: ListData, loading } = bff.useListGpTs(
@@ -75,7 +76,11 @@ const Agent = React.memo<AgentProps>(({ agentData }) => {
         />
         <div>
           <div className={styles.main}>
-            <TagContent handleSelectTagChange={handleSelectTagChange} />
+            <TagContent
+              TZH_AGENT_CATEGORY={TZH_AGENT_CATEGORY}
+              handleSelectTagChange={handleSelectTagChange}
+              selectedTag={selectedTag}
+            />
             <div className={classNames(styles.content, 'scrollBar')}>
               <Spin spinning={loading}>
                 <Row gutter={[16, 16]}>
