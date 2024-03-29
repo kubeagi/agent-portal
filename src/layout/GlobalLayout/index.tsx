@@ -12,10 +12,11 @@ import ThemeLayout from './ThemeLayout';
 
 interface GlobalLayoutProps extends PropsWithChildren {
   theme: ThemeMode | undefined; // theme from cookie;
+  client_theme: 'dark' | 'light' | undefined;
   locale: string;
 }
 
-const GlobalLayout = React.memo<GlobalLayoutProps>(({ children, theme, locale }) => {
+const GlobalLayout = React.memo<GlobalLayoutProps>(({ children, theme, locale, client_theme }) => {
   const store = useStore({
     theme,
   });
@@ -23,6 +24,7 @@ const GlobalLayout = React.memo<GlobalLayoutProps>(({ children, theme, locale })
     <Provider store={store}>
       <ThemeLayout
         antdLocale={locale?.startsWith('zh') ? zhCN : enUS}
+        client_theme={client_theme}
         locale={locale}
         theme={theme}
       >

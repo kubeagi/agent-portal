@@ -10,7 +10,7 @@ let store: any;
 
 const reducer = (state = {}, action: any) => {
   switch (action.type) {
-    case 'TRIGGER_SHEME': {
+    case 'TRIGGER_THEME': {
       setCookie('theme', action.theme); // todo remove, use user profile by bff ?
       return {
         ...state,

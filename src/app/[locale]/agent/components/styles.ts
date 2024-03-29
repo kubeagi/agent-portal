@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ token, isDarkMode }) => ({
+export const useStyles = createStyles(({ token }) => ({
   agentContainer: {
     'width': '100%',
     'position': 'relative',
@@ -31,7 +31,6 @@ export const useStyles = createStyles(({ token, isDarkMode }) => ({
     backgroundColor: token.colorBgLayout,
     padding: 16,
     borderRadius: '16px',
-    border: `${isDarkMode ? '1px solid' + token.colorBorder : null}`,
     cursor: 'pointer',
   },
   left: {
@@ -50,7 +49,7 @@ export const useStyles = createStyles(({ token, isDarkMode }) => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     fontWeight: 700,
-    color: `${isDarkMode ? '#fff' : '#000'}`,
+    color: token.colorTextBase,
   },
   desc: {
     color: token.colorTextDescription,
