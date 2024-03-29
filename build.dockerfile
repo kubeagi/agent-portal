@@ -1,5 +1,5 @@
 # dockerfile of base image
-FROM node:18.19-alpine as builder
+FROM node:20-alpine as builder
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -11,7 +11,9 @@ ENV GITHUB_SHA=$GITHUB_SHA
 # Install dependencies modules
 ADD .npmrc package.json pnpm-lock.yaml ./
 
-RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm i pnpm -g && pnpm install
+RUN npm i pnpm -g
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+     pnpm install --frozen-lockfile --ignore-scripts
 
 # Build portal
 ADD . ./

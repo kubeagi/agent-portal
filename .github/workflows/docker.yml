@@ -1,4 +1,4 @@
-name: Build image
+name: Docker image build
 
 on:
   push:
@@ -42,7 +42,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
         with:
           buildkitd-flags: --debug
-          config-inline: |
+          buildkitd-config-inline: |
             [worker.oci]
               max-parallelism = 1
       - name: Login to the dockerhub Registry
@@ -50,12 +50,9 @@ jobs:
         with:
           username: ${{ env.DOCKER_USER }}
           password: ${{ secrets.DOCKER_TOKEN }}
-      - uses: benjlevesque/short-sha@v2.1
+      - uses: benjlevesque/short-sha@v3.0
         name: Get short commit sha
         id: short-sha
-      - name: Setting token to npmrc
-        run: |
-          echo '//dev-npm.k8s.com.cn/:_authToken="${{ secrets.NPMTOKEN }}"' > /tmp/npmrc
       - name: Build dist
         id: dist-build
         uses: docker/build-push-action@v5
@@ -68,8 +65,6 @@ jobs:
           push: true
           build-args: |
             GITHUB_SHA=${{ github.sha }}
-          secret-files: |
-            "npmrc=/tmp/npmrc"
       - name: Build and push image
         id: build-push
         uses: docker/build-push-action@v5
@@ -82,5 +77,3 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.set-env.outputs.TAG }}-${{ steps.set-env.outputs.DATE }}-${{ steps.short-sha.outputs.sha }}
             ${{ steps.meta.outputs.tags }}
           push: true
-          secret-files: |
-            "npmrc=/tmp/npmrc"
