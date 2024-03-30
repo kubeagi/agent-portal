@@ -40,7 +40,12 @@ const Chats: any = () => {
         ...item,
       })) || [];
     setAllData(_all);
-    setShowData(cloneDeep(_all).splice(0, default_load_size));
+    setShowData(
+      cloneDeep(_all).splice(
+        0,
+        default_load_size * (Math.ceil(document.body.clientHeight / 1000) || 2)
+      )
+    );
   }, [data]);
 
   const loadMoreData = React.useCallback(() => {

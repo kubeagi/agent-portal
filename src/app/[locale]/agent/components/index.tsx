@@ -1,15 +1,17 @@
 'use client';
 
-import { FireOutlined } from '@ant-design/icons';
+import { FireOutlined, PlusOutlined } from '@ant-design/icons';
 import { sdk as bff } from '@yuntijs/arcadia-bff-sdk';
-import { Avatar, Button, Col, Row, Spin, Tooltip } from 'antd';
+import { Button, Col, Row, Spin, Tooltip } from 'antd';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 // import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import TitleCom from '@/components/Title';
+import { useAuthContext } from '@/layout/AuthLayout';
 
 import TagContent from './TagContent';
 import { useStyles } from './styles';
@@ -41,7 +43,8 @@ const layout = {
 };
 
 const Agent = React.memo<AgentProps>(({ agentData, TZH_AGENT_CATEGORY }) => {
-  const t = useTranslations('components');
+  const t = useTranslations();
+  const { authed } = useAuthContext();
   const router = useRouter();
   const { styles } = useStyles();
   const [selectedTag, setSelectedTags] = useState(TZH_AGENT_CATEGORY[0]);
@@ -67,15 +70,25 @@ const Agent = React.memo<AgentProps>(({ agentData, TZH_AGENT_CATEGORY }) => {
   const handleSelectTagChange = tag => {
     setSelectedTags(tag);
   };
-
+  const getTitleExtra = () => {
+    if (authed === undefined) return; // 未进行验证
+    return authed ? (
+      <Button
+        icon={<PlusOutlined />}
+        // onClick={() => router.push('/chat/bot/create')}
+        size="large"
+        type="primary"
+      >
+        {t('SideBarHeader.index.chuangJianZhiNengTi')}
+      </Button>
+    ) : (
+      <Button onClick={() => router.push('/oidc/auth')}>{t('components.index.dengLu')}</Button>
+    );
+  };
   return (
     <div className={styles.agentContainer}>
       <div className={styles.agentContent}>
-        <TitleCom
-          extra={<Button onClick={() => router.push('/oidc/auth')}>{t('index.dengLu')}</Button>}
-          isLeftTitle
-          title={t('index.faXianAIZhi')}
-        />
+        <TitleCom extra={getTitleExtra()} isLeftTitle title={t('components.index.faXianAIZhi')} />
         <div>
           <div className={styles.main}>
             <TagContent
@@ -97,7 +110,7 @@ const Agent = React.memo<AgentProps>(({ agentData, TZH_AGENT_CATEGORY }) => {
                           )?.[0]}&appName=${item.name?.split('/')?.[1]}`}
                         >
                           <div className={styles.left}>
-                            <Avatar shape="square" size={72} src={item.icon} />
+                            <Image alt={item.displayName} height={72} src={item.icon} width={72} />
                           </div>
                           <div className={styles.right}>
                             <div className={styles.title}>{item.displayName}</div>

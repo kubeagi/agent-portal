@@ -23,7 +23,7 @@ const SidebarHeader = () => {
         </Link>
       </div>
       <Flex className={styles.btns} vertical>
-        <Link className={styles.linkItem} href="/chat/bot/create">
+        <Link className={styles.linkItem} href="/oidc/auth">
           <PlusCircleFilled size={42} />
           <span className={styles.btnName}>{t('index.chuangJianZhiNengTi')}</span>
           <ChevronRight color={'rgb(204, 204, 204)'} />

@@ -5,6 +5,7 @@ import { Button, Flex, Form, Input, Upload } from 'antd';
 import type { UploadFile } from 'antd';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import React, { useState } from 'react';
 
 import ReturnBtn from '@/components/ReturnBtn';
@@ -85,7 +86,13 @@ const UserInfoClient: React.FC<Props> = () => {
                 showUploadList={false}
               >
                 {imageUrl ? (
-                  <img alt="avatar" src={imageUrl} style={{ width: '100%' }} />
+                  <Image
+                    alt="avatar"
+                    className={styles.avatarImg}
+                    height={100}
+                    src={imageUrl}
+                    width={100}
+                  />
                 ) : (
                   uploadButton
                 )}
