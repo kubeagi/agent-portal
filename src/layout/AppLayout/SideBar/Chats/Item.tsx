@@ -50,10 +50,10 @@ export const useStyles = createStyles(({ token }) => {
       },
     },
     icon: {
-      'display': 'flex',
-      '.anticon': {
-        fontSize: 48,
-        color: token.colorPrimary,
+      display: 'flex',
+      img: {
+        objectFit: 'cover',
+        borderRadius: 8,
       },
     },
     content: {
@@ -188,7 +188,7 @@ const ChatItem: any = (props: Props) => {
         }}
       >
         <div className={styles.icon}>
-          <Image alt="default_chat" height={42} src={data.icon || '/default_chat.png'} width={42} />
+          <Image alt="chat_icon" height={42} src={data.icon || '/default_chat.png'} width={42} />
         </div>
         <div className={styles.content}>
           <Typography.Paragraph className={styles.title} ellipsis>

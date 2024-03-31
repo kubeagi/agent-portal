@@ -37,6 +37,11 @@ export const useStyles = createStyles(({ token }) => ({
     height: '72px',
     width: '72px',
     marginRight: 12,
+    img: {
+      objectFit: 'cover',
+      verticalAlign: 'middle',
+      borderRadius: 12,
+    },
   },
   right: {
     flex: 1,

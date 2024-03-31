@@ -17,6 +17,9 @@ export const useStyles = createStyles(({ token }) => ({
   sub: {
     width: '100%',
   },
+  avatarImg: {
+    borderRadius: '50%',
+  },
   content: {
     'paddingTop': 16,
     'paddingBottom': 42,

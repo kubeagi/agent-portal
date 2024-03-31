@@ -24,6 +24,9 @@ export const useStyles = createStyles(({ token }) => {
         marginTop: 4,
       },
     },
+    avatarImg: {
+      borderRadius: '50%',
+    },
     leftContent: {
       width: '40%',
       padding: '24px 40px 0 60px',

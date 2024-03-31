@@ -11,6 +11,7 @@ import {
 import { Button, Dropdown, Flex, Form, Input, Select, Tag, Upload } from 'antd';
 import type { MenuProps, UploadFile } from 'antd';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import React, { useState } from 'react';
 
 import ReturnBtn from '@/components/ReturnBtn';
@@ -39,8 +40,8 @@ const getBase64 = (img: any, callback: (url: string) => void) => {
 
 const BotCreate = React.memo<BotCreateProps>(() => {
   const t = useTranslations('create');
-  const AGENT_CLASSIFICATION_MAP: AgentClassification[] = React.useMemo(() =>
-    [
+  const AGENT_CLASSIFICATION_MAP: AgentClassification[] = React.useMemo(
+    () => [
       { text: t('page.tongYongDuiHua'), value: t('page.tongYongDuiHua') },
       { text: t('page.gongZuoXueXi'), value: t('page.gongZuoXueXi') },
       { text: t('page.neiRongChuangZuo'), value: t('page.neiRongChuangZuo') },
@@ -141,7 +142,13 @@ const BotCreate = React.memo<BotCreateProps>(() => {
                 showUploadList={false}
               >
                 {imageUrl ? (
-                  <img alt="avatar" src={imageUrl} style={{ width: '100%' }} />
+                  <Image
+                    alt="avatar"
+                    className={styles.avatarImg}
+                    height={100}
+                    src={imageUrl}
+                    width={100}
+                  />
                 ) : (
                   <div className={styles.uploadText}>
                     {loading ? <LoadingOutlined /> : <PlusOutlined />}
