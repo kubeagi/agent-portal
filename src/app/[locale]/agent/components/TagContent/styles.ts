@@ -5,10 +5,15 @@ export const useStyles = createStyles(({ token }) => ({
     margin: `0 0 20px 0`,
     width: `100%`,
   },
-  btnList: {
+  btnListOverflow: {
     display: 'flex',
     overflow: 'auto',
   },
+  btnListHidden: {
+    display: 'box',
+    overflow: 'hidden',
+  },
+
   arrows: {},
   arrow: {
     'color': 'rgb(204, 204, 204)',
@@ -51,6 +56,7 @@ export const useStyles = createStyles(({ token }) => ({
   },
   btn: {
     'whiteSpace': 'nowrap',
+    'marginBottom': 8,
     '&.ant-radio-button-wrapper': {
       borderInlineStart: `1px solid ${token.colorBorder}`,
       marginRight: 10,
