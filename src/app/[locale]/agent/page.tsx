@@ -1,9 +1,6 @@
 import { sdk as bff } from '@yuntijs/arcadia-bff-sdk';
 import { Flex } from 'antd';
-import { getTranslations } from 'next-intl/server';
 import React from 'react';
-
-import { AGENT_CATEGORY_INDEXES } from '@/utils/constants';
 
 import Agent from './components';
 
@@ -12,17 +9,19 @@ export default async function Page() {
     .listGPTs({
       input: {
         page: 1,
-        pageSize: 99,
+        pageSize: 20,
       },
     })
     .catch(error => {
       console.warn('getAgent failed', error);
     });
-  const t_zh = await getTranslations({ locale: 'zh' });
-  const TZH_AGENT_CATEGORY = AGENT_CATEGORY_INDEXES.map(item => t_zh(item));
+
+  const cateData = await bff.listGPTCategory().catch(error => {
+    console.warn('getGPTCategory failed', error);
+  });
   return (
     <Flex style={{ overflow: 'hidden', flex: 1 }}>
-      <Agent TZH_AGENT_CATEGORY={TZH_AGENT_CATEGORY} agentData={agentData} />
+      <Agent agentData={agentData} cateData={cateData} />
     </Flex>
   );
 }

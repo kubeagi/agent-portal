@@ -18,7 +18,7 @@ import { useStyles } from './styles';
 
 interface AgentProps {
   agentData?: any;
-  TZH_AGENT_CATEGORY: string[];
+  cateData?: any;
 }
 
 const layout = {
@@ -42,12 +42,12 @@ const layout = {
   },
 };
 
-const Agent = React.memo<AgentProps>(({ agentData, TZH_AGENT_CATEGORY }) => {
+const Agent = React.memo<AgentProps>(({ agentData, cateData }) => {
   const t = useTranslations();
   const { authed } = useAuthContext();
   const router = useRouter();
   const { styles } = useStyles();
-  const [selectedTag, setSelectedTags] = useState(TZH_AGENT_CATEGORY[0]);
+  const [selectedTag, setSelectedTags] = useState('');
   // const [pageSize, setPageSize] = useState(-1);
   // const [page, setPage] = useState(1);
   const { data: ListData, loading } = bff.useListGpTs(
@@ -60,12 +60,17 @@ const Agent = React.memo<AgentProps>(({ agentData, TZH_AGENT_CATEGORY }) => {
     },
     { fallbackData: agentData }
   );
+  const { data: cateList } = bff.useListGptCategory({}, { fallbackData: cateData });
   // const router = useRouter();
   // const searchParams = useSearchParams()
 
   useEffect(() => {
     // console.log(searchParams.get('classification'))
   }, []);
+
+  const getCateList = () => {
+    return cateList?.GPT?.listGPTCategory || [];
+  };
 
   const handleSelectTagChange = tag => {
     setSelectedTags(tag);
@@ -92,7 +97,7 @@ const Agent = React.memo<AgentProps>(({ agentData, TZH_AGENT_CATEGORY }) => {
         <div>
           <div className={styles.main}>
             <TagContent
-              TZH_AGENT_CATEGORY={TZH_AGENT_CATEGORY}
+              cateList={getCateList()}
               handleSelectTagChange={handleSelectTagChange}
               selectedTag={selectedTag}
             />
