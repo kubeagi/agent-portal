@@ -32,6 +32,7 @@ const light_theme_props: ThemeProviderProps = Object.freeze({
 
 const dark_theme_props: ThemeProviderProps = Object.freeze({
   theme: {
+    algorithm: theme.darkAlgorithm,
     token: {
       colorBgBase: '#000',
       colorBgLayout: '#141414',

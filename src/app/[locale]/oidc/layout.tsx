@@ -19,6 +19,9 @@ export const useStyles = createStyles(({ token }) => ({
   },
   spin: {
     minWidth: '60px',
+    svg: {
+      fill: token.colorTextBase,
+    },
   },
   logo: {
     width: '140px !important',
