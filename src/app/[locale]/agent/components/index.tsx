@@ -47,10 +47,11 @@ const Agent = React.memo<AgentProps>(({ agentData, cateData }) => {
   const { authed } = useAuthContext();
   const router = useRouter();
   const { styles } = useStyles();
+  // ""，表示推荐标签"
   const [selectedTag, setSelectedTags] = useState('');
   // const [pageSize, setPageSize] = useState(-1);
   // const [page, setPage] = useState(1);
-  const { data: ListData, loading } = bff.useListGpTs(
+  const { data: ListData = [], loading } = bff.useListGpTs(
     {
       input: {
         category: selectedTag,
@@ -58,12 +59,12 @@ const Agent = React.memo<AgentProps>(({ agentData, cateData }) => {
         pageSize: -1,
       },
     },
-    { fallbackData: agentData }
+    // agentData 是"推荐"选项的数据，所以非“推荐”选项的fallbackData数据就是[]
+    { fallbackData: selectedTag ? [] : agentData }
   );
   const { data: cateList } = bff.useListGptCategory({}, { fallbackData: cateData });
   // const router = useRouter();
   // const searchParams = useSearchParams()
-
   useEffect(() => {
     // console.log(searchParams.get('classification'))
   }, []);
@@ -104,34 +105,32 @@ const Agent = React.memo<AgentProps>(({ agentData, cateData }) => {
             <div className={classNames(styles.content, 'scrollBar')}>
               <Spin spinning={loading}>
                 <Row gutter={[16, 16]}>
-                  {(ListData?.GPT?.listGPT?.nodes || [])
-                    .filter(item => item.category.includes(selectedTag))
-                    .map((item, index) => (
-                      <Col {...layout} key={index}>
-                        <a
-                          className={styles.card}
-                          href={`/chat/new?appNamespace=${item.name?.split(
-                            '/'
-                          )?.[0]}&appName=${item.name?.split('/')?.[1]}`}
-                        >
-                          <div className={styles.left}>
-                            <Image alt={item.displayName} height={72} src={item.icon} width={72} />
+                  {(ListData?.GPT?.listGPT?.nodes || []).map((item, index) => (
+                    <Col {...layout} key={index}>
+                      <a
+                        className={styles.card}
+                        href={`/chat/new?appNamespace=${item.name?.split(
+                          '/'
+                        )?.[0]}&appName=${item.name?.split('/')?.[1]}`}
+                      >
+                        <div className={styles.left}>
+                          <Image alt={item.displayName} height={72} src={item.icon} width={72} />
+                        </div>
+                        <div className={styles.right}>
+                          <div className={styles.title}>{item.displayName}</div>
+                          <Tooltip title={item.description || '-'}>
+                            <div className={styles.desc}>{item.description || '-'}</div>
+                          </Tooltip>
+                          <div className={styles.info}>
+                            <span className={styles.heat}>
+                              <FireOutlined /> {item.hot} w
+                            </span>
+                            <span className={styles.creator}>@{item.creator}</span>
                           </div>
-                          <div className={styles.right}>
-                            <div className={styles.title}>{item.displayName}</div>
-                            <Tooltip title={item.description || '-'}>
-                              <div className={styles.desc}>{item.description || '-'}</div>
-                            </Tooltip>
-                            <div className={styles.info}>
-                              <span className={styles.heat}>
-                                <FireOutlined /> {item.hot} w
-                              </span>
-                              <span className={styles.creator}>@{item.creator}</span>
-                            </div>
-                          </div>
-                        </a>
-                      </Col>
-                    ))}
+                        </div>
+                      </a>
+                    </Col>
+                  ))}
                 </Row>
               </Spin>
             </div>
