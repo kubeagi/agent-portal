@@ -4,7 +4,7 @@
   "scripts": {
     "build": "next build",
     "build:analyze": "cross-env ANALYZE=true next build",
-    "dev": "node server.mjs",
+    "dev": "next dev",
     "lint": "npm run lint:es && npm run lint:style",
     "lint-fix": "npm run lint-fix:es && npm run lint-fix:style",
     "lint-fix:es": "eslint --ext .jsx,.js,.tsx,.ts src --fix",

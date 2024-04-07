@@ -3,6 +3,7 @@ import analyzer from '@next/bundle-analyzer';
 import { execSync } from 'child_process';
 import webpack from 'webpack';
 import createNextIntlPlugin from 'next-intl/plugin';
+import url from 'url';
  
 const withNextIntl = createNextIntlPlugin();
 
@@ -43,6 +44,20 @@ const banner = `${bannerFlag}
 (C) Copyright 2024 KubeAGI. All Rights Reserved.
 @date ${Date.now()}
 @hash ${process.env.GITHUB_SHA || getLastCommitHash()}`; 
+
+//proxy config
+const OIDCURL = process.env.OIDC_SERVER_URL;
+const OIDCObj = url.parse(OIDCURL);
+const APIPrefix = process.env.API_PREFIX;
+const proxyTarget = `${OIDCObj.protocol}//${OIDCObj.host}`;
+const proxyPath = [
+  APIPrefix
+];
+
+const proxyConfigs = proxyPath.map(path => ({
+  source: `${path}/:path*`,
+  destination: `${proxyTarget}${path}/:path*`
+}));
 
 const nextConfig = {
   compress: isProd,
@@ -95,6 +110,10 @@ const nextConfig = {
     }
 
     return config;
+  },
+
+  async rewrites() {
+    return !isProd ? proxyConfigs : [];
   },
 }
 
