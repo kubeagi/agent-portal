@@ -22,7 +22,7 @@ const TagContent = ({ handleSelectTagChange, selectedTag, cateList = [] }: TagCo
   const currentBtnRef = useRef(null);
   const [leftArrowVisible, setLeftArrowVisible] = useState(false);
   const [rightArrowVisible, setRightArrowVisible] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window?.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(0);
   const { locale } = useParams();
 
   const handleScroll = useCallback((direction: string) => {
