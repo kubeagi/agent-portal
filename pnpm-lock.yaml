@@ -30,8 +30,8 @@ dependencies:
     specifier: ^0.3.3
     version: 0.3.3(antd@5.12.7)(react@18.2.0)(swr@2.2.4)
   '@yuntijs/chat':
-    specifier: 0.1.0-beta.11
-    version: 0.1.0-beta.11(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.2.7)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0)
+    specifier: 0.1.0-beta.12
+    version: 0.1.0-beta.12(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.2.7)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0)
   antd:
     specifier: ^5.12.6
     version: 5.12.7(react-dom@18.2.0)(react@18.2.0)
@@ -5478,8 +5478,8 @@ packages:
       - encoding
     dev: false
 
-  /@yuntijs/chat@0.1.0-beta.11(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.2.7)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-RCXQn5GmGMVwW67ZJ8sBLwosJXS+HRtEtGF+XOjoj/Pdw50gR1FtLJ2E5ZqQlwSTPg7RTHXK6sptIqwXRAv/Sw==}
+  /@yuntijs/chat@0.1.0-beta.12(@ant-design/icons@5.2.6)(@lobehub/ui@1.125.8)(@types/react@18.2.46)(@yuntijs/arcadia-bff-sdk@1.2.7)(antd@5.12.7)(lodash@4.17.21)(lucide-react@0.304.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-/QwvaBwAgACQ/ViHToX4FzzWefoObXz8bVa1OjdExbpLizCD/X9Inj/zk9dOQRMwYaHGR+mWdSIvXDttyTZUZg==}
     peerDependencies:
       '@ant-design/icons': ^5.0.0
       '@lobehub/ui': ^1.128.4
