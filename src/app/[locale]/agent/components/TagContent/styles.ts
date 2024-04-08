@@ -2,8 +2,19 @@ import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token }) => ({
   tagContent: {
-    margin: `0 0 20px 0`,
-    width: `100%`,
+    'margin': `0 0 20px 0`,
+    'width': `100%`,
+    '@media (max-width: 879px)': {
+      '& .ant-radio-group': {
+        display: 'flex !important',
+        flexWrap: 'nowrap !important' as 'nowrap',
+      },
+    },
+    '& .ant-radio-group': {
+      display: 'inline-flex',
+      gap: '8px',
+      flexWrap: 'wrap',
+    },
   },
   btnListOverflow: {
     display: 'flex',
@@ -56,10 +67,8 @@ export const useStyles = createStyles(({ token }) => ({
   },
   btn: {
     'whiteSpace': 'nowrap',
-    'marginBottom': 8,
     '&.ant-radio-button-wrapper': {
       borderInlineStart: `1px solid ${token.colorBorder}`,
-      marginRight: 10,
       borderRadius: '12px',
     },
     '&.ant-radio-button-wrapper:not(:first-child)::before': {

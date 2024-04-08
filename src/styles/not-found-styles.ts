@@ -21,13 +21,11 @@ export const useStyles = createStyles(({ token }) => {
     },
 
     imgBg: {
-      backgroundImage: 'url(/404/404.png)',
       height: '420px',
       width: '500px',
       maxWidth: '100vw',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center',
       marginBottom: '24px',
+      paddingLeft: '35px',
     },
 
     text: {

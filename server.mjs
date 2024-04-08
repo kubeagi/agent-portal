@@ -20,7 +20,6 @@ async function bootstrap() {
   if (!oidcServerUrl) {
     console.warn('The env OIDC_SERVER_URL must be configured!')
     process.exit();
-    return;
   }
   const oidcUrlObj = url.parse(oidcServerUrl);
   const _url = `${oidcUrlObj.protocol}//${oidcUrlObj.host}`;

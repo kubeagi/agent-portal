@@ -34,9 +34,7 @@ const normFile = (e: any) => {
   return [e?.fileList[e?.fileList?.length - 1]];
 };
 
-const onFinish = () => {
-  // console.log('values', values)
-};
+const onFinish = () => {};
 const UserInfoClient: React.FC<Props> = () => {
   const { styles } = useStyles();
   const t = useTranslations();
