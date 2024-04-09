@@ -140,7 +140,7 @@ const ChatItem: any = (props: Props) => {
 
   const delChat = React.useCallback(async () => {
     try {
-      const res = await axios.delete(`/kubeagi-apis/chat/conversations/${data.id}`);
+      const res = await axios.delete(`/kubeagi-apis/gpts/chat/conversations/${data.id}`);
       if (res.status === 200) {
         // reload(data.id === activeChat); // 是否需要重新获取 ?
         delDom(data, data.id === activeChat);

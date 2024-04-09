@@ -23,7 +23,7 @@ const Chats: any = () => {
 
   // todo: 未登录时从后端获取默认对话 ?
   // const [{ data }, getList] = useAxiosRequest({
-  //   url: '/kubeagi-apis/chat/conversations',
+  //   url: '/kubeagi-apis/gpts/chat/conversations/default', // unused
   //   method: 'POST',
   // });
   // const list = useMemo(() => {

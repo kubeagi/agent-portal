@@ -7,8 +7,8 @@ import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-// import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useQueryState } from 'nuqs';
+import React, { useState } from 'react';
 
 import TitleCom from '@/components/Title';
 import { useAuthContext } from '@/layout/AuthLayout';
@@ -46,9 +46,10 @@ const Agent = React.memo<AgentProps>(({ agentData, cateData }) => {
   const t = useTranslations();
   const { authed } = useAuthContext();
   const router = useRouter();
+  const [category] = useQueryState('category');
   const { styles } = useStyles();
   // ""，表示推荐标签"
-  const [selectedTag, setSelectedTags] = useState('');
+  const [selectedTag, setSelectedTags] = useState(category || '');
   // const [pageSize, setPageSize] = useState(-1);
   // const [page, setPage] = useState(1);
   const { data: ListData = [], loading } = bff.useListGpTs(
@@ -62,16 +63,6 @@ const Agent = React.memo<AgentProps>(({ agentData, cateData }) => {
     // agentData 是"推荐"选项的数据，所以非“推荐”选项的fallbackData数据就是[]
     { fallbackData: selectedTag ? [] : agentData }
   );
-  const { data: cateList } = bff.useListGptCategory({}, { fallbackData: cateData });
-  // const router = useRouter();
-  // const searchParams = useSearchParams()
-  useEffect(() => {
-    // console.log(searchParams.get('classification'))
-  }, []);
-
-  const getCateList = () => {
-    return cateList?.GPT?.listGPTCategory || [];
-  };
 
   const handleSelectTagChange = tag => {
     setSelectedTags(tag);
@@ -98,7 +89,7 @@ const Agent = React.memo<AgentProps>(({ agentData, cateData }) => {
         <div>
           <div className={styles.main}>
             <TagContent
-              cateList={getCateList()}
+              cateList={cateData?.GPT?.listGPTCategory || []}
               handleSelectTagChange={handleSelectTagChange}
               selectedTag={selectedTag}
             />

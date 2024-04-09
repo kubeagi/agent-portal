@@ -73,11 +73,11 @@ const ThemeLayout = React.memo<Props>(
       (e: MediaQueryListEvent) => {
         if (theme_from_store !== 'auto') return;
         if (e.matches) {
-          // console.log('系统为: 暗黑模式');
+          // 系统为: 暗黑模式
           setCookie('client_theme', 'dark');
           setTheme('dark');
         } else {
-          // console.log('系统为: 正常（亮色）模式');
+          // 系统为: 正常（亮色）模式
           setCookie('client_theme', 'light');
           setTheme('light');
         }

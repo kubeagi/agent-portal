@@ -28,7 +28,7 @@ const Chats: any = () => {
   const [showData, setShowData] = React.useState<any>([]);
 
   const [{ data }, getList] = useAxiosRequest({
-    url: '/kubeagi-apis/chat/conversations',
+    url: '/kubeagi-apis/gpts/chat/conversations',
     method: 'POST',
   });
 

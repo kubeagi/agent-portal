@@ -1,10 +1,11 @@
 'use client';
 
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { Radio } from 'antd';
+import { Radio, RadioChangeEvent } from 'antd';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
+import { useQueryState } from 'nuqs';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useStyles } from './styles';
@@ -17,9 +18,10 @@ interface TagContentProps {
 // 首先这里不能 memo， 用户存在使用过程中拖拽窗口大小
 const TagContent = ({ handleSelectTagChange, selectedTag, cateList = [] }: TagContentProps) => {
   const t = useTranslations();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, setQueryCategory] = useQueryState('category');
   const { styles } = useStyles();
   const scrollLeftRef = useRef(0);
-  const currentBtnRef = useRef(null);
   const [leftArrowVisible, setLeftArrowVisible] = useState(false);
   const [rightArrowVisible, setRightArrowVisible] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
@@ -28,33 +30,56 @@ const TagContent = ({ handleSelectTagChange, selectedTag, cateList = [] }: TagCo
   const handleScroll = useCallback((direction: string) => {
     const scrollAmount = window.innerWidth - 39; // You can adjust the scroll amount as needed
     const buttonList = document?.querySelector('#btns');
+    let left: number = 0;
     if (direction === 'left') {
-      buttonList!.scrollLeft -= scrollAmount;
+      left = buttonList!.scrollLeft - scrollAmount;
     } else if (direction === 'right') {
-      buttonList!.scrollLeft += scrollAmount;
+      left = buttonList!.scrollLeft + scrollAmount;
     }
+    buttonList?.scrollTo({
+      left,
+      behavior: 'smooth',
+    });
   }, []);
 
-  const onChange = (tag: any) => {
-    const value = tag?.target?.value;
-    handleSelectTagChange(value);
-    currentBtnRef.current = tag;
-    // 获取事件源（按钮元素）
-    const button = document?.querySelector(`[id='${tag?.target?.value}']`);
-    const scrollContainer = document?.querySelector('#btns');
+  const onChange = useCallback(
+    (e?: RadioChangeEvent) => {
+      const value = e?.target?.value;
+      if (e) {
+        handleSelectTagChange(value);
+      }
+      // 获取事件源（按钮元素）
+      const button: HTMLElement | null = document.querySelector(
+        `[id='category_${value || selectedTag || ''}']`
+      );
+      const scrollContainer: HTMLElement | null = document.querySelector('#btns');
 
-    if (button && scrollContainer) {
-      // 获取按钮的位置信息
-      const rect = button.getBoundingClientRect();
-      const targetLeft =
-        rect.left + scrollContainer?.scrollLeft - (scrollContainer!.offsetWidth - rect.width) / 2;
-      // 滚动到目标位置
-      scrollContainer.scrollTo({
-        left: targetLeft,
-        behavior: 'smooth',
-      });
-    }
-  };
+      if (button && scrollContainer) {
+        // 获取按钮的位置信息
+        const rect = button.getBoundingClientRect();
+        const containerRect = scrollContainer.getBoundingClientRect();
+        // 计算按钮中心点相对于滚动容器左侧的距离
+        const buttonCenter =
+          rect.left -
+          containerRect.left +
+          scrollContainer.scrollLeft +
+          (button.offsetParent as HTMLElement)?.offsetWidth / 2;
+        // 计算为了让按钮居中，容器应该滚动的目标位置
+        const targetScrollLeft = buttonCenter - scrollContainer.offsetWidth / 2;
+        // 确保目标滚动位置在有效范围内
+        const safeTargetScrollLeft = Math.min(
+          Math.max(targetScrollLeft, 0),
+          scrollContainer.scrollWidth - scrollContainer.offsetWidth
+        );
+        // 执行滚动操作
+        scrollContainer.scrollTo({
+          left: safeTargetScrollLeft,
+          behavior: 'smooth',
+        });
+      }
+    },
+    [handleSelectTagChange, selectedTag]
+  );
   useEffect(() => {
     // 获取包含内容的元素，例如 body 或任何带有横向滚动的容器
     const scrollContainer = document?.querySelector('#btns');
@@ -72,7 +97,7 @@ const TagContent = ({ handleSelectTagChange, selectedTag, cateList = [] }: TagCo
           setRightArrowVisible(false);
         } else {
           setRightArrowVisible(true);
-          onChange(currentBtnRef.current);
+          onChange();
         }
       } else {
         setLeftArrowVisible(false);
@@ -99,20 +124,26 @@ const TagContent = ({ handleSelectTagChange, selectedTag, cateList = [] }: TagCo
       window.removeEventListener('resize', resize);
       scrollContainer?.removeEventListener('scroll', scroll);
     };
-  }, []);
+  }, [scrollLeftRef]);
   return (
     <div className={styles.tagContent}>
       <div className={styles.arrows}>
         {leftArrowVisible && <div className={classNames(styles.shadowLeft)}></div>}
         {leftArrowVisible && (
-          <div className={classNames(styles.arrow, styles.left)}>
-            <LeftOutlined onClick={() => handleScroll('left')} />
+          <div
+            className={classNames(styles.arrow, styles.left)}
+            onClick={() => handleScroll('left')}
+          >
+            <LeftOutlined />
           </div>
         )}
         {rightArrowVisible && <div className={classNames(styles.shadowRight)}></div>}
         {rightArrowVisible && (
-          <div className={classNames(styles.arrow, styles.right)}>
-            <RightOutlined onClick={() => handleScroll('right')} />
+          <div
+            className={classNames(styles.arrow, styles.right)}
+            onClick={() => handleScroll('right')}
+          >
+            <RightOutlined />
           </div>
         )}
       </div>
@@ -120,14 +151,23 @@ const TagContent = ({ handleSelectTagChange, selectedTag, cateList = [] }: TagCo
         buttonStyle="solid"
         className={windowWidth >= 879 ? styles.btnListHidden : styles.btnListOverflow}
         id="btns"
-        onChange={onChange}
+        onChange={(e: RadioChangeEvent) => {
+          const value = e.target.value;
+          setQueryCategory(value || null);
+          onChange(e);
+        }}
         value={selectedTag}
       >
         {[
           { id: '', name: t('components.index.tuiJian'), nameEn: t('components.index.tuiJian') },
           ...cateList,
         ]?.map(item => (
-          <Radio.Button className={styles.btn} id={item.id} key={item.id} value={item.id}>
+          <Radio.Button
+            className={styles.btn}
+            id={`category_${item.id}`}
+            key={item.id}
+            value={item.id}
+          >
             {item[locale === 'zh' ? 'name' : 'nameEn']}
           </Radio.Button>
         ))}

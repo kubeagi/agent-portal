@@ -2,6 +2,7 @@
 
 import { Button } from 'antd';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
 
@@ -14,7 +15,9 @@ const NotFound = () => {
   return (
     <div className={styles.wrapper404}>
       <div className={styles.content}>
-        <div className={styles.imgBg}></div>
+        <div className={styles.imgBg}>
+          <Image alt={'404'} height={420} src={'/404/404.jpg'} width={500} />
+        </div>
         <div className={styles.text}>{t('not_found.henBaoQianYeMian')}</div>
         <div className={styles.btn}>
           <Button
