@@ -17,7 +17,7 @@ export default function Chat() {
   const router = useRouter();
   const { locale } = useParams();
   const [{ data }] = useAxiosRequest({
-    url: '/kubeagi-apis/chat/conversations',
+    url: '/kubeagi-apis/gpts/chat/conversations',
     method: 'POST',
   });
   React.useEffect(() => {

@@ -27,7 +27,7 @@ const Test = React.memo<any>(() => {
   // 如果需要刷新页面就自动调用接口, 需要用封装后的 useAxiosRequest, 避免 axios hooks 初始化前就调用
   const [{ data, loading, error }, loadList] = useAxiosRequest(
     {
-      url: '/kubeagi-apis/chat/conversations',
+      url: '/kubeagi-apis/gpts/chat/conversations',
       method: 'POST',
     },
     {}, // use axios options
