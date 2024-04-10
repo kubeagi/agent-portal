@@ -1,8 +1,16 @@
 import { sdk as bff } from '@yuntijs/arcadia-bff-sdk';
 import { Flex } from 'antd';
+import { getTranslations } from 'next-intl/server';
 import React from 'react';
 
 import Agent from './components';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations({ locale });
+  return {
+    title: t('components.index.faXianAIZhi'),
+  };
+}
 
 export default async function Page() {
   const agentData = await bff
