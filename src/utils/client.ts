@@ -1,5 +1,7 @@
 'use client';
 
+import { LOGIN_REDIRECT } from './constants';
+
 export { sdk as bff } from '@yuntijs/arcadia-bff-sdk';
 export { sdk as bffClient } from '@yuntijs/bff-client';
 
@@ -90,4 +92,26 @@ export function isTokenExpired(id_token?: string): boolean {
   })();
   const expiredTimestampInMs = parseToken(id_token_split_arr).exp * 1000;
   return Date.now() >= expiredTimestampInMs;
+}
+
+/**
+ * 设置登录 redirect
+ * @param {string} redirectUrl: e.g. '/chat'.
+ */
+export function setLoginRedirect(redirectUrl: string) {
+  setCookie(LOGIN_REDIRECT, redirectUrl);
+}
+
+/**
+ * 获取登录 redirect
+ */
+export function getLoginRedirect(cookieString: string) {
+  return getCookie(cookieString, LOGIN_REDIRECT);
+}
+
+/**
+ * 移除登录 redirect
+ */
+export function delLoginRedirect() {
+  setCookie(LOGIN_REDIRECT, '', -1);
 }
