@@ -18,7 +18,7 @@ export const useStyles = createStyles(({ token }) => ({
     },
   },
   emptyItem: {
-    'padding': '12px 16px 0 16px',
+    'padding': '16px 16px 0 12px',
     '.ant-skeleton-header': {
       paddingInlineEnd: '8px',
     },
