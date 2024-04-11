@@ -48,7 +48,7 @@
     "@svgr/webpack": "^8.1.0",
     "@yuntijs/arcadia-bff-sdk": "^1.2.7",
     "@yuntijs/bff-client": "^0.3.3",
-    "@yuntijs/chat": "0.1.0-beta.12",
+    "@yuntijs/chat": "0.1.0-beta.13",
     "antd": "^5.12.6",
     "antd-mobile": "^5.34.0",
     "antd-style": "^3.6.1",
