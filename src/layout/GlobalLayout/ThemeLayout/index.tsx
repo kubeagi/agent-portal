@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { useAuthContext } from '@/layout/AuthLayout';
 import { GlobalStyle } from '@/styles';
 import { dark, default_theme, light } from '@/theme/themeConfig';
-import { initAxiosHooks } from '@/utils/axios';
+import { setAxiosHooksWithAuth } from '@/utils/axios';
 import { isTokenExpired, setCookie } from '@/utils/client';
 import { AUTH_DATA } from '@/utils/constants';
 
@@ -65,7 +65,7 @@ const ThemeLayout = React.memo<Props>(
       }
       setAuthed(true);
       if (!isAxiosConfigured) {
-        setAxiosConfigured(initAxiosHooks());
+        setAxiosConfigured(setAxiosHooksWithAuth());
       }
     }, [pathname]);
 

@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+import { delLoginRedirect, getLoginRedirect } from '@/utils/client';
 import { AUTH_DATA } from '@/utils/constants';
 
 export default function Callback({ data: res }: { data: any }) {
@@ -13,6 +14,10 @@ export default function Callback({ data: res }: { data: any }) {
   const t = useTranslations('callback');
   const router = useRouter();
   const saveAuth = async () => {
+    const redirectUrl: string = getLoginRedirect(document.cookie);
+    if (redirectUrl) {
+      delLoginRedirect();
+    }
     if (res?.data?.errors || !res?.data) {
       console.warn(res?.data?.errors);
       notification.warning({
@@ -34,7 +39,7 @@ export default function Callback({ data: res }: { data: any }) {
         type: 'SAVE_AUTH_DATA',
         authData: res.data,
       });
-      router.push('/');
+      router.push(redirectUrl || '/');
     }
   };
   React.useEffect(() => {

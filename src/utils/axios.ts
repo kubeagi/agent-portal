@@ -38,10 +38,14 @@ export const createCustomAxios = (configs?: CreateAxiosDefaults): AxiosInstance 
   return Axios.create(_configs);
 };
 
-export const initAxiosHooks = () => {
+export const setAxiosHooksWithAuth = () => {
   const axios = createCustomAxios();
   configure({ axios });
   return true; // 初始化成功 返回标记
+};
+
+export const setAxiosHooksWithoutAuth = () => {
+  configure({ axios: Axios.create({}) });
 };
 
 export const useAxiosRequest = (

@@ -6,12 +6,14 @@ import { Button, Col, Row, Spin, Tooltip } from 'antd';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useQueryState } from 'nuqs';
 import React, { useState } from 'react';
 
 import TitleCom from '@/components/Title';
 import { useAuthContext } from '@/layout/AuthLayout';
+import { setLoginRedirect } from '@/utils/client';
 
 import TagContent from './TagContent';
 import { useStyles } from './styles';
@@ -98,11 +100,24 @@ const Agent = React.memo<AgentProps>(({ agentData, cateData }) => {
                 <Row gutter={[16, 16]}>
                   {(ListData?.GPT?.listGPT?.nodes || []).map((item, index) => (
                     <Col {...layout} key={index}>
-                      <a
+                      <Link
                         className={styles.card}
-                        href={`/chat/new?appNamespace=${item.name?.split(
-                          '/'
-                        )?.[0]}&appName=${item.name?.split('/')?.[1]}`}
+                        href={
+                          authed
+                            ? `/chat/new?appNamespace=${item.name?.split(
+                                '/'
+                              )?.[0]}&appName=${item.name?.split('/')?.[1]}`
+                            : '/oidc/auth'
+                        }
+                        onClick={() => {
+                          if (!authed) {
+                            setLoginRedirect(
+                              `/chat/new?appNamespace=${item.name?.split(
+                                '/'
+                              )?.[0]}&appName=${item.name?.split('/')?.[1]}`
+                            );
+                          }
+                        }}
                       >
                         <div className={styles.left}>
                           <Image alt={item.displayName} height={72} src={item.icon} width={72} />
@@ -119,7 +134,7 @@ const Agent = React.memo<AgentProps>(({ agentData, cateData }) => {
                             <span className={styles.creator}>@{item.creator}</span>
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </Col>
                   ))}
                 </Row>

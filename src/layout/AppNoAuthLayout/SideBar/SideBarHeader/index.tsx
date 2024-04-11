@@ -18,7 +18,7 @@ const SidebarHeader = () => {
   return (
     <Flex className={styles.sidebarHeader} vertical>
       <div className={styles.logo}>
-        <Link href="/chat">
+        <Link href="/agent">
           <Logo height={32} />
         </Link>
       </div>
