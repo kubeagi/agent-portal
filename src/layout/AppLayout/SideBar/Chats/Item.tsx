@@ -1,7 +1,7 @@
 'use client';
 
 import { EllipsisOutlined } from '@ant-design/icons';
-import { Button, Dropdown, Flex, MenuProps, Typography } from 'antd';
+import { Avatar, Button, Dropdown, Flex, MenuProps, Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import classNames from 'classnames';
 import { MinusCircle } from 'lucide-react';
@@ -50,11 +50,17 @@ export const useStyles = createStyles(({ token }) => {
       },
     },
     icon: {
-      display: 'flex',
-      img: {
+      'display': 'flex',
+      'img': {
         objectFit: 'cover',
         borderRadius: 8,
       },
+      '.ant-skeleton-header': {
+        paddingInlineEnd: 0,
+      },
+    },
+    skeletonAvatar: {
+      backgroundColor: token.colorFillSecondary,
     },
     content: {
       flex: '1 1 0%',
@@ -113,11 +119,14 @@ interface Props {
   delDom: (record?: any, isActiveChat?: boolean) => void;
 }
 
+const default_img_src = '/default_chat.png';
+
 const ChatItem: any = (props: Props) => {
   const { data, delDom } = props;
   const { styles } = useStyles();
   const router = useRouter();
   const { id: activeChat, locale } = useParams();
+  const [imgCheck, setImgCheck] = React.useState<boolean | undefined>();
   const pathname = usePathname();
   const CHAT_OTHER_PAGES = React.useMemo(() => new Set([`/${locale}/chat/bot/create`]), [locale]);
   const isChatPage = pathname.startsWith(`/${locale}/chat`) && !CHAT_OTHER_PAGES.has(pathname);
@@ -188,7 +197,37 @@ const ChatItem: any = (props: Props) => {
         }}
       >
         <div className={styles.icon}>
-          <Image alt="chat_icon" height={42} src={data.icon || '/default_chat.png'} width={42} />
+          {(() => {
+            const iconEle = (
+              <Image
+                alt="chat_icon"
+                height={42}
+                key="icon"
+                onError={() => setImgCheck(false)}
+                onLoad={() => setImgCheck(true)}
+                src={data.icon}
+                style={imgCheck ? {} : { display: 'none' }}
+                width={42}
+              />
+            );
+            if (imgCheck === undefined) {
+              return [
+                <Avatar className={styles.skeletonAvatar} key="skeleton" size={42} />,
+                iconEle,
+              ];
+            }
+            return imgCheck === false ? (
+              <Image
+                alt="default_chat_icon"
+                height={42}
+                key="default_icon"
+                src={default_img_src}
+                width={42}
+              />
+            ) : (
+              iconEle
+            );
+          })()}
         </div>
         <div className={styles.content}>
           <Typography.Paragraph className={styles.title} ellipsis>
